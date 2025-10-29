@@ -1,0 +1,551 @@
+ID do Chamado,Data de Abertura,Data de Fechamento,Status,Prioridade,Motivo,Solução,Solicitante,Agente Responsável,Departamento,TMA (minutos),FRT (minutos),Satisfação do Cliente
+CHAMADO-00001,2024-07-12 21:51:58,,Aberto,Média,Acesso Negado,,Kaique Cavalcante,Luara da Conceição,Vendas,355,66,Regular
+CHAMADO-00002,2024-05-25 00:14:55,,Aberto,Baixa,Falha de Software,,Luigi Moraes,Yago Ferreira,Recursos Humanos,144,102,Bom
+CHAMADO-00003,2025-08-04 14:36:44,,Aberto,Baixa,Impressora Não Funciona,,Dra. Ágatha Souza,Maria Flor Ferreira,Recursos Humanos,375,119,Médio
+CHAMADO-00004,2024-11-07 11:37:29,,Pendente,Alta,Acesso Negado,,Elisa Camargo,Vinícius Câmara,Marketing,96,24,Regular
+CHAMADO-00005,2025-05-12 08:02:50,,Pendente,Urgente,Acesso Negado,,Luna Peixoto,Luara Moura,Recursos Humanos,276,96,Médio
+CHAMADO-00006,2023-12-23 02:31:52,,Pendente,Urgente,Lentidão do Sistema,,Sr. Caio Cavalcante,Maria Cecília Rocha,Vendas,25,30,Bom
+CHAMADO-00007,2025-01-17 15:51:16,,Em Andamento,Alta,Problema de Conexão com a Internet,,Agatha da Rosa,Otto Brito,Produção,123,23,Bom
+CHAMADO-00008,2025-03-21 05:54:52,,Pendente,Baixa,Impressora Não Funciona,,Nicole Carvalho,Guilherme Silva,Marketing,264,7,Regular
+CHAMADO-00009,2024-06-11 15:56:53,,Aberto,Urgente,Acesso Negado,,Maya Silva,Maysa Porto,Vendas,313,90,Regular
+CHAMADO-00010,2024-05-02 08:58:34,2024-05-10 17:33:34,Resolvido,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Yasmin Cavalcante,Ana Sophia Sousa,Marketing,103,21,Regular
+CHAMADO-00011,2025-04-21 16:15:06,2025-04-25 21:24:06,Resolvido,Urgente,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Brenda Vargas,Maria Clara Gonçalves,Recursos Humanos,274,67,Regular
+CHAMADO-00012,2024-03-22 14:21:13,,Em Andamento,Média,Instalação de Software,,Brenda Jesus,Felipe Gomes,Marketing,271,81,Regular
+CHAMADO-00013,2023-10-27 18:55:30,,Em Andamento,Urgente,Falha de Software,,Sra. Antonella Peixoto,Ryan Mendonça,Produção,350,98,Regular
+CHAMADO-00014,2025-06-12 07:25:12,,Aberto,Urgente,Erro de Login,,Rhavi Lima,Maria Cavalcante,Vendas,309,79,Bom
+CHAMADO-00015,2024-04-17 19:54:45,,Pendente,Média,Acesso Negado,,Yasmin Barros,Gael Henrique Cardoso,Recursos Humanos,206,97,Médio
+CHAMADO-00016,2024-10-26 16:54:48,2024-10-27 23:39:48,Resolvido,Urgente,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Miguel Cavalcanti,Luigi Barbosa,Marketing,317,58,Médio
+CHAMADO-00017,2025-06-10 06:13:20,2025-06-13 21:32:20,Fechado,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Aurora Siqueira,Sra. Larissa Pacheco,Recursos Humanos,376,10,Regular
+CHAMADO-00018,2024-02-24 23:19:00,,Aberto,Alta,Falha de Software,,Fernando Ribeiro,Diego Montenegro,Produção,300,18,Médio
+CHAMADO-00019,2025-06-29 19:34:29,,Pendente,Média,Impressora Não Funciona,,Julia Cunha,Sra. Stephany Mendonça,Produção,405,78,Bom
+CHAMADO-00020,2025-07-02 18:41:00,2025-07-08 14:36:00,Resolvido,Alta,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Sabrina Peixoto,Arthur Borges,Financeiro,106,3,Regular
+CHAMADO-00021,2023-10-08 22:06:32,,Pendente,Média,Backup de Dados,,Theo Câmara,Davi Luiz Castro,TI,258,118,Bom
+CHAMADO-00022,2024-12-18 11:58:22,,Aberto,Alta,Lentidão do Sistema,,Sr. Antony das Neves,Sr. Benjamim Mendes,Recursos Humanos,168,27,Regular
+CHAMADO-00023,2025-07-28 03:30:06,,Em Andamento,Média,Hardware Defeituoso,,Felipe Almeida,Marcelo Câmara,TI,329,67,Bom
+CHAMADO-00024,2025-10-05 14:05:44,,Em Andamento,Baixa,Acesso Negado,,Srta. Melina Brito,Heloisa Silva,Produção,356,96,Médio
+CHAMADO-00025,2024-04-01 03:02:31,,Em Andamento,Urgente,Falha de Software,,Manuela Rodrigues,Sr. Enzo Carvalho,TI,149,44,Médio
+CHAMADO-00026,2024-03-18 16:32:20,,Pendente,Baixa,Configuração de E-mail,,Isis Pinto,Enzo Gabriel Rocha,Produção,474,46,Bom
+CHAMADO-00027,2024-11-21 00:51:54,2024-11-29 13:20:54,Fechado,Média,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Dr. Liam da Rosa,Eloah Mendonça,Financeiro,295,4,Regular
+CHAMADO-00028,2024-07-29 10:22:30,2024-07-31 21:37:30,Fechado,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Sr. Alexandre Pastor,Luiz Miguel Farias,Vendas,54,56,Bom
+CHAMADO-00029,2024-04-06 09:28:40,,Em Andamento,Média,Configuração de E-mail,,Maria Alice Ramos,Bruno da Rosa,Vendas,193,50,Médio
+CHAMADO-00030,2024-11-18 12:50:16,,Em Andamento,Baixa,Impressora Não Funciona,,Hadassa Moreira,Emanuel Souza,Produção,15,39,Bom
+CHAMADO-00031,2024-12-08 09:48:07,2024-12-16 04:46:07,Resolvido,Baixa,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Maria Liz Cavalcante,Ana Luiza Silveira,Vendas,27,29,Médio
+CHAMADO-00032,2024-12-18 15:09:06,2024-12-22 19:01:06,Fechado,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Pedro Miguel Moraes,Théo Sá,Marketing,356,60,Bom
+CHAMADO-00033,2023-10-29 23:57:55,,Em Andamento,Baixa,Instalação de Software,,Melina Guerra,Maria Liz Sales,Marketing,346,64,Médio
+CHAMADO-00034,2025-03-04 01:27:52,,Pendente,Baixa,Hardware Defeituoso,,Maya Cavalcanti,Dr. Cauã Marques,Financeiro,345,9,Regular
+CHAMADO-00035,2024-05-26 07:10:31,2024-05-28 18:44:31,Fechado,Alta,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Caleb Castro,Nicolas Lopes,Produção,29,90,Médio
+CHAMADO-00036,2025-01-07 21:30:38,2025-01-14 17:42:38,Resolvido,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Liam Correia,Sr. Miguel Martins,Produção,142,18,Médio
+CHAMADO-00037,2024-03-31 08:05:26,,Em Andamento,Alta,Configuração de E-mail,,Dr. Bento Azevedo,Isis Viana,Marketing,301,96,Bom
+CHAMADO-00038,2024-03-24 01:32:20,2024-03-25 07:35:20,Resolvido,Baixa,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Hellena Cunha,Leandro Cavalcanti,Recursos Humanos,292,120,Regular
+CHAMADO-00039,2025-01-04 13:18:17,2025-01-08 21:28:17,Resolvido,Média,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Isabel Duarte,Ana Sophia Abreu,Marketing,459,116,Bom
+CHAMADO-00040,2024-10-28 17:23:31,2024-10-31 23:12:31,Fechado,Alta,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Sr. Yago Guerra,Antony Aparecida,Financeiro,373,68,Regular
+CHAMADO-00041,2024-11-12 02:13:24,,Em Andamento,Urgente,Hardware Defeituoso,,Nina Rios,Dra. Isabel Pimenta,Financeiro,386,120,Bom
+CHAMADO-00042,2024-03-07 23:24:47,,Em Andamento,Média,Hardware Defeituoso,,Maria Laura Porto,Maria Isis Abreu,Financeiro,442,61,Médio
+CHAMADO-00043,2024-08-19 18:13:01,2024-08-24 10:53:01,Resolvido,Baixa,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Ísis Rios,Allana Siqueira,Vendas,99,9,Médio
+CHAMADO-00044,2024-05-10 23:55:36,2024-05-17 03:16:36,Fechado,Urgente,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Dra. Ana Julia Alves,Diego Teixeira,TI,339,68,Médio
+CHAMADO-00045,2025-02-21 13:58:43,2025-02-22 12:30:43,Fechado,Baixa,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Ana Julia Aparecida,Stephany Pacheco,TI,282,47,Regular
+CHAMADO-00046,2025-05-15 09:39:26,,Em Andamento,Urgente,Problema de Conexão com a Internet,,Thomas Rocha,Rafael Monteiro,Recursos Humanos,362,108,Bom
+CHAMADO-00047,2024-04-03 17:03:24,,Pendente,Média,Configuração de E-mail,,Davi Miguel Vargas,Alice Moraes,Marketing,239,119,Médio
+CHAMADO-00048,2025-05-31 13:03:21,,Em Andamento,Baixa,Backup de Dados,,Dom Sampaio,Ana Liz Câmara,Marketing,309,92,Médio
+CHAMADO-00049,2024-07-03 08:41:21,2024-07-09 06:23:21,Resolvido,Média,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Dr. Juan Casa Grande,Sra. Camila Vieira,Recursos Humanos,479,2,Médio
+CHAMADO-00050,2025-01-18 08:47:25,,Pendente,Alta,Hardware Defeituoso,,Dante Caldeira,Sr. Lucca Moura,Vendas,335,21,Bom
+CHAMADO-00051,2024-04-12 07:15:49,,Aberto,Urgente,Problema de Conexão com a Internet,,Milena Moura,Ana Clara Pinto,Financeiro,186,19,Regular
+CHAMADO-00052,2025-08-16 19:37:43,2025-08-25 17:49:43,Fechado,Média,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Nathan Ramos,Ana Julia Câmara,Marketing,18,19,Médio
+CHAMADO-00053,2024-10-07 11:42:44,2024-10-18 06:18:44,Fechado,Média,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Gael Silva,Maria Clara Pimenta,TI,470,19,Bom
+CHAMADO-00054,2025-01-14 22:39:22,,Pendente,Urgente,Acesso Negado,,Marcela Cunha,Guilherme da Mata,TI,329,68,Bom
+CHAMADO-00055,2024-07-13 01:47:10,,Aberto,Alta,Acesso Negado,,Igor Garcia,Ester Cavalcante,Vendas,79,14,Regular
+CHAMADO-00056,2024-12-16 08:44:15,,Aberto,Urgente,Hardware Defeituoso,,Maitê Rios,Maria da Mata,Produção,445,5,Bom
+CHAMADO-00057,2024-01-13 12:28:11,,Aberto,Alta,Lentidão do Sistema,,Asafe Sá,Ana Carolina Souza,Vendas,153,17,Regular
+CHAMADO-00058,2025-03-21 05:36:22,2025-03-27 19:13:22,Fechado,Média,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Sra. Liz Fogaça,Ravi Cassiano,TI,166,44,Bom
+CHAMADO-00059,2024-06-20 17:59:00,,Pendente,Urgente,Instalação de Software,,Isis Dias,Laís Araújo,Recursos Humanos,162,81,Bom
+CHAMADO-00060,2024-03-24 11:05:46,,Aberto,Média,Problema de Conexão com a Internet,,Erick Moraes,Fernanda Moreira,Recursos Humanos,324,4,Médio
+CHAMADO-00061,2024-03-29 17:13:09,,Aberto,Média,Configuração de E-mail,,Camila Correia,Ravi Araújo,Recursos Humanos,414,36,Médio
+CHAMADO-00062,2024-01-25 10:18:45,,Aberto,Baixa,Erro de Login,,Dr. Calebe da Mata,Sr. Rael Rocha,Produção,212,114,Bom
+CHAMADO-00063,2024-01-12 03:12:17,2024-01-20 12:01:17,Fechado,Baixa,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Joana Gonçalves,Maya Almeida,Recursos Humanos,88,3,Bom
+CHAMADO-00064,2024-12-10 00:26:14,2024-12-19 17:06:14,Fechado,Urgente,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Ravi Lucca Rios,Guilherme Carvalho,Vendas,204,99,Regular
+CHAMADO-00065,2025-02-17 15:52:25,2025-02-22 10:33:25,Fechado,Baixa,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Lucas Moura,Sr. Noah Sousa,Marketing,465,24,Regular
+CHAMADO-00066,2025-07-23 11:22:18,,Em Andamento,Urgente,Impressora Não Funciona,,Daniela da Cruz,Dra. Stella Moreira,Marketing,97,36,Bom
+CHAMADO-00067,2023-11-18 03:31:42,2023-11-20 12:01:42,Fechado,Baixa,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Mariane Porto,Gustavo Ribeiro,Recursos Humanos,315,90,Regular
+CHAMADO-00068,2025-09-01 11:45:14,2025-09-08 09:15:14,Resolvido,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Bianca Casa Grande,Renan Souza,Vendas,328,102,Regular
+CHAMADO-00069,2023-10-26 10:46:55,2023-10-26 12:45:55,Fechado,Média,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Maya Caldeira,Davi Lucas Gonçalves,Marketing,431,61,Bom
+CHAMADO-00070,2024-05-09 17:36:43,2024-05-18 13:32:43,Resolvido,Média,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Srta. Maria Luísa Fonseca,Théo da Mata,Recursos Humanos,73,40,Bom
+CHAMADO-00071,2024-04-11 06:16:12,,Pendente,Média,Hardware Defeituoso,,Juliana Fonseca,Ana Júlia Monteiro,Produção,144,106,Médio
+CHAMADO-00072,2024-01-28 02:39:21,2024-02-03 00:33:21,Resolvido,Média,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Ravy Dias,Laís Cardoso,Vendas,86,92,Médio
+CHAMADO-00073,2025-03-22 23:22:29,2025-03-25 04:16:29,Fechado,Baixa,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Natália Fonseca,Lara Castro,TI,191,70,Médio
+CHAMADO-00074,2024-11-24 11:34:41,2024-11-27 03:32:41,Fechado,Média,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Fernanda Melo,Cauê da Cruz,Recursos Humanos,81,66,Bom
+CHAMADO-00075,2025-03-19 02:45:16,,Em Andamento,Baixa,Instalação de Software,,Marcela Ramos,Srta. Maria Vitória Vargas,TI,210,16,Bom
+CHAMADO-00076,2024-12-29 09:55:48,2024-12-29 22:23:48,Fechado,Urgente,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Letícia Cavalcanti,Francisco Melo,Vendas,96,34,Bom
+CHAMADO-00077,2025-07-10 12:48:30,2025-07-20 23:02:30,Fechado,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Theo Correia,Isaac Costa,Financeiro,455,37,Regular
+CHAMADO-00078,2023-12-13 16:18:48,,Em Andamento,Urgente,Erro de Login,,Dra. Gabrielly Pires,Leonardo Fernandes,Vendas,300,80,Bom
+CHAMADO-00079,2025-02-01 23:01:45,2025-02-06 12:13:45,Fechado,Urgente,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Vitor Hugo Cirino,Vinícius da Mata,Financeiro,28,100,Bom
+CHAMADO-00080,2024-03-05 08:24:08,,Aberto,Baixa,Acesso Negado,,Antonella Sampaio,Dr. Thomas Aparecida,Financeiro,275,95,Regular
+CHAMADO-00081,2025-08-30 21:10:49,,Em Andamento,Alta,Configuração de E-mail,,Pedro Lucas Dias,Vitor Gabriel Mendes,Financeiro,243,63,Regular
+CHAMADO-00082,2025-04-23 20:24:53,,Pendente,Baixa,Falha de Software,,Srta. Eloá Pacheco,Elisa Rocha,Vendas,294,54,Regular
+CHAMADO-00083,2024-06-07 18:23:19,,Aberto,Urgente,Hardware Defeituoso,,Theodoro Cirino,Dra. Maria Júlia Ribeiro,Recursos Humanos,260,46,Regular
+CHAMADO-00084,2025-08-30 10:02:21,,Aberto,Baixa,Instalação de Software,,Carlos Eduardo Garcia,Sr. João Miguel Pimenta,Produção,114,96,Médio
+CHAMADO-00085,2024-01-02 20:01:35,,Aberto,Alta,Falha de Software,,Cauã Campos,Nicolas Machado,Vendas,456,33,Bom
+CHAMADO-00086,2023-12-15 07:02:36,,Em Andamento,Alta,Erro de Login,,Renan Marques,Juliana Montenegro,Marketing,110,76,Médio
+CHAMADO-00087,2025-03-13 18:57:40,,Aberto,Alta,Instalação de Software,,Dra. Marcela Araújo,Vitor Gabriel Novais,Vendas,56,55,Médio
+CHAMADO-00088,2024-03-25 09:17:50,,Aberto,Média,Lentidão do Sistema,,Rhavi Moura,Luan Andrade,Vendas,260,25,Médio
+CHAMADO-00089,2025-02-04 15:59:34,,Pendente,Baixa,Acesso Negado,,Dr. Henrique Pacheco,Hadassa Cavalcanti,Marketing,373,111,Regular
+CHAMADO-00090,2025-07-21 04:18:32,,Aberto,Baixa,Configuração de E-mail,,José Melo,Dra. Luiza Aparecida,Marketing,133,115,Bom
+CHAMADO-00091,2025-04-01 10:08:03,,Aberto,Média,Erro de Login,,Raul Garcia,Sra. Gabriela Dias,TI,243,118,Regular
+CHAMADO-00092,2024-06-18 08:27:00,,Pendente,Média,Acesso Negado,,Ana Carolina Carvalho,Dr. João Pedro Cavalcante,TI,416,80,Bom
+CHAMADO-00093,2024-08-15 18:05:32,2024-08-18 06:11:32,Resolvido,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Nina Farias,Gabriel Araújo,Produção,452,88,Bom
+CHAMADO-00094,2024-12-18 08:39:31,2024-12-25 01:52:31,Fechado,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Srta. Ana Luiza Brito,Pietro Pinto,Financeiro,266,83,Regular
+CHAMADO-00095,2024-12-19 23:56:04,2024-12-25 13:25:04,Resolvido,Média,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Paulo da Cruz,Maria Isis Nascimento,Financeiro,132,79,Regular
+CHAMADO-00096,2024-10-03 05:05:06,2024-10-04 10:10:06,Resolvido,Alta,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Luara Almeida,Dr. Paulo Siqueira,Produção,174,74,Médio
+CHAMADO-00097,2024-05-30 13:05:46,,Pendente,Média,Configuração de E-mail,,Bruna Costa,Luana Moreira,Recursos Humanos,326,25,Regular
+CHAMADO-00098,2025-04-28 22:23:42,,Em Andamento,Baixa,Problema de Conexão com a Internet,,Ravy Lima,Isabel Carvalho,Produção,296,76,Regular
+CHAMADO-00099,2024-08-30 21:29:41,2024-09-09 15:30:41,Fechado,Urgente,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Vicente Alves,Aylla Pereira,Vendas,18,39,Bom
+CHAMADO-00100,2025-08-24 12:11:49,,Aberto,Urgente,Falha de Software,,Samuel Souza,Ana Liz Correia,Marketing,247,44,Médio
+CHAMADO-00101,2024-09-12 16:53:11,,Pendente,Urgente,Instalação de Software,,Laura Peixoto,Daniel Moraes,Vendas,183,46,Bom
+CHAMADO-00102,2025-09-23 08:16:19,,Em Andamento,Baixa,Instalação de Software,,André Costa,Yasmin da Cruz,Financeiro,45,60,Regular
+CHAMADO-00103,2025-05-22 09:33:41,2025-05-31 21:36:41,Resolvido,Alta,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Isadora Oliveira,Isabelly Pacheco,Vendas,446,116,Bom
+CHAMADO-00104,2024-06-23 13:32:46,,Aberto,Alta,Impressora Não Funciona,,Srta. Ana Cecília Pires,Lorenzo Marques,Marketing,406,23,Bom
+CHAMADO-00105,2025-01-31 06:34:07,2025-02-03 17:33:07,Fechado,Urgente,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Maria Clara Pastor,Dr. José Miguel Castro,Produção,271,52,Regular
+CHAMADO-00106,2024-08-18 10:16:19,,Aberto,Média,Impressora Não Funciona,,Dante Marques,Sra. Amanda Pastor,Recursos Humanos,250,89,Regular
+CHAMADO-00107,2025-05-09 00:55:32,2025-05-10 22:06:32,Fechado,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Alícia Barros,Natália Cavalcante,Produção,305,39,Bom
+CHAMADO-00108,2025-05-19 02:50:38,2025-05-22 10:15:38,Fechado,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Paulo Machado,Antônio Santos,Produção,221,3,Regular
+CHAMADO-00109,2024-01-12 08:49:57,,Pendente,Urgente,Problema de Conexão com a Internet,,Lavínia Cavalcanti,Joaquim Lopes,Produção,401,53,Médio
+CHAMADO-00110,2024-04-04 20:21:27,,Aberto,Urgente,Configuração de E-mail,,Enrico Teixeira,Sr. Luiz Gustavo Silva,Marketing,123,22,Bom
+CHAMADO-00111,2025-06-05 05:21:59,,Aberto,Baixa,Hardware Defeituoso,,Pietra Silveira,Dra. Carolina Sales,Financeiro,39,28,Regular
+CHAMADO-00112,2023-11-09 00:08:11,2023-11-19 14:59:11,Fechado,Alta,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Sr. Oliver Campos,Erick Sampaio,Vendas,222,42,Médio
+CHAMADO-00113,2024-12-23 01:08:32,2024-12-30 07:39:32,Resolvido,Alta,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Ana Beatriz Porto,Sra. Giovanna Pereira,TI,297,9,Médio
+CHAMADO-00114,2024-02-24 03:34:40,,Em Andamento,Média,Problema de Conexão com a Internet,,Sr. Carlos Eduardo da Cruz,Sra. Ágatha Nogueira,Marketing,125,8,Médio
+CHAMADO-00115,2024-04-17 15:46:36,,Aberto,Média,Hardware Defeituoso,,Mariane da Cunha,Emanuella Fogaça,Produção,40,9,Regular
+CHAMADO-00116,2025-07-03 01:27:16,,Aberto,Alta,Instalação de Software,,Daniela Ramos,Fernanda Santos,TI,404,23,Regular
+CHAMADO-00117,2024-12-14 20:26:03,2024-12-19 20:25:03,Resolvido,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Augusto Ramos,Maria Rezende,Produção,271,63,Regular
+CHAMADO-00118,2025-08-07 12:26:45,2025-08-11 00:03:45,Fechado,Alta,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Maria Laura Abreu,Davi Casa Grande,Marketing,389,22,Bom
+CHAMADO-00119,2025-07-03 21:14:36,,Pendente,Baixa,Configuração de E-mail,,Josué Sales,João Brito,Produção,358,4,Bom
+CHAMADO-00120,2025-10-01 03:36:52,,Em Andamento,Baixa,Backup de Dados,,Srta. Evelyn Souza,Caleb Abreu,Financeiro,437,59,Médio
+CHAMADO-00121,2025-01-11 22:48:05,,Pendente,Alta,Impressora Não Funciona,,Luísa Oliveira,Maria Liz da Mata,Vendas,343,117,Regular
+CHAMADO-00122,2025-04-28 14:13:18,,Pendente,Baixa,Problema de Conexão com a Internet,,Aurora Vargas,João Gabriel Sá,Produção,279,10,Bom
+CHAMADO-00123,2024-01-13 11:24:38,2024-01-17 06:37:38,Resolvido,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Ana Vitória Ferreira,Sr. Calebe Aragão,Marketing,131,102,Médio
+CHAMADO-00124,2024-01-08 22:13:37,,Pendente,Alta,Configuração de E-mail,,Enzo Costa,Dom Garcia,Produção,371,88,Bom
+CHAMADO-00125,2024-07-30 02:19:06,,Em Andamento,Urgente,Backup de Dados,,Maria Novaes,João Gabriel da Mota,Recursos Humanos,455,2,Médio
+CHAMADO-00126,2024-06-16 08:13:46,2024-06-17 07:25:46,Resolvido,Baixa,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Sabrina Pires,Enrico Moraes,Vendas,69,91,Bom
+CHAMADO-00127,2024-03-04 18:48:29,2024-03-14 17:08:29,Fechado,Baixa,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Yago Oliveira,Murilo Viana,TI,266,26,Bom
+CHAMADO-00128,2025-04-28 14:02:24,,Em Andamento,Alta,Problema de Conexão com a Internet,,Vinícius Carvalho,Lunna Costa,Produção,197,4,Bom
+CHAMADO-00129,2024-09-19 08:42:11,,Pendente,Média,Erro de Login,,Sr. Henry Vargas,Srta. Luiza Novaes,TI,270,87,Médio
+CHAMADO-00130,2023-11-22 16:40:10,2023-11-28 12:50:10,Resolvido,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Mirella da Paz,Thomas Siqueira,TI,343,114,Médio
+CHAMADO-00131,2024-04-17 14:00:36,,Pendente,Urgente,Backup de Dados,,João Guilherme da Cunha,Lunna da Mata,Financeiro,221,52,Regular
+CHAMADO-00132,2024-10-04 17:08:25,,Aberto,Média,Falha de Software,,Anna Liz da Paz,Alícia da Rocha,Produção,217,41,Bom
+CHAMADO-00133,2024-10-13 01:11:36,2024-10-20 03:57:36,Fechado,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Isabella da Costa,Sara Rodrigues,Vendas,410,73,Regular
+CHAMADO-00134,2024-01-01 21:21:06,,Em Andamento,Média,Configuração de E-mail,,Rael Cavalcante,Brayan Correia,Vendas,255,37,Médio
+CHAMADO-00135,2024-12-14 18:26:37,2024-12-19 15:56:37,Fechado,Baixa,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Maria Helena Souza,Luna Rios,Recursos Humanos,480,49,Bom
+CHAMADO-00136,2025-07-01 01:32:51,,Aberto,Média,Impressora Não Funciona,,Enzo Moraes,Jade Aragão,Vendas,88,62,Bom
+CHAMADO-00137,2025-02-23 13:19:49,,Pendente,Alta,Instalação de Software,,Maria Laura Melo,Lucas Pastor,Marketing,448,95,Regular
+CHAMADO-00138,2024-10-28 05:30:02,,Pendente,Média,Acesso Negado,,Breno Peixoto,Mateus Almeida,Vendas,288,44,Bom
+CHAMADO-00139,2024-10-06 00:47:29,,Pendente,Alta,Lentidão do Sistema,,Antony Rios,Gael Aragão,Produção,359,5,Médio
+CHAMADO-00140,2024-11-25 23:15:49,,Pendente,Baixa,Instalação de Software,,Davi Miguel Viana,Sr. Luiz Gustavo Azevedo,Financeiro,29,115,Bom
+CHAMADO-00141,2025-05-01 17:12:03,2025-05-07 16:02:03,Fechado,Média,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Sara Martins,Maria Sophia Cunha,TI,298,33,Bom
+CHAMADO-00142,2024-03-24 04:21:09,,Pendente,Urgente,Acesso Negado,,Maria Sophia Montenegro,Ester Souza,Financeiro,277,36,Regular
+CHAMADO-00143,2024-02-20 22:40:39,,Aberto,Alta,Acesso Negado,,Raul Sales,Lunna Lopes,Vendas,282,61,Médio
+CHAMADO-00144,2024-01-05 11:48:05,,Aberto,Urgente,Instalação de Software,,Dra. Manuela Mendonça,Srta. Mariana Nascimento,Vendas,229,5,Regular
+CHAMADO-00145,2025-04-07 17:08:45,,Pendente,Alta,Erro de Login,,Vinícius Cavalcanti,Dr. Heitor da Mota,Vendas,450,109,Regular
+CHAMADO-00146,2023-11-27 07:59:23,,Aberto,Alta,Problema de Conexão com a Internet,,Sr. Lucas Pires,Bruno da Cunha,Financeiro,49,35,Médio
+CHAMADO-00147,2023-12-09 13:46:09,2023-12-19 15:09:09,Resolvido,Baixa,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Ryan Cavalcanti,Davi Miguel Duarte,Produção,112,59,Médio
+CHAMADO-00148,2024-10-06 08:47:53,2024-10-15 20:36:53,Fechado,Alta,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Dr. Davi Lucas Barros,Srta. Maria Rodrigues,Vendas,333,113,Regular
+CHAMADO-00149,2024-11-20 23:55:19,2024-11-21 08:54:19,Fechado,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Dr. João Vitor Novaes,Arthur Gabriel Martins,Produção,300,2,Regular
+CHAMADO-00150,2024-09-28 01:58:54,,Pendente,Média,Falha de Software,,Vinícius Abreu,Aurora Abreu,Marketing,62,8,Regular
+CHAMADO-00151,2024-08-09 15:12:30,2024-08-18 06:21:30,Fechado,Urgente,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Daniel Barbosa,Maria Clara Nascimento,Recursos Humanos,221,8,Regular
+CHAMADO-00152,2024-05-26 20:55:42,,Aberto,Média,Configuração de E-mail,,Pietra Araújo,Lorena Santos,Marketing,179,22,Regular
+CHAMADO-00153,2025-01-20 12:00:20,,Em Andamento,Urgente,Backup de Dados,,Oliver Sales,Renan Santos,Recursos Humanos,390,96,Bom
+CHAMADO-00154,2024-04-11 16:11:04,,Em Andamento,Baixa,Falha de Software,,Raul Freitas,Mariah Monteiro,TI,379,46,Bom
+CHAMADO-00155,2025-01-23 11:55:39,,Em Andamento,Urgente,Backup de Dados,,Maria Helena Sales,Evelyn Nunes,Recursos Humanos,334,54,Bom
+CHAMADO-00156,2025-05-20 22:16:43,,Em Andamento,Alta,Problema de Conexão com a Internet,,José Garcia,Isabela Barros,Marketing,329,117,Regular
+CHAMADO-00157,2024-10-05 01:51:55,2024-10-06 05:23:55,Fechado,Urgente,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Amanda Pires,Sr. Theodoro da Mota,Vendas,98,92,Médio
+CHAMADO-00158,2025-02-13 16:29:05,2025-02-24 11:53:05,Fechado,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Catarina Aparecida,Nicolas Pereira,Produção,56,97,Médio
+CHAMADO-00159,2025-03-24 14:08:07,,Pendente,Urgente,Lentidão do Sistema,,Isadora Caldeira,Davi Luiz Gomes,Marketing,289,65,Bom
+CHAMADO-00160,2024-04-25 07:02:56,2024-04-30 21:54:56,Resolvido,Alta,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Luiza da Cunha,Sabrina da Rocha,Financeiro,231,72,Bom
+CHAMADO-00161,2025-04-02 10:37:19,,Aberto,Urgente,Falha de Software,,Sophie Novais,Pedro Lucas Lopes,Vendas,216,11,Médio
+CHAMADO-00162,2024-06-11 14:17:20,2024-06-16 21:13:20,Fechado,Média,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Eduardo Nunes,Valentina Gomes,TI,96,90,Regular
+CHAMADO-00163,2024-11-07 07:32:52,,Pendente,Urgente,Impressora Não Funciona,,Sra. Sophie Nunes,Cauê Garcia,Marketing,102,72,Regular
+CHAMADO-00164,2025-07-01 05:29:42,,Em Andamento,Urgente,Configuração de E-mail,,Srta. Alana Lima,Cauê Sousa,Recursos Humanos,254,56,Bom
+CHAMADO-00165,2024-09-29 19:40:02,2024-10-06 14:42:02,Resolvido,Alta,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Anthony Gabriel Cavalcanti,Maria Souza,Financeiro,137,86,Médio
+CHAMADO-00166,2024-06-09 01:25:38,,Aberto,Alta,Backup de Dados,,Sr. Luiz Gustavo da Mata,Ana Julia Fonseca,Marketing,282,113,Regular
+CHAMADO-00167,2025-05-14 22:23:49,2025-05-15 11:11:49,Fechado,Alta,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Joana Abreu,Sophie Macedo,Vendas,116,103,Bom
+CHAMADO-00168,2024-07-10 23:42:23,,Em Andamento,Baixa,Backup de Dados,,Manuela Viana,Sra. Letícia Vargas,TI,424,1,Bom
+CHAMADO-00169,2024-08-25 01:47:44,2024-08-28 19:49:44,Fechado,Baixa,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Maria Eduarda Cunha,Dra. Maria Liz Fonseca,Marketing,100,91,Regular
+CHAMADO-00170,2024-11-21 22:20:12,2024-11-29 11:24:12,Resolvido,Média,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Ana Sophia Carvalho,Ravi Casa Grande,Vendas,127,93,Bom
+CHAMADO-00171,2025-01-08 10:49:30,,Aberto,Média,Instalação de Software,,Evelyn Sá,Vitória da Cruz,Marketing,270,105,Regular
+CHAMADO-00172,2025-09-24 07:34:20,2025-09-27 20:02:20,Resolvido,Alta,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Dom Novais,Luiza Azevedo,TI,47,102,Médio
+CHAMADO-00173,2024-11-06 16:31:30,,Aberto,Baixa,Falha de Software,,Ravy Nunes,Antônio Teixeira,TI,335,94,Regular
+CHAMADO-00174,2024-08-24 23:27:26,,Pendente,Alta,Falha de Software,,Arthur Cardoso,Camila Martins,Financeiro,327,65,Médio
+CHAMADO-00175,2025-07-07 13:38:39,,Pendente,Média,Backup de Dados,,Fernando Pacheco,Vinicius Caldeira,Produção,167,116,Médio
+CHAMADO-00176,2024-02-11 10:38:53,2024-02-12 21:27:53,Fechado,Urgente,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Maria Clara Freitas,Pedro Miguel Viana,Produção,214,1,Bom
+CHAMADO-00177,2023-12-19 14:08:52,,Pendente,Média,Lentidão do Sistema,,Isaque Moraes,Isabelly Jesus,Marketing,270,117,Regular
+CHAMADO-00178,2025-05-04 12:04:51,,Pendente,Urgente,Impressora Não Funciona,,Valentim Gonçalves,Guilherme Farias,Vendas,442,9,Regular
+CHAMADO-00179,2024-01-13 21:27:35,2024-01-18 19:17:35,Resolvido,Baixa,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Pietra Garcia,Raquel Mendes,Recursos Humanos,90,3,Médio
+CHAMADO-00180,2024-08-19 04:06:25,2024-08-25 00:35:25,Resolvido,Urgente,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Sr. Nathan Novais,Mirella Souza,Vendas,303,116,Regular
+CHAMADO-00181,2024-01-01 13:42:10,,Aberto,Baixa,Backup de Dados,,Eduardo Peixoto,Srta. Bella Machado,Financeiro,334,3,Regular
+CHAMADO-00182,2024-08-06 04:19:35,,Aberto,Urgente,Impressora Não Funciona,,Pietro Monteiro,Sr. João Pedro Vasconcelos,Produção,240,69,Médio
+CHAMADO-00183,2024-04-26 08:16:31,,Pendente,Média,Instalação de Software,,Srta. Stephany Moura,Ana Júlia Campos,Produção,468,34,Regular
+CHAMADO-00184,2024-12-07 03:33:05,,Aberto,Urgente,Impressora Não Funciona,,Helena Mendes,Mateus da Cruz,TI,251,44,Médio
+CHAMADO-00185,2024-05-06 01:00:37,2024-05-15 08:31:37,Resolvido,Média,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Stephany Almeida,Isaque Pereira,TI,281,15,Médio
+CHAMADO-00186,2024-01-22 08:40:59,,Aberto,Alta,Backup de Dados,,Mariah Pereira,Natália Ribeiro,Vendas,334,92,Bom
+CHAMADO-00187,2023-11-12 23:56:25,2023-11-18 14:30:25,Fechado,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Lucas Aparecida,Diego Peixoto,Recursos Humanos,416,90,Bom
+CHAMADO-00188,2023-11-27 19:40:37,2023-12-07 10:22:37,Fechado,Média,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Luan Costela,Gael Nogueira,Produção,92,8,Bom
+CHAMADO-00189,2024-10-28 04:14:52,,Em Andamento,Média,Configuração de E-mail,,Mariah Freitas,Dr. Carlos Eduardo Fonseca,TI,304,29,Regular
+CHAMADO-00190,2025-06-20 03:14:14,,Aberto,Alta,Backup de Dados,,Hadassa da Rosa,Dr. Thomas Pacheco,Recursos Humanos,100,42,Médio
+CHAMADO-00191,2024-11-16 07:07:01,,Aberto,Alta,Hardware Defeituoso,,Dra. Marcela Abreu,Alícia Monteiro,Vendas,30,100,Médio
+CHAMADO-00192,2024-03-16 01:59:51,,Aberto,Urgente,Problema de Conexão com a Internet,,Sr. Ravi Melo,Dr. João Felipe Andrade,Produção,177,117,Bom
+CHAMADO-00193,2024-01-23 16:29:19,,Aberto,Urgente,Acesso Negado,,Kaique Rezende,Melissa Cassiano,Vendas,297,47,Médio
+CHAMADO-00194,2025-08-31 12:11:49,,Aberto,Baixa,Erro de Login,,Ana Carolina Lima,Ágatha Silveira,Recursos Humanos,19,11,Médio
+CHAMADO-00195,2025-09-06 10:16:20,,Pendente,Média,Instalação de Software,,Esther Costela,Yasmin Pinto,Recursos Humanos,114,10,Regular
+CHAMADO-00196,2025-02-16 02:08:47,,Em Andamento,Urgente,Impressora Não Funciona,,Bruna Souza,Joana Teixeira,Financeiro,120,10,Médio
+CHAMADO-00197,2024-04-01 17:26:45,,Aberto,Média,Acesso Negado,,Pedro Miguel da Rocha,Luiza da Mata,Financeiro,196,14,Médio
+CHAMADO-00198,2023-11-15 10:04:23,,Pendente,Média,Acesso Negado,,Lucas Gabriel da Costa,Dra. Isabela Caldeira,TI,130,99,Médio
+CHAMADO-00199,2025-01-11 02:07:52,,Aberto,Média,Backup de Dados,,Vitória Pereira,Cauê Vasconcelos,Financeiro,432,28,Regular
+CHAMADO-00200,2025-05-29 01:13:37,,Pendente,Baixa,Instalação de Software,,Lorenzo Mendes,Sr. Gabriel Garcia,Financeiro,396,10,Regular
+CHAMADO-00201,2024-03-24 06:09:26,2024-04-04 01:15:26,Fechado,Baixa,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Sra. Maysa Aparecida,Heitor Cunha,Marketing,227,90,Médio
+CHAMADO-00202,2025-01-05 11:16:55,2025-01-16 03:53:55,Fechado,Urgente,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Yago Cunha,Pedro Lucas Gomes,Marketing,413,78,Regular
+CHAMADO-00203,2024-04-01 14:10:39,2024-04-02 16:24:39,Resolvido,Alta,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Lunna Siqueira,Breno Machado,Recursos Humanos,229,19,Regular
+CHAMADO-00204,2023-12-21 20:51:52,2024-01-01 16:45:52,Fechado,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Srta. Ana Liz Sousa,Bianca Carvalho,Marketing,264,52,Bom
+CHAMADO-00205,2024-09-18 10:23:34,,Pendente,Urgente,Instalação de Software,,Arthur Dias,Dra. Helena Nogueira,Marketing,360,39,Bom
+CHAMADO-00206,2024-07-17 05:46:41,,Aberto,Baixa,Erro de Login,,Eduarda Guerra,Isaac Vargas,Marketing,59,106,Regular
+CHAMADO-00207,2025-03-08 20:56:26,,Pendente,Alta,Instalação de Software,,Isis Aragão,Ana Laura Aragão,TI,176,115,Bom
+CHAMADO-00208,2025-09-15 01:07:30,2025-09-22 16:22:30,Fechado,Alta,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Sra. Ayla Duarte,Dra. Melissa da Costa,TI,143,13,Médio
+CHAMADO-00209,2025-04-16 13:02:36,,Aberto,Baixa,Impressora Não Funciona,,Valentina Moreira,Ryan Mendonça,TI,146,24,Médio
+CHAMADO-00210,2025-05-23 10:11:38,,Pendente,Alta,Falha de Software,,Nicole Araújo,Melissa Caldeira,Marketing,25,97,Bom
+CHAMADO-00211,2025-03-23 17:49:14,,Em Andamento,Baixa,Configuração de E-mail,,Heloísa Rodrigues,Maitê Farias,Financeiro,193,111,Médio
+CHAMADO-00212,2025-03-07 03:22:31,2025-03-11 23:00:31,Fechado,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Cecilia Aragão,Samuel Pinto,Financeiro,181,42,Bom
+CHAMADO-00213,2023-12-17 00:32:32,2023-12-25 13:42:32,Resolvido,Urgente,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Mateus Teixeira,Rael Machado,Financeiro,312,45,Regular
+CHAMADO-00214,2025-06-24 17:38:31,,Pendente,Média,Impressora Não Funciona,,Sra. Maria Isis Correia,Srta. Amanda Cirino,Marketing,392,70,Médio
+CHAMADO-00215,2024-03-07 22:25:14,,Pendente,Alta,Erro de Login,,Sr. Davi Luiz Ramos,Ana Carolina Souza,Recursos Humanos,37,35,Médio
+CHAMADO-00216,2025-03-13 11:34:17,2025-03-16 01:48:17,Fechado,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Joaquim Peixoto,Dr. Diogo Montenegro,Produção,55,23,Médio
+CHAMADO-00217,2024-05-26 14:50:08,,Em Andamento,Urgente,Instalação de Software,,Emanuella da Costa,Ana Beatriz Barros,TI,465,22,Bom
+CHAMADO-00218,2024-04-15 14:58:46,2024-04-21 14:30:46,Fechado,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Bárbara das Neves,Isis da Costa,TI,120,25,Bom
+CHAMADO-00219,2024-05-19 21:33:28,2024-05-29 08:16:28,Fechado,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Isis Freitas,Melissa Azevedo,TI,96,71,Bom
+CHAMADO-00220,2024-09-05 14:14:02,2024-09-13 10:13:02,Resolvido,Alta,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Sr. Dom Garcia,Kaique Cavalcante,Marketing,145,99,Médio
+CHAMADO-00221,2025-01-06 01:18:29,,Aberto,Alta,Erro de Login,,Manuela Cunha,Maria Julia Novaes,Financeiro,15,81,Médio
+CHAMADO-00222,2024-05-19 11:34:39,,Em Andamento,Alta,Lentidão do Sistema,,Enzo Sampaio,Mirella Rios,TI,20,76,Regular
+CHAMADO-00223,2024-10-01 09:35:40,,Pendente,Baixa,Backup de Dados,,Esther Aparecida,Luana Ramos,Recursos Humanos,27,23,Bom
+CHAMADO-00224,2025-07-11 10:20:34,2025-07-20 09:32:34,Fechado,Média,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Heloisa Andrade,Sarah Sales,TI,256,13,Regular
+CHAMADO-00225,2024-11-02 16:48:36,2024-11-03 17:59:36,Resolvido,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Ana Liz Araújo,Dra. Ana Luiza Viana,Recursos Humanos,25,113,Médio
+CHAMADO-00226,2023-12-08 09:20:19,,Aberto,Alta,Impressora Não Funciona,,Melina das Neves,Mariana Sousa,Produção,26,29,Bom
+CHAMADO-00227,2024-09-04 10:46:26,2024-09-08 17:39:26,Resolvido,Alta,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Theodoro Vargas,Maria Alice Guerra,Financeiro,27,20,Regular
+CHAMADO-00228,2024-09-08 10:46:34,,Pendente,Baixa,Hardware Defeituoso,,Daniel Aparecida,Daniel Siqueira,TI,325,38,Médio
+CHAMADO-00229,2025-06-06 17:19:51,2025-06-13 03:48:51,Resolvido,Urgente,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Sr. Nathan Aragão,Kamilly Sousa,Financeiro,323,37,Médio
+CHAMADO-00230,2023-10-12 08:22:34,,Pendente,Alta,Hardware Defeituoso,,Isabel Ribeiro,Marcelo Souza,Recursos Humanos,384,107,Médio
+CHAMADO-00231,2024-09-28 03:20:54,,Em Andamento,Média,Erro de Login,,Clara Nunes,Sr. José Pedro Câmara,Financeiro,405,15,Regular
+CHAMADO-00232,2025-07-14 23:14:32,2025-07-18 14:59:32,Fechado,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Ester Brito,Maria Laura Costela,TI,189,114,Médio
+CHAMADO-00233,2025-04-13 05:16:23,,Pendente,Alta,Hardware Defeituoso,,Liam da Cruz,Antonella Ramos,Financeiro,403,116,Médio
+CHAMADO-00234,2024-01-06 10:44:11,2024-01-13 23:46:11,Resolvido,Baixa,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Heloisa Macedo,Srta. Maya Sá,TI,348,108,Regular
+CHAMADO-00235,2024-02-14 00:15:41,,Aberto,Urgente,Falha de Software,,Luiz Otávio Siqueira,Mariane Machado,Financeiro,217,55,Médio
+CHAMADO-00236,2023-12-03 05:52:40,,Aberto,Média,Configuração de E-mail,,José Miguel Rodrigues,Murilo Castro,Marketing,418,63,Médio
+CHAMADO-00237,2023-10-13 19:27:20,,Pendente,Alta,Instalação de Software,,Valentina Lima,Srta. Yasmin Ferreira,Marketing,113,7,Bom
+CHAMADO-00238,2024-04-22 00:50:49,2024-04-26 07:34:49,Resolvido,Baixa,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Heitor Nascimento,Lara da Mata,TI,253,95,Médio
+CHAMADO-00239,2025-09-21 15:17:07,2025-09-30 07:57:07,Resolvido,Alta,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Sabrina Rodrigues,Ravi Pinto,Produção,362,49,Regular
+CHAMADO-00240,2024-02-28 08:13:58,,Aberto,Baixa,Erro de Login,,Isis Monteiro,Thales Sampaio,Marketing,377,43,Bom
+CHAMADO-00241,2024-06-22 07:15:31,2024-06-29 09:19:31,Resolvido,Alta,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Maria Ribeiro,Srta. Bianca Campos,Financeiro,454,11,Médio
+CHAMADO-00242,2025-06-02 09:35:37,,Aberto,Média,Erro de Login,,Ana Liz Correia,Benjamim Leão,Financeiro,42,53,Médio
+CHAMADO-00243,2023-12-27 13:32:29,,Pendente,Baixa,Impressora Não Funciona,,Heloisa Machado,Heitor Gonçalves,Produção,200,98,Médio
+CHAMADO-00244,2025-08-13 16:32:00,2025-08-17 09:35:00,Resolvido,Urgente,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Davi Leão,Bento Sá,Vendas,373,56,Regular
+CHAMADO-00245,2023-12-20 05:54:59,2023-12-25 19:22:59,Resolvido,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Eloá Nogueira,Ravi Lucca Azevedo,TI,37,63,Bom
+CHAMADO-00246,2024-09-05 21:22:25,,Pendente,Alta,Hardware Defeituoso,,Carlos Eduardo Duarte,Rhavi Caldeira,Financeiro,184,96,Regular
+CHAMADO-00247,2025-02-18 04:47:13,,Em Andamento,Baixa,Instalação de Software,,Ana Laura Peixoto,Danilo Leão,Vendas,286,116,Médio
+CHAMADO-00248,2023-12-13 08:34:17,,Aberto,Baixa,Configuração de E-mail,,José Pedro Duarte,Eloá Castro,TI,452,62,Médio
+CHAMADO-00249,2024-06-23 14:11:57,,Aberto,Urgente,Instalação de Software,,Arthur da Conceição,Arthur Gabriel Leão,Recursos Humanos,116,86,Regular
+CHAMADO-00250,2025-04-26 16:18:04,,Pendente,Média,Hardware Defeituoso,,Dr. Benicio Nunes,José Pereira,Recursos Humanos,135,108,Regular
+CHAMADO-00251,2025-02-16 20:02:26,,Aberto,Média,Instalação de Software,,Carlos Eduardo Macedo,Marina Gomes,Produção,220,44,Regular
+CHAMADO-00252,2024-06-03 23:52:23,,Em Andamento,Média,Instalação de Software,,Luiz Felipe Melo,Stella Peixoto,Vendas,47,85,Médio
+CHAMADO-00253,2024-03-11 09:09:48,,Aberto,Urgente,Instalação de Software,,Emanuelly Oliveira,Bruna Andrade,Vendas,238,95,Médio
+CHAMADO-00254,2025-07-05 19:10:56,,Em Andamento,Urgente,Instalação de Software,,Sara Sá,Sr. Ian Costa,Produção,159,49,Regular
+CHAMADO-00255,2025-05-16 11:00:38,,Pendente,Média,Problema de Conexão com a Internet,,José Miguel Novaes,Sr. Henry Gabriel Camargo,Financeiro,426,74,Médio
+CHAMADO-00256,2025-05-11 13:27:24,,Pendente,Baixa,Acesso Negado,,Olivia da Luz,Srta. Beatriz Silveira,Financeiro,423,44,Médio
+CHAMADO-00257,2024-12-17 17:20:41,,Pendente,Baixa,Hardware Defeituoso,,Isabella Rezende,José Miguel da Conceição,Financeiro,184,60,Médio
+CHAMADO-00258,2025-09-10 19:29:42,,Aberto,Média,Problema de Conexão com a Internet,,Otávio Almeida,Aurora Azevedo,Vendas,76,44,Bom
+CHAMADO-00259,2024-10-11 13:00:32,2024-10-14 10:14:32,Fechado,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",André Pereira,Lorena Nogueira,Financeiro,160,11,Regular
+CHAMADO-00260,2025-01-17 18:00:14,,Pendente,Baixa,Impressora Não Funciona,,Stella Aragão,Benjamin Pereira,Vendas,206,20,Bom
+CHAMADO-00261,2025-01-09 19:05:55,2025-01-18 01:47:55,Fechado,Urgente,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Juliana Montenegro,Ryan Cardoso,Vendas,290,84,Bom
+CHAMADO-00262,2025-01-14 21:58:40,,Aberto,Urgente,Instalação de Software,,Levi Freitas,Ana Beatriz Leão,Recursos Humanos,198,44,Médio
+CHAMADO-00263,2025-05-09 18:33:45,2025-05-20 06:51:45,Fechado,Média,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Maria Flor Aragão,Vinicius Santos,Produção,46,20,Médio
+CHAMADO-00264,2024-04-26 01:41:55,,Aberto,Baixa,Impressora Não Funciona,,Rodrigo Farias,Emanuel Cardoso,TI,70,110,Médio
+CHAMADO-00265,2024-11-16 07:59:38,2024-11-19 15:38:38,Fechado,Baixa,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Dra. Isabella Peixoto,Mathias Barbosa,Recursos Humanos,178,97,Bom
+CHAMADO-00266,2024-02-01 01:14:07,,Aberto,Urgente,Acesso Negado,,Daniela das Neves,Stephany Duarte,Produção,27,96,Regular
+CHAMADO-00267,2024-04-30 02:40:59,2024-04-30 09:41:59,Resolvido,Alta,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Léo Cavalcante,Srta. Clara Campos,Marketing,369,42,Bom
+CHAMADO-00268,2023-11-12 12:32:49,,Em Andamento,Média,Acesso Negado,,Emanuella da Rocha,Valentina Cardoso,Recursos Humanos,15,36,Regular
+CHAMADO-00269,2025-07-29 13:35:39,2025-07-31 13:06:39,Resolvido,Baixa,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Carlos Eduardo Casa Grande,Benjamim Rodrigues,Vendas,211,35,Médio
+CHAMADO-00270,2024-09-20 13:03:06,,Aberto,Média,Instalação de Software,,Emanuelly Pinto,Liam Brito,Financeiro,319,76,Bom
+CHAMADO-00271,2024-04-13 15:30:22,,Aberto,Urgente,Backup de Dados,,Dr. Nathan Pastor,Giovanna Brito,TI,158,100,Bom
+CHAMADO-00272,2024-06-07 01:02:38,,Em Andamento,Alta,Backup de Dados,,Benício Ramos,Srta. Raquel Fernandes,Produção,420,102,Regular
+CHAMADO-00273,2024-10-01 09:10:12,,Pendente,Urgente,Acesso Negado,,Breno Lopes,Vitor Hugo Azevedo,Recursos Humanos,320,55,Médio
+CHAMADO-00274,2024-10-26 07:45:57,,Em Andamento,Baixa,Instalação de Software,,Sra. Elisa Fonseca,Hadassa Nogueira,TI,263,3,Bom
+CHAMADO-00275,2025-05-11 16:26:29,2025-05-11 20:31:29,Fechado,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Sra. Bruna da Luz,Dr. Calebe Moraes,TI,50,13,Regular
+CHAMADO-00276,2025-07-03 17:58:32,2025-07-14 13:42:32,Fechado,Baixa,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Heitor Moraes,Sophia Freitas,Financeiro,110,79,Regular
+CHAMADO-00277,2025-07-31 16:42:59,2025-08-02 06:45:59,Fechado,Média,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Ana Julia Azevedo,Alexandre das Neves,Marketing,456,97,Bom
+CHAMADO-00278,2024-07-28 15:21:43,,Em Andamento,Alta,Instalação de Software,,Nicole Aparecida,Enzo Abreu,Produção,178,104,Regular
+CHAMADO-00279,2024-07-13 07:08:28,2024-07-21 05:07:28,Resolvido,Alta,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Olivia Fogaça,Aurora da Costa,Financeiro,226,58,Médio
+CHAMADO-00280,2024-03-23 13:29:43,,Aberto,Urgente,Backup de Dados,,Rafael Mendonça,Luiz Gustavo da Costa,Recursos Humanos,238,61,Médio
+CHAMADO-00281,2023-11-24 16:25:16,2023-11-28 17:49:16,Fechado,Média,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Laís da Luz,Levi Abreu,Marketing,80,17,Médio
+CHAMADO-00282,2024-06-19 02:19:00,,Pendente,Alta,Acesso Negado,,Amanda Borges,Srta. Antonella Porto,Financeiro,59,59,Bom
+CHAMADO-00283,2023-11-22 22:26:22,,Pendente,Média,Hardware Defeituoso,,José Cassiano,Isabella Aragão,Vendas,336,36,Bom
+CHAMADO-00284,2024-11-26 12:38:52,,Em Andamento,Alta,Lentidão do Sistema,,Lunna Carvalho,Diogo Nunes,TI,109,74,Regular
+CHAMADO-00285,2024-02-27 14:52:00,2024-03-07 11:23:00,Resolvido,Urgente,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Dra. Ana Clara Montenegro,Nicole Mendonça,Recursos Humanos,332,115,Bom
+CHAMADO-00286,2025-06-03 04:44:14,2025-06-09 19:35:14,Resolvido,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Cauã Pimenta,Camila Lima,Vendas,25,94,Bom
+CHAMADO-00287,2025-04-12 07:56:31,,Aberto,Média,Configuração de E-mail,,Maria Luiza da Cunha,Júlia Sales,Vendas,109,73,Regular
+CHAMADO-00288,2024-10-08 01:18:25,,Pendente,Alta,Instalação de Software,,Dom Costela,Sr. Davi Lucas Rezende,Produção,379,70,Bom
+CHAMADO-00289,2025-01-15 09:41:49,2025-01-24 13:40:49,Fechado,Baixa,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Sr. Luiz Fernando Ribeiro,Beatriz da Paz,Recursos Humanos,451,34,Bom
+CHAMADO-00290,2025-01-17 17:03:33,,Aberto,Urgente,Impressora Não Funciona,,Benicio Peixoto,Luiz Gustavo Brito,Produção,467,100,Bom
+CHAMADO-00291,2025-05-30 19:33:20,2025-06-09 08:45:20,Resolvido,Média,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Ryan Pastor,Fernanda Sampaio,Produção,196,106,Regular
+CHAMADO-00292,2024-11-18 12:56:23,2024-11-23 02:20:23,Resolvido,Alta,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Bianca Guerra,Dra. Maria Fonseca,TI,167,120,Médio
+CHAMADO-00293,2025-06-05 13:44:18,,Pendente,Urgente,Erro de Login,,Murilo Aparecida,Sra. Rafaela Sampaio,Produção,169,111,Regular
+CHAMADO-00294,2023-10-18 14:55:57,,Aberto,Urgente,Backup de Dados,,Dra. Rebeca Pinto,Augusto Macedo,Recursos Humanos,88,102,Bom
+CHAMADO-00295,2024-07-20 08:16:27,,Em Andamento,Baixa,Impressora Não Funciona,,Ana Lívia Pimenta,Dra. Evelyn Pastor,Vendas,321,91,Regular
+CHAMADO-00296,2024-12-11 13:32:40,,Aberto,Baixa,Impressora Não Funciona,,Maria Luiza Caldeira,Srta. Hellena da Cunha,Produção,358,54,Regular
+CHAMADO-00297,2024-10-24 16:08:44,,Pendente,Alta,Hardware Defeituoso,,Kevin Vieira,Valentim Câmara,Financeiro,194,113,Médio
+CHAMADO-00298,2024-08-04 16:07:22,2024-08-07 00:36:22,Resolvido,Urgente,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Daniel Gomes,Maria Isis Machado,Vendas,462,67,Bom
+CHAMADO-00299,2024-10-15 13:35:12,,Pendente,Baixa,Backup de Dados,,Yan Sales,Maria Alice da Paz,Vendas,305,96,Regular
+CHAMADO-00300,2023-12-16 05:37:43,2023-12-24 09:32:43,Resolvido,Baixa,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Benicio Andrade,Bruno Lima,TI,244,64,Regular
+CHAMADO-00301,2023-10-27 14:43:08,2023-10-30 10:17:08,Resolvido,Urgente,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Isabelly Abreu,Antônio Novaes,Recursos Humanos,95,23,Médio
+CHAMADO-00302,2024-07-09 01:56:34,2024-07-15 18:25:34,Fechado,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Eloah Jesus,Henrique da Cruz,Financeiro,126,64,Regular
+CHAMADO-00303,2023-12-12 18:23:33,2023-12-15 20:10:33,Resolvido,Alta,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Sra. Nina Aparecida,Davi Lucas Martins,TI,247,6,Bom
+CHAMADO-00304,2024-08-14 11:21:01,2024-08-15 10:24:01,Resolvido,Urgente,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Renan Gomes,Ana Clara Cassiano,Vendas,466,40,Bom
+CHAMADO-00305,2024-03-12 16:54:49,2024-03-16 10:03:49,Resolvido,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Rafaela Aparecida,Maria Laura Marques,Produção,346,120,Bom
+CHAMADO-00306,2024-04-15 17:01:37,2024-04-25 21:54:37,Resolvido,Alta,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Maria Vitória Sá,Ana Vitória Costela,TI,357,59,Bom
+CHAMADO-00307,2025-02-21 11:04:43,2025-02-26 09:23:43,Resolvido,Alta,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Maya Fonseca,Ana Liz Costela,Vendas,300,32,Regular
+CHAMADO-00308,2025-06-26 22:05:38,,Pendente,Alta,Lentidão do Sistema,,Raquel Caldeira,Isabela Sales,Marketing,231,16,Bom
+CHAMADO-00309,2024-12-04 20:39:21,2024-12-14 17:29:21,Fechado,Baixa,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Aurora Costela,Rafael Nogueira,Recursos Humanos,19,11,Médio
+CHAMADO-00310,2023-11-19 04:14:54,2023-11-21 15:36:54,Resolvido,Alta,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Sr. Miguel Novais,Paulo Sales,Produção,329,68,Bom
+CHAMADO-00311,2025-01-18 05:48:41,,Aberto,Urgente,Configuração de E-mail,,Rael Montenegro,Joana Sampaio,Recursos Humanos,163,52,Médio
+CHAMADO-00312,2024-08-30 19:36:31,2024-09-04 02:58:31,Fechado,Baixa,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Marcela Gomes,Thiago Caldeira,Vendas,63,2,Regular
+CHAMADO-00313,2025-01-12 11:14:27,2025-01-16 07:36:27,Resolvido,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Isabela Pereira,Valentim Monteiro,Financeiro,245,43,Médio
+CHAMADO-00314,2025-08-13 17:09:49,,Aberto,Urgente,Erro de Login,,Sr. Théo Caldeira,Ana Luiza da Luz,Marketing,66,115,Bom
+CHAMADO-00315,2025-07-02 09:15:02,,Pendente,Urgente,Impressora Não Funciona,,Yago Fogaça,Ana Carolina Campos,Financeiro,307,96,Bom
+CHAMADO-00316,2025-04-06 13:19:42,,Em Andamento,Baixa,Lentidão do Sistema,,Vitor Hugo Aparecida,Maria Luiza Nascimento,Marketing,95,66,Regular
+CHAMADO-00317,2024-01-28 17:01:44,,Pendente,Baixa,Hardware Defeituoso,,Vitor Gabriel Camargo,Liz das Neves,Produção,170,111,Médio
+CHAMADO-00318,2024-07-29 08:41:26,,Em Andamento,Alta,Instalação de Software,,Maria Sophia Freitas,Benjamim da Paz,Marketing,279,104,Regular
+CHAMADO-00319,2025-09-16 11:54:17,2025-09-26 10:46:17,Fechado,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Marina Cassiano,Augusto Aragão,Financeiro,424,7,Regular
+CHAMADO-00320,2024-10-13 11:14:49,,Aberto,Urgente,Lentidão do Sistema,,Juliana Vargas,Ana Clara Cunha,Marketing,463,47,Médio
+CHAMADO-00321,2025-08-17 14:02:51,,Pendente,Alta,Hardware Defeituoso,,Lucas Fonseca,Pedro Lucas Jesus,Vendas,436,10,Bom
+CHAMADO-00322,2024-01-27 11:32:05,2024-01-28 17:39:05,Resolvido,Baixa,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Ana Luiza da Luz,Emanuelly Lima,Marketing,126,78,Regular
+CHAMADO-00323,2024-08-26 09:41:22,,Em Andamento,Baixa,Backup de Dados,,Eduardo Caldeira,Dr. Erick Rios,Recursos Humanos,310,118,Regular
+CHAMADO-00324,2024-05-28 02:40:09,,Aberto,Urgente,Acesso Negado,,Vitória Leão,Cecilia Costela,Financeiro,320,23,Regular
+CHAMADO-00325,2023-11-08 08:44:59,2023-11-16 23:09:59,Fechado,Média,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Maria Luísa da Costa,Isaque Sampaio,Vendas,321,26,Médio
+CHAMADO-00326,2025-08-30 03:53:26,,Aberto,Média,Configuração de E-mail,,Oliver Melo,Esther Almeida,Produção,436,107,Bom
+CHAMADO-00327,2024-10-13 23:50:18,2024-10-23 05:07:18,Fechado,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Zoe da Conceição,Eduarda Moura,Vendas,194,98,Regular
+CHAMADO-00328,2024-04-11 06:04:19,,Em Andamento,Urgente,Instalação de Software,,Isabel Moreira,Thomas Cardoso,Financeiro,136,44,Regular
+CHAMADO-00329,2023-10-21 03:14:10,,Aberto,Alta,Hardware Defeituoso,,Lucca Aparecida,Clarice Freitas,Vendas,163,89,Regular
+CHAMADO-00330,2024-04-25 12:12:10,2024-05-03 01:25:10,Resolvido,Baixa,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Dr. Anthony Lopes,Milena Pires,Produção,118,81,Bom
+CHAMADO-00331,2024-05-02 13:47:10,,Em Andamento,Baixa,Problema de Conexão com a Internet,,Renan Moura,José Ribeiro,Vendas,402,18,Bom
+CHAMADO-00332,2025-01-22 05:50:41,2025-01-31 00:09:41,Resolvido,Baixa,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Sr. José Pedro Aragão,Sofia Azevedo,Marketing,479,44,Regular
+CHAMADO-00333,2024-03-29 23:28:17,2024-04-08 17:08:17,Resolvido,Alta,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Larissa Camargo,Alice Oliveira,Vendas,126,72,Bom
+CHAMADO-00334,2024-10-21 09:06:22,,Em Andamento,Média,Hardware Defeituoso,,Maria Luísa Pacheco,Vitor Hugo Caldeira,Marketing,364,22,Bom
+CHAMADO-00335,2025-01-27 05:19:29,,Aberto,Média,Falha de Software,,Maria Vitória Siqueira,Ísis Costela,Financeiro,50,46,Bom
+CHAMADO-00336,2024-01-21 15:32:45,,Em Andamento,Baixa,Problema de Conexão com a Internet,,Yasmin da Costa,Enrico Fernandes,TI,317,9,Regular
+CHAMADO-00337,2024-05-25 12:03:08,,Pendente,Baixa,Hardware Defeituoso,,Theo Barbosa,Benício Sales,Recursos Humanos,424,26,Médio
+CHAMADO-00338,2025-03-25 18:31:17,,Pendente,Alta,Acesso Negado,,Enzo Gabriel da Cunha,Lucca Sá,Recursos Humanos,158,70,Médio
+CHAMADO-00339,2024-02-16 14:49:40,,Aberto,Urgente,Falha de Software,,Catarina Cavalcante,Ágatha Fonseca,Recursos Humanos,356,12,Médio
+CHAMADO-00340,2025-07-20 00:57:44,,Aberto,Média,Acesso Negado,,Luiz Otávio Camargo,Sr. Kaique Nascimento,Financeiro,373,63,Médio
+CHAMADO-00341,2025-05-10 19:11:36,,Em Andamento,Urgente,Hardware Defeituoso,,Murilo Montenegro,Sr. Matheus Souza,Financeiro,94,68,Médio
+CHAMADO-00342,2025-06-21 08:08:09,2025-06-29 18:04:09,Fechado,Baixa,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",João Felipe Caldeira,Maria Sousa,TI,270,28,Regular
+CHAMADO-00343,2024-02-22 06:17:48,,Aberto,Baixa,Instalação de Software,,Cecília Macedo,Yan Brito,TI,265,74,Bom
+CHAMADO-00344,2025-07-22 08:56:58,2025-07-27 22:33:58,Fechado,Urgente,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Luiz Otávio Nogueira,João Miguel Nascimento,Vendas,411,102,Bom
+CHAMADO-00345,2023-11-21 13:40:35,2023-11-30 04:30:35,Fechado,Baixa,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Helena Sales,Cauã Mendonça,TI,57,95,Médio
+CHAMADO-00346,2025-01-29 14:29:41,,Em Andamento,Baixa,Problema de Conexão com a Internet,,Ana Vitória das Neves,João Guilherme Câmara,Vendas,436,8,Regular
+CHAMADO-00347,2024-07-15 01:33:12,,Aberto,Média,Lentidão do Sistema,,Juan Aragão,Milena Pires,Produção,438,10,Bom
+CHAMADO-00348,2025-06-04 09:10:14,,Aberto,Urgente,Instalação de Software,,Pedro Cirino,Henry Gabriel da Luz,Marketing,304,2,Médio
+CHAMADO-00349,2025-03-30 12:04:55,,Pendente,Alta,Falha de Software,,Matheus Nascimento,Dr. Carlos Eduardo Garcia,Produção,222,33,Regular
+CHAMADO-00350,2024-07-23 08:25:47,,Aberto,Urgente,Backup de Dados,,Diego Farias,Manuela Camargo,Vendas,295,30,Médio
+CHAMADO-00351,2024-05-08 08:23:20,,Em Andamento,Urgente,Acesso Negado,,Pedro Miguel Sales,Juliana Carvalho,Vendas,32,53,Médio
+CHAMADO-00352,2025-01-09 09:46:12,,Aberto,Média,Backup de Dados,,Lívia Oliveira,Daniela Porto,TI,95,115,Médio
+CHAMADO-00353,2024-07-18 00:36:30,2024-07-19 05:49:30,Fechado,Baixa,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Jade da Costa,Luiz Miguel da Cunha,Financeiro,448,64,Bom
+CHAMADO-00354,2024-12-21 23:29:34,,Em Andamento,Média,Hardware Defeituoso,,Valentina Nunes,Alice Nunes,Produção,232,27,Bom
+CHAMADO-00355,2023-11-01 11:59:03,2023-11-01 15:21:03,Resolvido,Alta,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Mateus Alves,Vinícius Moreira,Financeiro,387,8,Médio
+CHAMADO-00356,2024-05-27 05:31:14,,Aberto,Urgente,Backup de Dados,,Dr. Arthur Miguel Correia,João Gabriel Cassiano,TI,128,59,Regular
+CHAMADO-00357,2024-12-24 06:51:33,,Aberto,Urgente,Configuração de E-mail,,Joana Teixeira,Sra. Gabriela Montenegro,TI,77,72,Regular
+CHAMADO-00358,2024-03-21 10:16:50,,Pendente,Urgente,Instalação de Software,,Sra. Maria Isis Machado,Mathias Sá,Marketing,45,72,Bom
+CHAMADO-00359,2024-02-27 04:42:35,,Pendente,Média,Configuração de E-mail,,Aurora Cardoso,Mariah Alves,TI,268,7,Regular
+CHAMADO-00360,2025-05-02 07:58:05,,Em Andamento,Média,Impressora Não Funciona,,Caio Cunha,Heloísa Campos,Financeiro,408,13,Médio
+CHAMADO-00361,2024-05-28 18:06:11,,Em Andamento,Média,Configuração de E-mail,,Mariah Souza,Diego Moura,Vendas,119,69,Regular
+CHAMADO-00362,2024-09-26 17:55:42,2024-09-27 09:23:42,Fechado,Baixa,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Dra. Fernanda das Neves,Srta. Maria Flor Jesus,Vendas,188,90,Regular
+CHAMADO-00363,2025-01-29 05:43:23,2025-02-06 20:41:23,Fechado,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Ana Júlia Rezende,Erick Vieira,TI,476,120,Bom
+CHAMADO-00364,2025-01-03 05:05:31,,Aberto,Média,Erro de Login,,Dr. Lucca Ferreira,Bruno Oliveira,TI,450,20,Regular
+CHAMADO-00365,2025-07-29 06:19:59,,Aberto,Baixa,Hardware Defeituoso,,Ryan Azevedo,Dr. Lucca Freitas,Marketing,375,96,Regular
+CHAMADO-00366,2025-07-25 17:03:11,,Em Andamento,Urgente,Impressora Não Funciona,,Rafaela Vasconcelos,Yasmin Sousa,Recursos Humanos,368,19,Médio
+CHAMADO-00367,2025-03-10 03:29:30,2025-03-12 03:21:30,Resolvido,Média,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Laura Mendonça,Sr. Cauê Barbosa,Recursos Humanos,40,81,Regular
+CHAMADO-00368,2024-01-20 02:47:42,2024-01-26 08:29:42,Resolvido,Média,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Matteo Carvalho,João Felipe Fogaça,Vendas,185,88,Bom
+CHAMADO-00369,2025-09-09 13:09:33,2025-09-16 19:11:33,Resolvido,Urgente,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Henry Gabriel da Luz,Maitê Abreu,Recursos Humanos,466,105,Regular
+CHAMADO-00370,2025-02-27 21:24:58,,Em Andamento,Urgente,Lentidão do Sistema,,Théo Pereira,Samuel da Costa,Marketing,412,60,Bom
+CHAMADO-00371,2024-04-14 05:27:46,2024-04-19 01:18:46,Fechado,Baixa,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Sara da Rocha,Luiz Otávio da Mota,Vendas,229,113,Médio
+CHAMADO-00372,2025-07-25 15:34:44,,Aberto,Média,Impressora Não Funciona,,Julia Casa Grande,Emanuelly Abreu,TI,23,15,Bom
+CHAMADO-00373,2025-03-18 18:34:53,,Pendente,Alta,Erro de Login,,Dr. Gabriel Fernandes,Antony Vargas,Vendas,344,46,Médio
+CHAMADO-00374,2024-01-29 07:29:19,,Em Andamento,Baixa,Instalação de Software,,Raul Silveira,Mateus Aparecida,Recursos Humanos,321,60,Bom
+CHAMADO-00375,2024-02-27 22:02:03,,Pendente,Alta,Erro de Login,,Léo Siqueira,Leonardo Borges,Produção,113,111,Médio
+CHAMADO-00376,2025-02-17 06:09:27,,Pendente,Baixa,Hardware Defeituoso,,José Rezende,Mariah da Cruz,Vendas,304,71,Bom
+CHAMADO-00377,2025-07-27 21:20:11,,Aberto,Alta,Configuração de E-mail,,Renan Castro,Raquel Alves,Produção,238,96,Regular
+CHAMADO-00378,2025-01-05 19:12:21,,Aberto,Alta,Acesso Negado,,Bryan Monteiro,Ana Laura Teixeira,Vendas,247,47,Bom
+CHAMADO-00379,2025-01-09 09:37:05,,Aberto,Urgente,Instalação de Software,,Maria Júlia Novaes,Luiz Felipe Montenegro,Financeiro,444,88,Bom
+CHAMADO-00380,2024-10-25 08:01:45,2024-11-03 23:50:45,Fechado,Alta,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Henry Cassiano,Srta. Evelyn Guerra,Recursos Humanos,284,48,Bom
+CHAMADO-00381,2024-06-15 03:20:17,2024-06-20 15:51:17,Fechado,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Asafe Pimenta,Vinícius Fogaça,Financeiro,265,95,Médio
+CHAMADO-00382,2024-02-04 21:48:10,,Pendente,Média,Problema de Conexão com a Internet,,Srta. Maria Flor Rodrigues,Liz Peixoto,Vendas,344,89,Bom
+CHAMADO-00383,2024-05-06 02:53:34,,Em Andamento,Alta,Erro de Login,,Yuri Caldeira,Agatha Alves,Recursos Humanos,167,59,Bom
+CHAMADO-00384,2025-06-01 16:12:05,2025-06-04 06:37:05,Fechado,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Maria Flor Fogaça,Matteo da Cunha,Recursos Humanos,112,17,Médio
+CHAMADO-00385,2023-11-28 19:05:51,,Em Andamento,Alta,Hardware Defeituoso,,Maria Cecília Lopes,Apollo da Mota,TI,174,2,Regular
+CHAMADO-00386,2024-06-22 03:59:03,,Pendente,Baixa,Backup de Dados,,Sr. João Lucas da Paz,Dra. Ana Vitória Castro,Recursos Humanos,408,24,Regular
+CHAMADO-00387,2025-09-11 11:14:56,,Em Andamento,Alta,Falha de Software,,Marina Vasconcelos,Sabrina Garcia,Financeiro,35,66,Bom
+CHAMADO-00388,2024-12-31 15:14:49,,Aberto,Média,Instalação de Software,,Ana Luiza Borges,Dr. Luiz Henrique Cirino,Financeiro,264,67,Bom
+CHAMADO-00389,2025-01-24 21:36:51,,Em Andamento,Baixa,Lentidão do Sistema,,Dra. Emanuelly Rezende,Bianca Aragão,Recursos Humanos,323,11,Bom
+CHAMADO-00390,2024-01-22 01:18:50,,Aberto,Alta,Problema de Conexão com a Internet,,André Abreu,Maria Helena Sá,Vendas,141,46,Bom
+CHAMADO-00391,2025-09-28 03:09:40,,Pendente,Baixa,Problema de Conexão com a Internet,,Srta. Lorena Vargas,Henrique Dias,Produção,334,77,Regular
+CHAMADO-00392,2024-08-08 03:13:01,2024-08-14 23:14:01,Resolvido,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Lorena Pastor,Sra. Alice Ferreira,Produção,180,17,Bom
+CHAMADO-00393,2025-08-06 23:09:16,,Pendente,Alta,Lentidão do Sistema,,Matheus Pastor,Ana Carolina Brito,Financeiro,403,107,Médio
+CHAMADO-00394,2025-02-16 01:15:46,,Em Andamento,Urgente,Problema de Conexão com a Internet,,Evelyn Aparecida,Eduardo Azevedo,Financeiro,68,57,Regular
+CHAMADO-00395,2024-06-30 05:20:55,,Em Andamento,Baixa,Instalação de Software,,Srta. Emilly Cavalcanti,João Barros,Produção,137,79,Regular
+CHAMADO-00396,2024-12-12 12:25:07,,Em Andamento,Alta,Backup de Dados,,Aurora Pinto,Rafaela Martins,Recursos Humanos,208,39,Médio
+CHAMADO-00397,2025-10-08 02:00:15,2025-10-09 01:12:15,Resolvido,Baixa,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Sra. Alice Camargo,Sr. Valentim Duarte,TI,315,31,Bom
+CHAMADO-00398,2024-01-16 23:20:16,2024-01-20 10:55:16,Resolvido,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Dr. Apollo da Luz,Luana Pires,Produção,370,59,Regular
+CHAMADO-00399,2025-08-28 07:37:58,,Aberto,Baixa,Problema de Conexão com a Internet,,Sophia Monteiro,Stella Azevedo,Recursos Humanos,198,20,Médio
+CHAMADO-00400,2023-11-27 11:07:46,2023-12-02 06:16:46,Resolvido,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",João Lucas Alves,Isaque Azevedo,Financeiro,264,84,Médio
+CHAMADO-00401,2024-06-07 08:35:18,,Pendente,Média,Acesso Negado,,Sra. Maria Flor Rodrigues,Anthony Lima,Recursos Humanos,234,28,Bom
+CHAMADO-00402,2024-06-25 22:22:15,,Aberto,Alta,Erro de Login,,Ravy Almeida,Clara Camargo,Recursos Humanos,87,44,Bom
+CHAMADO-00403,2024-06-14 01:33:52,,Pendente,Alta,Acesso Negado,,Caleb da Cunha,Maya Cardoso,Produção,386,80,Regular
+CHAMADO-00404,2025-05-30 19:57:49,,Em Andamento,Urgente,Acesso Negado,,Cecilia Silveira,Maria Eduarda Correia,Recursos Humanos,60,6,Bom
+CHAMADO-00405,2025-06-15 16:48:41,,Em Andamento,Alta,Acesso Negado,,Davi Miguel da Rocha,Sr. Francisco Sá,Vendas,106,4,Médio
+CHAMADO-00406,2024-05-04 20:48:02,,Em Andamento,Urgente,Configuração de E-mail,,Felipe Borges,Heloisa Abreu,Financeiro,69,29,Médio
+CHAMADO-00407,2024-09-03 07:21:02,,Em Andamento,Urgente,Backup de Dados,,Beatriz Câmara,Manuela Souza,Financeiro,161,107,Bom
+CHAMADO-00408,2024-08-03 00:22:58,2024-08-06 03:51:58,Fechado,Alta,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Vinicius Costa,Aurora Mendes,Marketing,322,88,Médio
+CHAMADO-00409,2024-03-23 22:01:09,,Em Andamento,Baixa,Configuração de E-mail,,Caio Leão,Bruno das Neves,Recursos Humanos,451,103,Bom
+CHAMADO-00410,2025-04-28 03:15:39,,Em Andamento,Baixa,Impressora Não Funciona,,Mateus Ferreira,Natália Souza,Marketing,263,33,Bom
+CHAMADO-00411,2023-10-20 01:02:53,,Pendente,Média,Erro de Login,,Sr. Caleb Correia,Julia Rocha,Produção,475,13,Regular
+CHAMADO-00412,2025-08-17 10:36:39,2025-08-27 21:57:39,Fechado,Média,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Bruno Pereira,João Gabriel Teixeira,TI,274,31,Médio
+CHAMADO-00413,2024-09-25 15:52:29,,Pendente,Média,Configuração de E-mail,,Josué da Rosa,Murilo Machado,Financeiro,432,72,Bom
+CHAMADO-00414,2025-04-26 20:33:49,2025-05-01 22:41:49,Resolvido,Média,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Vicente Novaes,Bernardo Pimenta,Vendas,377,14,Bom
+CHAMADO-00415,2025-07-17 04:11:37,2025-07-18 21:20:37,Resolvido,Urgente,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Sara Vargas,Breno Andrade,Marketing,101,82,Bom
+CHAMADO-00416,2025-03-29 02:47:40,,Em Andamento,Média,Instalação de Software,,Pietro Fogaça,Dante Mendes,Vendas,396,58,Bom
+CHAMADO-00417,2025-05-09 01:05:19,,Pendente,Baixa,Problema de Conexão com a Internet,,Anthony das Neves,Benício da Cunha,Financeiro,229,53,Bom
+CHAMADO-00418,2025-04-06 05:22:09,2025-04-08 08:05:09,Resolvido,Média,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Maria Julia Moura,Miguel Pastor,Vendas,95,15,Médio
+CHAMADO-00419,2024-02-05 09:40:18,,Aberto,Urgente,Acesso Negado,,Zoe da Rosa,Isaac Azevedo,Marketing,384,90,Regular
+CHAMADO-00420,2025-02-28 02:19:40,,Em Andamento,Alta,Problema de Conexão com a Internet,,Luísa Nogueira,Benjamin Aragão,Recursos Humanos,243,48,Médio
+CHAMADO-00421,2023-12-14 04:18:20,,Em Andamento,Média,Lentidão do Sistema,,Maysa Rodrigues,Anthony Costela,Financeiro,115,102,Médio
+CHAMADO-00422,2024-12-08 10:54:59,,Pendente,Urgente,Hardware Defeituoso,,Pietra Montenegro,Théo Mendes,TI,143,46,Regular
+CHAMADO-00423,2025-02-10 04:40:48,,Em Andamento,Média,Hardware Defeituoso,,Luana Azevedo,Sr. João Pedro Martins,TI,156,104,Regular
+CHAMADO-00424,2025-05-08 00:33:02,2025-05-10 05:56:02,Resolvido,Média,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Isabelly Moreira,Brayan Martins,Marketing,243,57,Médio
+CHAMADO-00425,2025-05-06 09:46:31,2025-05-07 13:50:31,Resolvido,Alta,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Sr. Otto Dias,Beatriz da Mota,Produção,442,67,Regular
+CHAMADO-00426,2024-10-25 12:21:20,,Em Andamento,Alta,Configuração de E-mail,,Sr. Erick Cirino,Raquel Camargo,TI,473,11,Regular
+CHAMADO-00427,2025-08-19 12:02:15,,Aberto,Média,Problema de Conexão com a Internet,,Srta. Sabrina Costela,Luigi da Rosa,Vendas,366,31,Regular
+CHAMADO-00428,2024-01-14 19:52:21,,Aberto,Urgente,Problema de Conexão com a Internet,,André Garcia,Ana Julia Fonseca,Recursos Humanos,195,106,Regular
+CHAMADO-00429,2024-02-24 06:25:18,,Em Andamento,Média,Instalação de Software,,Allana da Mota,João Camargo,TI,392,111,Médio
+CHAMADO-00430,2025-07-15 22:05:41,,Pendente,Baixa,Impressora Não Funciona,,Nina Cirino,Maria Helena Pastor,Marketing,58,81,Bom
+CHAMADO-00431,2025-02-08 22:12:13,,Pendente,Urgente,Impressora Não Funciona,,Luiza Casa Grande,Leonardo Viana,Marketing,210,109,Bom
+CHAMADO-00432,2025-05-21 05:31:41,,Em Andamento,Urgente,Hardware Defeituoso,,Luiz Felipe da Cunha,Leandro Marques,TI,184,88,Regular
+CHAMADO-00433,2024-04-07 22:50:56,2024-04-16 17:45:56,Fechado,Baixa,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Giovanna Machado,Ana Laura Mendes,Vendas,305,68,Médio
+CHAMADO-00434,2023-11-11 05:34:32,2023-11-22 02:39:32,Resolvido,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Elisa Souza,Srta. Brenda Siqueira,Marketing,443,46,Regular
+CHAMADO-00435,2025-03-27 03:56:23,,Em Andamento,Média,Instalação de Software,,José Pedro Almeida,Maitê Casa Grande,Produção,314,44,Bom
+CHAMADO-00436,2023-12-22 03:52:06,,Aberto,Baixa,Lentidão do Sistema,,Dante Carvalho,Erick Silveira,Recursos Humanos,167,55,Regular
+CHAMADO-00437,2023-12-21 13:17:46,2023-12-25 02:10:46,Resolvido,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Marcos Vinicius Vieira,Miguel Rodrigues,TI,339,76,Regular
+CHAMADO-00438,2025-08-03 05:23:45,2025-08-07 02:01:45,Resolvido,Urgente,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Dr. Raul da Cunha,Sra. Vitória Castro,Produção,307,9,Médio
+CHAMADO-00439,2024-02-28 07:31:50,,Pendente,Média,Problema de Conexão com a Internet,,Yuri Pastor,Valentim da Cunha,TI,469,79,Regular
+CHAMADO-00440,2024-02-07 19:59:22,,Em Andamento,Baixa,Backup de Dados,,Dr. André Campos,Marcelo Cassiano,Recursos Humanos,401,17,Regular
+CHAMADO-00441,2025-05-02 12:52:41,2025-05-02 20:39:41,Fechado,Média,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Calebe Gonçalves,Heloísa Costa,Recursos Humanos,126,63,Bom
+CHAMADO-00442,2025-01-22 23:42:57,2025-01-23 04:47:57,Fechado,Baixa,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Bárbara Albuquerque,Théo Cavalcante,TI,432,84,Médio
+CHAMADO-00443,2025-05-29 10:36:52,,Em Andamento,Alta,Instalação de Software,,Nathan Andrade,Miguel da Cruz,TI,59,25,Regular
+CHAMADO-00444,2024-09-09 14:27:45,,Em Andamento,Urgente,Instalação de Software,,Dr. Yan Vieira,Luiz Miguel Santos,TI,198,103,Bom
+CHAMADO-00445,2023-11-08 10:30:22,,Aberto,Urgente,Hardware Defeituoso,,Maria Cecília da Cruz,Sr. Bento Nunes,TI,160,112,Regular
+CHAMADO-00446,2024-10-23 23:55:12,,Em Andamento,Baixa,Backup de Dados,,Catarina Pastor,Pietra Cirino,Recursos Humanos,390,116,Médio
+CHAMADO-00447,2024-05-11 12:27:16,,Em Andamento,Média,Acesso Negado,,Henry Cavalcante,Dr. Bento Pires,Vendas,391,6,Bom
+CHAMADO-00448,2024-07-23 00:01:56,,Pendente,Alta,Instalação de Software,,Pedro Lucas Pinto,Bruno Campos,Marketing,455,104,Regular
+CHAMADO-00449,2025-07-27 02:38:25,,Aberto,Urgente,Lentidão do Sistema,,Maria Isis Garcia,Ana Cecília Guerra,Recursos Humanos,62,5,Bom
+CHAMADO-00450,2024-03-17 01:17:33,,Aberto,Alta,Hardware Defeituoso,,Sra. Ana Laura Dias,Cecília Rezende,Recursos Humanos,357,79,Bom
+CHAMADO-00451,2025-09-23 19:29:44,2025-10-03 10:06:44,Fechado,Urgente,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Bryan Moraes,Danilo Guerra,Financeiro,436,1,Médio
+CHAMADO-00452,2025-06-18 23:45:32,,Em Andamento,Média,Lentidão do Sistema,,Felipe Pastor,Ravi Moraes,Vendas,255,117,Bom
+CHAMADO-00453,2025-06-29 00:25:32,2025-07-03 06:17:32,Fechado,Urgente,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Sra. Caroline Porto,Nina Fonseca,Marketing,224,75,Médio
+CHAMADO-00454,2025-01-15 07:10:32,,Aberto,Baixa,Falha de Software,,Fernanda Ferreira,Manuela Pires,Produção,410,14,Médio
+CHAMADO-00455,2024-09-17 08:12:16,2024-09-23 15:06:16,Resolvido,Média,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",João Vitor Lopes,Julia Albuquerque,Produção,50,58,Regular
+CHAMADO-00456,2024-09-08 06:59:50,2024-09-17 19:50:50,Fechado,Alta,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Maria Alice Rezende,Júlia Montenegro,Recursos Humanos,140,108,Bom
+CHAMADO-00457,2024-06-18 07:49:19,,Aberto,Média,Lentidão do Sistema,,Raul Borges,Fernando Cavalcanti,Vendas,19,44,Bom
+CHAMADO-00458,2023-11-11 04:45:40,,Aberto,Alta,Instalação de Software,,Dr. Nicolas Dias,Vitor Costa,TI,275,64,Médio
+CHAMADO-00459,2023-11-20 09:42:49,,Em Andamento,Alta,Falha de Software,,Mateus Peixoto,Srta. Maria Helena Jesus,Produção,64,58,Regular
+CHAMADO-00460,2024-04-01 04:30:40,2024-04-07 06:03:40,Resolvido,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Agatha Barbosa,Isaac Farias,Marketing,231,64,Bom
+CHAMADO-00461,2025-01-12 16:49:07,,Aberto,Baixa,Impressora Não Funciona,,Maria Eduarda da Luz,Ana Carolina Correia,Financeiro,469,18,Regular
+CHAMADO-00462,2025-01-13 04:28:17,2025-01-15 13:57:17,Resolvido,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Enzo Gabriel Rezende,Leandro Albuquerque,Vendas,447,94,Bom
+CHAMADO-00463,2024-09-14 07:26:49,,Pendente,Urgente,Falha de Software,,Srta. Marina Viana,Isis Santos,Marketing,409,43,Regular
+CHAMADO-00464,2024-06-18 06:45:00,2024-06-26 23:40:00,Fechado,Alta,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Davi Lucca Vieira,Isis Pinto,Produção,212,1,Bom
+CHAMADO-00465,2025-05-20 19:13:55,2025-05-24 10:44:55,Resolvido,Baixa,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Sr. Yan Lima,Leonardo Macedo,Financeiro,396,100,Médio
+CHAMADO-00466,2025-05-11 17:53:25,2025-05-18 00:04:25,Fechado,Média,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Théo Rodrigues,Sabrina Mendes,Vendas,23,53,Bom
+CHAMADO-00467,2024-07-16 17:46:32,2024-07-19 08:09:32,Resolvido,Média,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Vitor Gabriel Pereira,Sr. Vinicius Caldeira,Recursos Humanos,136,101,Médio
+CHAMADO-00468,2025-06-21 20:12:30,,Aberto,Alta,Problema de Conexão com a Internet,,Benício da Mota,Luara Jesus,Produção,332,97,Bom
+CHAMADO-00469,2025-03-05 10:25:12,,Pendente,Alta,Lentidão do Sistema,,Srta. Laura Nascimento,Dr. Otto Cassiano,Financeiro,204,12,Bom
+CHAMADO-00470,2025-01-11 17:33:47,,Pendente,Baixa,Problema de Conexão com a Internet,,Melina da Luz,Léo Cavalcanti,TI,401,85,Regular
+CHAMADO-00471,2025-01-24 13:33:11,2025-02-03 01:53:11,Fechado,Urgente,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Rebeca Fonseca,Dr. João Vitor Melo,Financeiro,434,26,Regular
+CHAMADO-00472,2024-09-03 06:50:26,2024-09-11 15:02:26,Fechado,Média,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Aylla Mendes,Mariah Machado,Marketing,399,21,Bom
+CHAMADO-00473,2025-05-01 23:20:56,2025-05-11 22:24:56,Fechado,Urgente,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Hadassa Cavalcante,Cauê da Rocha,Marketing,225,35,Regular
+CHAMADO-00474,2024-11-16 15:16:36,2024-11-18 19:53:36,Resolvido,Baixa,Instalação de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Liz Costa,Arthur Gabriel Lopes,Marketing,469,71,Médio
+CHAMADO-00475,2024-05-21 17:17:02,2024-05-26 20:00:02,Fechado,Baixa,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Anthony Carvalho,Caio Fernandes,Marketing,194,67,Médio
+CHAMADO-00476,2025-04-25 09:06:20,2025-05-03 15:46:20,Fechado,Baixa,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Thales Silva,Bruno Borges,Vendas,109,44,Regular
+CHAMADO-00477,2024-09-03 16:55:06,2024-09-10 04:37:06,Fechado,Média,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Allana Monteiro,Maria Julia Albuquerque,Produção,135,56,Bom
+CHAMADO-00478,2024-02-05 06:22:29,,Em Andamento,Urgente,Backup de Dados,,Juliana Rezende,Vitor Hugo Ribeiro,TI,477,71,Regular
+CHAMADO-00479,2024-08-23 01:42:08,,Aberto,Média,Instalação de Software,,Srta. Maria Julia Aragão,Maria Liz Porto,Marketing,307,46,Regular
+CHAMADO-00480,2025-08-25 10:14:58,,Aberto,Baixa,Impressora Não Funciona,,Alícia Martins,Ester Marques,Produção,334,67,Bom
+CHAMADO-00481,2023-11-30 18:16:27,,Aberto,Média,Configuração de E-mail,,Dr. Lucas Lima,João Miguel Ramos,TI,16,110,Médio
+CHAMADO-00482,2025-07-16 06:37:50,,Pendente,Baixa,Lentidão do Sistema,,Isaque Albuquerque,Juliana Caldeira,Produção,142,17,Médio
+CHAMADO-00483,2025-06-06 20:21:33,,Pendente,Baixa,Configuração de E-mail,,Clarice Casa Grande,Davi Lucas Lopes,Vendas,466,59,Bom
+CHAMADO-00484,2024-03-03 15:01:18,,Em Andamento,Urgente,Hardware Defeituoso,,Ana Lívia Silveira,Luan Alves,Recursos Humanos,83,54,Bom
+CHAMADO-00485,2024-02-08 21:38:39,,Pendente,Urgente,Hardware Defeituoso,,Dr. Bryan Vargas,Rhavi da Rocha,Marketing,434,31,Médio
+CHAMADO-00486,2024-07-11 15:20:30,,Aberto,Média,Instalação de Software,,Sra. Bianca Lopes,Sr. Benício Pereira,Marketing,359,1,Médio
+CHAMADO-00487,2023-12-24 08:15:17,,Pendente,Média,Problema de Conexão com a Internet,,Sophia Freitas,José Miguel Lopes,Recursos Humanos,395,59,Médio
+CHAMADO-00488,2024-07-10 19:18:58,2024-07-16 14:34:58,Fechado,Baixa,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Ana Carolina Almeida,Pietra das Neves,Marketing,459,28,Bom
+CHAMADO-00489,2023-11-02 11:53:27,,Em Andamento,Baixa,Impressora Não Funciona,,Luana Oliveira,Dra. Ana Laura Silveira,Produção,334,19,Regular
+CHAMADO-00490,2024-12-14 13:13:39,,Aberto,Alta,Configuração de E-mail,,Antony Sá,Helena Porto,Produção,82,49,Médio
+CHAMADO-00491,2025-05-15 01:53:40,2025-05-22 06:54:40,Resolvido,Alta,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Sr. Rael da Mota,Sr. Ravy Mendes,TI,467,28,Regular
+CHAMADO-00492,2024-02-15 20:04:37,2024-02-23 16:08:37,Fechado,Urgente,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Srta. Kamilly Cirino,Sr. José Pedro Albuquerque,Produção,400,4,Médio
+CHAMADO-00493,2024-09-26 15:00:16,,Pendente,Alta,Erro de Login,,Carlos Eduardo Pastor,Ana Carolina Sousa,Recursos Humanos,352,100,Regular
+CHAMADO-00494,2024-10-09 10:21:56,2024-10-20 01:37:56,Fechado,Média,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Sra. Vitória da Luz,Pietra Vasconcelos,Marketing,450,113,Médio
+CHAMADO-00495,2024-01-04 03:59:36,,Aberto,Urgente,Falha de Software,,Alice Vasconcelos,Maitê Pereira,Produção,313,31,Bom
+CHAMADO-00496,2024-12-05 08:42:17,,Pendente,Média,Backup de Dados,,Otávio Jesus,Nathan Cirino,TI,127,99,Bom
+CHAMADO-00497,2024-11-28 03:17:42,,Em Andamento,Alta,Backup de Dados,,Lunna Lopes,Srta. Eloah Almeida,Recursos Humanos,25,69,Regular
+CHAMADO-00498,2023-10-29 09:26:59,,Em Andamento,Média,Erro de Login,,Bruna Duarte,Valentim Correia,TI,453,70,Bom
+CHAMADO-00499,2024-08-30 17:42:29,,Aberto,Baixa,Impressora Não Funciona,,João Gabriel Câmara,Benjamim Vieira,Produção,381,101,Regular
+CHAMADO-00500,2025-01-25 02:27:40,,Aberto,Urgente,Acesso Negado,,Brayan Freitas,Marcos Vinicius Souza,Marketing,190,113,Regular
+CHAMADO-00501,2024-12-06 00:22:02,2024-12-16 13:33:02,Resolvido,Urgente,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Leandro Fogaça,Rhavi Moura,TI,459,46,Bom
+CHAMADO-00502,2024-04-18 06:43:06,,Aberto,Alta,Impressora Não Funciona,,Jade Fonseca,Dr. Vinícius Moura,Produção,323,38,Bom
+CHAMADO-00503,2024-09-20 20:14:41,2024-09-22 19:28:41,Fechado,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Dra. Ayla Cavalcante,Gabrielly Siqueira,TI,226,38,Médio
+CHAMADO-00504,2024-11-21 13:27:41,,Pendente,Baixa,Backup de Dados,,Dr. Rael Azevedo,Daniela Abreu,Recursos Humanos,107,60,Regular
+CHAMADO-00505,2024-11-08 05:05:45,,Em Andamento,Média,Impressora Não Funciona,,Brenda Fonseca,Anna Liz Brito,Recursos Humanos,241,60,Bom
+CHAMADO-00506,2024-05-22 18:33:32,,Pendente,Urgente,Backup de Dados,,Alexia Sales,Joaquim Albuquerque,Vendas,244,41,Médio
+CHAMADO-00507,2025-04-18 13:21:36,2025-04-26 17:58:36,Resolvido,Alta,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Pedro Henrique Campos,Cauê Câmara,Produção,115,93,Bom
+CHAMADO-00508,2024-10-26 17:41:17,2024-11-02 08:59:17,Resolvido,Alta,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Anna Liz das Neves,Maria Júlia Fernandes,Produção,463,39,Médio
+CHAMADO-00509,2024-11-17 07:34:09,2024-11-20 23:12:09,Fechado,Alta,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Maria Alice Borges,Mateus Rodrigues,Marketing,157,106,Médio
+CHAMADO-00510,2023-12-25 20:25:38,2024-01-02 14:27:38,Resolvido,Urgente,Lentidão do Sistema,"Otimização do sistema, limpeza de arquivos temporários e desfragmentação de disco.",Dr. Heitor Pereira,Dr. Henry Gabriel Oliveira,Financeiro,96,52,Bom
+CHAMADO-00511,2025-03-05 08:24:55,,Pendente,Alta,Erro de Login,,Dra. Catarina Garcia,Srta. Lara Albuquerque,TI,149,71,Bom
+CHAMADO-00512,2024-10-14 08:31:22,,Em Andamento,Média,Impressora Não Funciona,,Sr. Leandro Rezende,Sra. Gabriela Lopes,Marketing,357,114,Bom
+CHAMADO-00513,2024-05-28 13:08:19,,Em Andamento,Alta,Backup de Dados,,Rhavi da Luz,Pedro Lucas Almeida,TI,308,52,Bom
+CHAMADO-00514,2024-05-11 15:29:50,2024-05-17 01:06:50,Fechado,Baixa,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Vitor Gabriel Casa Grande,Sra. Aylla Castro,TI,443,4,Regular
+CHAMADO-00515,2024-09-07 10:42:19,2024-09-17 21:28:19,Resolvido,Média,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Gabriel Guerra,Carlos Eduardo da Conceição,Marketing,429,39,Bom
+CHAMADO-00516,2025-09-12 04:39:26,,Pendente,Baixa,Backup de Dados,,Srta. Brenda Novaes,Caio Albuquerque,Vendas,348,118,Regular
+CHAMADO-00517,2024-11-19 03:55:40,2024-11-21 08:19:40,Resolvido,Urgente,Falha de Software,"Reinstalação do software, atualização de drivers e verificação de compatibilidade.",Benicio Dias,Luiz Gustavo Cassiano,Produção,303,43,Bom
+CHAMADO-00518,2024-07-20 11:25:11,2024-07-30 16:19:11,Fechado,Alta,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Gabriel Siqueira,Srta. Kamilly Viana,TI,358,81,Regular
+CHAMADO-00519,2024-01-26 22:37:26,,Aberto,Alta,Problema de Conexão com a Internet,,Alice Costela,Alice Nunes,Vendas,140,29,Regular
+CHAMADO-00520,2024-04-26 21:27:02,,Em Andamento,Alta,Hardware Defeituoso,,Joaquim Sousa,Cecilia da Mata,Produção,408,34,Médio
+CHAMADO-00521,2025-02-02 05:03:47,,Pendente,Baixa,Falha de Software,,Agatha Rodrigues,João Vitor Albuquerque,Recursos Humanos,262,101,Bom
+CHAMADO-00522,2025-09-19 15:03:53,2025-09-25 10:26:53,Fechado,Urgente,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Maria Fernanda Câmara,Sr. Cauã da Rosa,Produção,218,1,Médio
+CHAMADO-00523,2024-04-09 21:57:39,2024-04-16 12:56:39,Fechado,Baixa,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Giovanna Pacheco,Isabela Carvalho,Marketing,64,48,Regular
+CHAMADO-00524,2025-09-21 04:13:48,,Aberto,Urgente,Impressora Não Funciona,,Asafe Aparecida,Isabela da Luz,Marketing,346,104,Regular
+CHAMADO-00525,2025-01-10 10:13:39,,Em Andamento,Média,Lentidão do Sistema,,Sr. Kaique Abreu,João Lucas Sá,Produção,162,49,Regular
+CHAMADO-00526,2024-11-01 11:45:07,,Em Andamento,Baixa,Problema de Conexão com a Internet,,Gustavo Novaes,Sr. Calebe Castro,TI,129,28,Médio
+CHAMADO-00527,2025-06-03 00:41:44,2025-06-03 16:25:44,Resolvido,Baixa,Impressora Não Funciona,"Instalação de drivers, verificação de fila de impressão e teste de conexão.",Mathias Pereira,Maria Laura da Rosa,Vendas,383,101,Regular
+CHAMADO-00528,2024-12-05 08:38:40,2024-12-05 14:02:40,Resolvido,Urgente,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Maria Helena da Cruz,Nathan Costa,Recursos Humanos,320,79,Regular
+CHAMADO-00529,2023-11-20 15:00:12,,Em Andamento,Baixa,Instalação de Software,,Ana Cecília Dias,Marcos Vinicius Costa,Produção,46,35,Regular
+CHAMADO-00530,2025-04-23 23:30:41,,Pendente,Média,Impressora Não Funciona,,Ana Cavalcante,Maria Liz Carvalho,TI,176,59,Bom
+CHAMADO-00531,2024-02-11 17:06:36,2024-02-11 22:34:36,Resolvido,Urgente,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Bernardo Melo,Letícia Viana,TI,357,39,Médio
+CHAMADO-00532,2023-11-01 19:20:42,2023-11-08 08:49:42,Fechado,Urgente,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Dra. Alícia Porto,Dra. Sarah Martins,Marketing,376,80,Regular
+CHAMADO-00533,2024-05-08 13:48:25,2024-05-13 12:54:25,Resolvido,Alta,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Henrique Rezende,Lucas Gabriel Novais,Recursos Humanos,130,83,Bom
+CHAMADO-00534,2025-05-18 14:41:13,,Em Andamento,Urgente,Configuração de E-mail,,Francisco Rezende,Murilo Costa,Financeiro,478,34,Médio
+CHAMADO-00535,2024-01-06 07:50:49,,Aberto,Média,Falha de Software,,Sra. Olivia Mendonça,Dr. Anthony Santos,Financeiro,165,23,Médio
+CHAMADO-00536,2025-01-29 23:47:46,,Aberto,Alta,Problema de Conexão com a Internet,,Sr. Ravi Pastor,Dra. Ana Cecília Gonçalves,Vendas,31,94,Regular
+CHAMADO-00537,2024-09-02 00:29:19,2024-09-08 08:11:19,Resolvido,Alta,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Sr. João Lucas Farias,Eloah Fonseca,Vendas,385,64,Médio
+CHAMADO-00538,2024-01-14 15:53:22,,Pendente,Alta,Lentidão do Sistema,,Dante Pimenta,Emanuella Sales,Financeiro,388,17,Médio
+CHAMADO-00539,2024-08-24 09:15:50,2024-08-31 18:02:50,Fechado,Urgente,Erro de Login,"Redefinição de senha, verificação de credenciais e desbloqueio de conta.",Lorena Nascimento,Pietro Andrade,TI,419,109,Médio
+CHAMADO-00540,2024-12-19 02:11:53,,Aberto,Alta,Falha de Software,,Arthur Gabriel Santos,Apollo Marques,TI,394,44,Regular
+CHAMADO-00541,2025-01-31 22:44:24,,Aberto,Alta,Impressora Não Funciona,,Sophie Correia,Sr. João Vitor da Mata,Recursos Humanos,157,93,Médio
+CHAMADO-00542,2025-01-20 12:39:28,2025-01-25 12:03:28,Fechado,Baixa,Backup de Dados,"Execução de rotina de backup, verificação de integridade e restauração de teste.",Melissa Abreu,Bruna Farias,Recursos Humanos,418,62,Bom
+CHAMADO-00543,2025-04-24 22:34:59,,Aberto,Média,Instalação de Software,,Gabriela Cunha,Yan Melo,Marketing,384,63,Médio
+CHAMADO-00544,2025-01-16 16:54:05,,Em Andamento,Baixa,Impressora Não Funciona,,Vitor Cavalcante,Sr. Daniel Costela,Marketing,294,92,Regular
+CHAMADO-00545,2024-05-10 01:19:59,2024-05-10 04:31:59,Resolvido,Alta,Configuração de E-mail,"Configuração de servidor SMTP/POP3, teste de envio/recebimento e verificação de firewall.",Beatriz da Luz,Carlos Eduardo Guerra,Financeiro,166,48,Regular
+CHAMADO-00546,2024-08-02 15:51:29,2024-08-06 10:41:29,Fechado,Média,Problema de Conexão com a Internet,"Verificação de cabos, reinício de roteador e configuração de rede.",Nicole Nascimento,Marcelo Sousa,Marketing,132,34,Médio
+CHAMADO-00547,2025-07-01 13:19:06,2025-07-08 20:50:06,Fechado,Alta,Acesso Negado,"Concessão de permissões, verificação de grupos de segurança e política de acesso.",Ísis Freitas,Dr. Lucca Silva,Vendas,249,34,Bom
+CHAMADO-00548,2024-07-26 19:33:19,,Pendente,Urgente,Lentidão do Sistema,,Sr. Davi Pastor,Ester Moreira,Marketing,418,96,Regular
+CHAMADO-00549,2024-09-18 11:32:46,,Em Andamento,Alta,Backup de Dados,,Sra. Daniela Cunha,Benjamin Azevedo,TI,330,89,Médio
+CHAMADO-00550,2024-01-21 07:48:46,2024-01-28 11:00:46,Fechado,Baixa,Hardware Defeituoso,"Substituição de componente, teste de memória e diagnóstico de disco.",Théo Aparecida,Dra. Ana Sophia Ferreira,Produção,313,113,Médio
