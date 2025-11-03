@@ -5,7 +5,8 @@ import { TechnicianChart } from "@/components/dashboard/TechnicianChart";
 import { CategoryChart } from "@/components/dashboard/CategoryChart";
 import { TimelineChart } from "@/components/dashboard/TimelineChart";
 import { TicketsTable } from "@/components/dashboard/TicketsTable";
-import { Chamado, parseCSV, getSatisfacaoNumero } from "@/utils/dataParser";
+import { Chamado, convertFromDB, getSatisfacaoNumero } from "@/utils/dataParser";
+import { supabase, ChamadoDB } from "@/lib/supabase";
 import { TicketCheck, Clock, AlertCircle, Star, TrendingUp, Award } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
@@ -18,14 +19,25 @@ const Index = () => {
   const loadData = async () => {
     try {
       setIsRefreshing(true);
-      const response = await fetch('/data/chamados.csv');
-      const csvText = await response.text();
-      const parsedData = parseCSV(csvText);
-      setChamados(parsedData);
+      
+      // Buscar dados do Supabase
+      const { data, error } = await supabase
+        .from('chamados')
+        .select('*')
+        .order('"Data de Abertura"', { ascending: false });
+
+      if (error) {
+        throw error;
+      }
+
+      // Converter dados do formato DB para formato do frontend
+      const chamadosConvertidos = (data as ChamadoDB[]).map(convertFromDB);
+      setChamados(chamadosConvertidos);
+      
       toast.success("Dados atualizados com sucesso!");
     } catch (error) {
       console.error("Erro ao carregar dados:", error);
-      toast.error("Erro ao carregar os dados");
+      toast.error("Erro ao carregar os dados do Supabase");
     } finally {
       setIsRefreshing(false);
       setIsLoading(false);
@@ -34,6 +46,23 @@ const Index = () => {
 
   useEffect(() => {
     loadData();
+
+    // Configurar real-time subscription
+    const channel = supabase
+      .channel('chamados-changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'chamados' },
+        (payload) => {
+          console.log('Mudança detectada:', payload);
+          loadData(); // Recarrega dados quando houver alteração
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   if (isLoading) {

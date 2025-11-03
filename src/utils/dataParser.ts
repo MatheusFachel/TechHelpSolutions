@@ -1,3 +1,5 @@
+import { ChamadoDB } from '@/lib/supabase';
+
 export interface Chamado {
   id: string;
   dataAbertura: string;
@@ -13,6 +15,25 @@ export interface Chamado {
   frt: number;
   satisfacao: string;
 }
+
+// Converte dados do Supabase (nomes do CSV) para formato do frontend (camelCase)
+export const convertFromDB = (dbChamado: ChamadoDB): Chamado => {
+  return {
+    id: dbChamado['ID do Chamado'],
+    dataAbertura: dbChamado['Data de Abertura'],
+    dataFechamento: dbChamado['Data de Fechamento'],
+    status: dbChamado['Status'],
+    prioridade: dbChamado['Prioridade'],
+    motivo: dbChamado['Motivo'],
+    solucao: dbChamado['Solução'],
+    solicitante: dbChamado['Solicitante'],
+    tecnico: dbChamado['Agente Responsável'],
+    departamento: dbChamado['Departamento'],
+    tma: dbChamado['TMA (minutos)'],
+    frt: dbChamado['FRT (minutos)'],
+    satisfacao: dbChamado['Satisfação do Cliente'],
+  };
+};
 
 export const parseCSV = (csvText: string): Chamado[] => {
   const lines = csvText.split('\n');
