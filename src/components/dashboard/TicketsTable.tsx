@@ -18,6 +18,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import * as XLSX from 'xlsx';
 
 interface TicketsTableProps {
   data: Chamado[];
@@ -111,61 +112,50 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
     document.body.removeChild(link);
   };
 
-  // Função para exportar dados filtrados como Excel (usando HTML table)
+  // Função para exportar dados filtrados como Excel (usando biblioteca xlsx)
   const exportToExcel = () => {
-    const headers = [
-      'ID do Chamado',
-      'Data de Abertura',
-      'Data de Fechamento',
-      'Status',
-      'Prioridade',
-      'Motivo',
-      'Solução',
-      'Solicitante',
-      'Técnico',
-      'Departamento',
-      'TMA (minutos)',
-      'FRT (minutos)',
-      'Satisfação do Cliente'
+    // Preparar dados no formato de array de objetos
+    const excelData = filteredData.map(ticket => ({
+      'ID do Chamado': ticket.id,
+      'Data de Abertura': ticket.dataAbertura,
+      'Data de Fechamento': ticket.dataFechamento || '',
+      'Status': ticket.status,
+      'Prioridade': ticket.prioridade,
+      'Motivo': ticket.motivo,
+      'Solução': ticket.solucao || '',
+      'Solicitante': ticket.solicitante,
+      'Técnico': ticket.tecnico,
+      'Departamento': ticket.departamento,
+      'TMA (minutos)': ticket.tma,
+      'FRT (minutos)': ticket.frt,
+      'Satisfação do Cliente': ticket.satisfacao
+    }));
+
+    // Criar workbook e worksheet
+    const worksheet = XLSX.utils.json_to_sheet(excelData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Chamados');
+
+    // Ajustar largura das colunas
+    const columnWidths = [
+      { wch: 18 }, // ID do Chamado
+      { wch: 20 }, // Data de Abertura
+      { wch: 20 }, // Data de Fechamento
+      { wch: 15 }, // Status
+      { wch: 12 }, // Prioridade
+      { wch: 35 }, // Motivo
+      { wch: 50 }, // Solução
+      { wch: 25 }, // Solicitante
+      { wch: 25 }, // Técnico
+      { wch: 20 }, // Departamento
+      { wch: 15 }, // TMA
+      { wch: 15 }, // FRT
+      { wch: 22 }  // Satisfação
     ];
+    worksheet['!cols'] = columnWidths;
 
-    let tableHTML = `
-      <table>
-        <thead>
-          <tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>
-        </thead>
-        <tbody>
-          ${filteredData.map(ticket => `
-            <tr>
-              <td>${ticket.id}</td>
-              <td>${ticket.dataAbertura}</td>
-              <td>${ticket.dataFechamento || ''}</td>
-              <td>${ticket.status}</td>
-              <td>${ticket.prioridade}</td>
-              <td>${ticket.motivo}</td>
-              <td>${ticket.solucao || ''}</td>
-              <td>${ticket.solicitante}</td>
-              <td>${ticket.tecnico}</td>
-              <td>${ticket.departamento}</td>
-              <td>${ticket.tma}</td>
-              <td>${ticket.frt}</td>
-              <td>${ticket.satisfacao}</td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    `;
-
-    const blob = new Blob([tableHTML], { type: 'application/vnd.ms-excel' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    
-    link.setAttribute('href', url);
-    link.setAttribute('download', `chamados_${new Date().toISOString().split('T')[0]}.xls`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Gerar arquivo Excel (.xlsx)
+    XLSX.writeFile(workbook, `chamados_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
   return (
