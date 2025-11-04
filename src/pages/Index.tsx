@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
+import { SettingsModal } from "@/components/dashboard/SettingsModal";
 import { KPICard } from "@/components/dashboard/KPICard";
 import { TechnicianChart } from "@/components/dashboard/TechnicianChart";
 import { CategoryChart } from "@/components/dashboard/CategoryChart";
@@ -7,7 +8,7 @@ import { TimelineChart } from "@/components/dashboard/TimelineChart";
 import { TicketsTable } from "@/components/dashboard/TicketsTable";
 import { Chamado, convertFromDB, getSatisfacaoNumero } from "@/utils/dataParser";
 import { supabase, ChamadoDB } from "@/lib/supabase";
-import { TicketCheck, Clock, AlertCircle, Star, TrendingUp, Award } from "lucide-react";
+import { TicketCheck, Clock, AlertCircle, Star, TrendingUp, Award, CheckCircle2, Zap } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import { DashboardSettings, loadSettings } from "@/lib/settings";
 
 const Index = () => {
   const [chamados, setChamados] = useState<Chamado[]>([]);
@@ -27,6 +29,8 @@ const Index = () => {
   const [selectedYear, setSelectedYear] = useState<number | 'all'>(new Date().getFullYear());
   const [chartsPeriod, setChartsPeriod] = useState<'7' | '30' | '90' | 'all'>('all');
   const [chartsYear, setChartsYear] = useState<number | 'all'>('all'); // Ano para filtrar os gráficos no modo "Todos"
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [settings, setSettings] = useState<DashboardSettings>(loadSettings());
 
   // ============================================================================
   // FUNÇÕES E CÁLCULOS MEMOIZADOS (ANTES DO EARLY RETURN!)
@@ -165,6 +169,41 @@ const Index = () => {
     [chamadosPorTecnico]
   );
 
+  // Taxa de resolução (MEMOIZADO)
+  const taxaResolucao = useMemo(() => {
+    if (totalChamados === 0) return { percentual: 0, resolvidos: 0 };
+    const resolvidos = totalChamados - chamadosAbertos;
+    const percentual = ((resolvidos / totalChamados) * 100);
+    return { percentual, resolvidos };
+  }, [totalChamados, chamadosAbertos]);
+
+  // Categoria crítica (mais recorrente) (MEMOIZADO)
+  const categoriaCritica = useMemo(() => {
+    if (chamadosPorCategoria.length === 0) return null;
+    const sorted = [...chamadosPorCategoria].sort((a, b) => b.value - a.value);
+    const top = sorted[0];
+    const percentual = totalChamados > 0 ? ((top.value / totalChamados) * 100) : 0;
+    return { ...top, percentual };
+  }, [chamadosPorCategoria, totalChamados]);
+
+  // Pico de demanda (dia com mais chamados) (MEMOIZADO)
+  const picoDemanda = useMemo(() => {
+    const chamadosPorDia = chamadosFiltrados.reduce((acc, chamado) => {
+      const dia = new Date(chamado.dataAbertura).toLocaleDateString('pt-BR', { weekday: 'long' });
+      acc[dia] = (acc[dia] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const entries = Object.entries(chamadosPorDia);
+    if (entries.length === 0) return null;
+
+    const [dia, quantidade] = entries.reduce((max, curr) => 
+      curr[1] > max[1] ? curr : max
+    );
+
+    return { dia: dia.charAt(0).toUpperCase() + dia.slice(1), quantidade };
+  }, [chamadosFiltrados]);
+
   // ============================================================================
   // EARLY RETURN PARA LOADING (DEPOIS DE TODOS OS HOOKS!)
   // ============================================================================
@@ -294,7 +333,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <DashboardHeader onRefresh={loadData} isRefreshing={isRefreshing} />
+      <DashboardHeader 
+        onRefresh={loadData} 
+        isRefreshing={isRefreshing}
+        onOpenSettings={() => setSettingsOpen(true)}
+      />
+      
+      <SettingsModal
+        open={settingsOpen}
+        onOpenChange={setSettingsOpen}
+        onSettingsChange={setSettings}
+      />
       
       <main className="container mx-auto px-4 py-8 space-y-8">
         {/* KPIs */}
@@ -309,9 +358,9 @@ const Index = () => {
           <KPICard
             title="Tempo Médio de Resolução"
             value={`${tmaMedia} min`}
-            subtitle={`Meta: < 240 min ${tmaMedia > 240 ? '⚠️' : '✓'}`}
+            subtitle={`Meta: < ${settings.metaTMA} min ${tmaMedia > settings.metaTMA ? '⚠️' : '✓'}`}
             icon={Clock}
-            colorScheme={tmaMedia > 240 ? "warning" : "success"}
+            colorScheme={tmaMedia > settings.metaTMA ? "warning" : "success"}
             delay={100}
           />
           <KPICard
@@ -325,9 +374,9 @@ const Index = () => {
           <KPICard
             title="Nível de Satisfação"
             value={`${satisfacaoMedia} / 5`}
-            subtitle="Meta: 4.0/5"
+            subtitle={`Meta: ${settings.metaSatisfacao.toFixed(1)}/5 ${parseFloat(satisfacaoMedia) >= settings.metaSatisfacao ? '✓' : '⚠️'}`}
             icon={Star}
-            colorScheme={parseFloat(satisfacaoMedia) >= 4 ? "success" : "warning"}
+            colorScheme={parseFloat(satisfacaoMedia) >= settings.metaSatisfacao ? "success" : "warning"}
             delay={300}
           />
         </div>
@@ -419,50 +468,74 @@ const Index = () => {
         />
 
         {/* Cards de insights adicionais */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Técnico em Destaque */}
           <Card className="p-6 border-border/50 bg-gradient-to-br from-primary/10 to-primary/5">
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-primary/20">
                 <Award className="w-6 h-6 text-primary" />
               </div>
-              <div>
-                <h3 className="font-semibold mb-1">Técnico em Destaque</h3>
-                <p className="text-2xl font-bold text-primary">{topTechnician?.name}</p>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold mb-1 text-sm">Técnico em Destaque</h3>
+                <p className="text-2xl font-bold text-primary truncate">
+                  {topTechnician?.name || '-'}
+                </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {topTechnician?.tickets} chamados atendidos
+                  {topTechnician?.tickets || 0} chamados atendidos
                 </p>
               </div>
             </div>
           </Card>
 
+          {/* Taxa de Resolução */}
+          <Card className="p-6 border-border/50 bg-gradient-to-br from-success/10 to-success/5">
+            <div className="flex items-start gap-4">
+              <div className="p-3 rounded-xl bg-success/20">
+                <CheckCircle2 className="w-6 h-6 text-success" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold mb-1 text-sm">Taxa de Resolução</h3>
+                <p className="text-2xl font-bold text-success">
+                  {taxaResolucao.percentual.toFixed(1)}%
+                </p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {taxaResolucao.resolvidos} de {totalChamados} resolvidos
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          {/* Categoria Crítica */}
           <Card className="p-6 border-border/50 bg-gradient-to-br from-warning/10 to-warning/5">
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-warning/20">
                 <AlertCircle className="w-6 h-6 text-warning" />
               </div>
-              <div>
-                <h3 className="font-semibold mb-1">Atenção Necessária</h3>
-                <p className="text-2xl font-bold text-warning">{chamadosAbertos}</p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  chamados aguardando atendimento
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold mb-1 text-sm">Categoria Crítica</h3>
+                <p className="text-2xl font-bold text-warning truncate" title={categoriaCritica?.name}>
+                  {categoriaCritica?.value || 0}
+                </p>
+                <p className="text-sm text-muted-foreground mt-1 truncate" title={categoriaCritica?.name}>
+                  {categoriaCritica?.name || 'Nenhuma'} ({categoriaCritica?.percentual.toFixed(1) || 0}%)
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-6 border-border/50 bg-gradient-to-br from-success/10 to-success/5">
+          {/* Pico de Demanda */}
+          <Card className="p-6 border-border/50 bg-gradient-to-br from-blue-500/10 to-blue-500/5">
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-success/20">
-                <TrendingUp className="w-6 h-6 text-success" />
+              <div className="p-3 rounded-xl bg-blue-500/20">
+                <Zap className="w-6 h-6 text-blue-500" />
               </div>
-              <div>
-                <h3 className="font-semibold mb-1">Meta de Satisfação</h3>
-                <p className="text-2xl font-bold">
-                  <span className="text-foreground">{satisfacaoMedia}</span>
-                  <span className="text-muted-foreground text-lg"> / 4.0</span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold mb-1 text-sm">Pico de Demanda</h3>
+                <p className="text-2xl font-bold text-blue-500 truncate">
+                  {picoDemanda?.dia || '-'}
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {parseFloat(satisfacaoMedia) >= 4 ? "Meta atingida! 🎉" : "Continue melhorando"}
+                  {picoDemanda?.quantidade || 0} chamados neste dia
                 </p>
               </div>
             </div>

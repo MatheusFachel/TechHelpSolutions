@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { ChartCard } from './ChartCard';
 import { AlertCircle, Info } from 'lucide-react';
 
@@ -82,13 +82,44 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
     );
   }
 
-  // Função para renderizar label customizado (evita sobreposição)
-  const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
-    // Só mostra label se a porcentagem for >= 5% (evita labels muito pequenos)
-    if (percent < 0.05) return null;
+  // Função para abreviar nomes longos
+  const abbreviateText = (text: string, maxLength: number = 20): string => {
+    if (text.length <= maxLength) return text;
+    
+    // Abreviações comuns
+    const abbreviations: Record<string, string> = {
+      'Impressora': 'Impr.',
+      'Problema': 'Prob.',
+      'Conexão': 'Conex.',
+      'Internet': 'Int.',
+      'Instalação': 'Instal.',
+      'Software': 'SW',
+      'Hardware': 'HW',
+      'Configuração': 'Config.',
+      'E-mail': 'Email',
+      'Sistema': 'Sist.',
+      'Lentidão': 'Lent.',
+      'Funcionando': 'Func.',
+      'Funciona': 'Func.'
+    };
+    
+    let abbreviated = text;
+    Object.entries(abbreviations).forEach(([full, abbr]) => {
+      abbreviated = abbreviated.replace(new RegExp(full, 'gi'), abbr);
+    });
+    
+    // Se ainda estiver muito longo, trunca
+    if (abbreviated.length > maxLength) {
+      return abbreviated.substring(0, maxLength - 3) + '...';
+    }
+    
+    return abbreviated;
+  };
 
+  // Função para renderizar label customizado com texto abreviado
+  const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }: any) => {
     const RADIAN = Math.PI / 180;
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const radius = outerRadius + 25; // Posiciona fora do círculo
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
@@ -96,12 +127,12 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
       <text 
         x={x} 
         y={y} 
-        fill="white" 
+        fill="hsl(var(--foreground))" 
         textAnchor={x > cx ? 'start' : 'end'} 
         dominantBaseline="central"
-        className="text-xs font-semibold"
+        style={{ fontSize: '10px', fontWeight: 500 }}
       >
-        {`${(percent * 100).toFixed(0)}%`}
+        {abbreviateText(name, 18)} ({(percent * 100).toFixed(0)}%)
       </text>
     );
   };
@@ -114,9 +145,9 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
             data={sortedData}
             cx="50%"
             cy="50%"
-            labelLine={false}
+            labelLine={true}
             label={renderCustomLabel}
-            outerRadius={80}
+            outerRadius={85}
             fill="#8884d8"
             dataKey="value"
             animationDuration={1000}
@@ -130,15 +161,6 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
               backgroundColor: 'hsl(var(--card))',
               border: '1px solid hsl(var(--border))',
               borderRadius: '8px',
-            }}
-          />
-          <Legend 
-            verticalAlign="bottom" 
-            height={36}
-            iconType="circle"
-            wrapperStyle={{
-              fontSize: '12px',
-              paddingTop: '10px'
             }}
           />
         </PieChart>

@@ -1,4 +1,4 @@
-import { RefreshCw, Moon, Sun } from "lucide-react";
+import { RefreshCw, Moon, Sun, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import logo from "@/assets/techhelp-logo.png";
@@ -6,9 +6,10 @@ import logo from "@/assets/techhelp-logo.png";
 interface DashboardHeaderProps {
   onRefresh: () => void;
   isRefreshing: boolean;
+  onOpenSettings: () => void;
 }
 
-export const DashboardHeader = ({ onRefresh, isRefreshing }: DashboardHeaderProps) => {
+export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings }: DashboardHeaderProps) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isDark, setIsDark] = useState(false);
 
@@ -51,8 +52,18 @@ export const DashboardHeader = ({ onRefresh, isRefreshing }: DashboardHeaderProp
             <Button
               variant="outline"
               size="icon"
+              onClick={onOpenSettings}
+              className="rounded-full"
+              title="Configurações"
+            >
+              <Settings className="h-5 w-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
               onClick={() => setIsDark(!isDark)}
               className="rounded-full"
+              title={isDark ? "Modo claro" : "Modo escuro"}
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
