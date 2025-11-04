@@ -10,6 +10,13 @@ import { supabase, ChamadoDB } from "@/lib/supabase";
 import { TicketCheck, Clock, AlertCircle, Star, TrendingUp, Award } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -19,6 +26,7 @@ const Index = () => {
   const [timelinePeriod, setTimelinePeriod] = useState<'7' | '30' | '90' | 'all'>('7');
   const [selectedYear, setSelectedYear] = useState<number | 'all'>(new Date().getFullYear());
   const [chartsPeriod, setChartsPeriod] = useState<'7' | '30' | '90' | 'all'>('all');
+  const [chartsYear, setChartsYear] = useState<number | 'all'>('all'); // Ano para filtrar os gráficos no modo "Todos"
 
   // ============================================================================
   // FUNÇÕES E CÁLCULOS MEMOIZADOS (ANTES DO EARLY RETURN!)
@@ -85,15 +93,25 @@ const Index = () => {
 
   // Filtrar chamados baseado no período selecionado (MEMOIZADO)
   const chamadosFiltrados = useMemo(() => {
-    if (chartsPeriod === 'all') return chamados;
+    let filtered = chamados;
 
-    const days = chartsPeriod === '7' ? 7 : chartsPeriod === '30' ? 30 : 90;
-    const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - days);
-    const cutoffTime = cutoffDate.getTime();
+    // Filtro por período
+    if (chartsPeriod !== 'all') {
+      const days = chartsPeriod === '7' ? 7 : chartsPeriod === '30' ? 30 : 90;
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - days);
+      const cutoffTime = cutoffDate.getTime();
 
-    return chamados.filter(c => new Date(c.dataAbertura).getTime() >= cutoffTime);
-  }, [chamados, chartsPeriod]);
+      filtered = filtered.filter(c => new Date(c.dataAbertura).getTime() >= cutoffTime);
+    }
+
+    // Filtro por ano (apenas quando chartsPeriod='all' e chartsYear não é 'all')
+    if (chartsPeriod === 'all' && chartsYear !== 'all') {
+      filtered = filtered.filter(c => new Date(c.dataAbertura).getFullYear() === chartsYear);
+    }
+
+    return filtered;
+  }, [chamados, chartsPeriod, chartsYear]);
 
   // Cálculos dos KPIs (MEMOIZADOS)
   const totalChamados = chamados.length;
@@ -350,9 +368,35 @@ const Index = () => {
                 Todos
               </Button>
             </div>
+
+            {/* Seletor de ano - aparece apenas quando "Todos" está ativo */}
+            {chartsPeriod === 'all' && availableYears.length > 0 && (
+              <>
+                <div className="h-6 w-px bg-border mx-2" /> {/* Divisor vertical */}
+                <Select 
+                  value={chartsYear.toString()} 
+                  onValueChange={(value) => setChartsYear(value === 'all' ? 'all' : parseInt(value))}
+                >
+                  <SelectTrigger className="w-[140px] h-8">
+                    <SelectValue placeholder="Ano" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Todos os anos</SelectItem>
+                    {availableYears.map(year => (
+                      <SelectItem key={year} value={year.toString()}>
+                        {year}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </>
+            )}
+
             <span className="text-xs text-muted-foreground ml-auto">
               {chartsPeriod === 'all' 
-                ? `Mostrando ${chamadosFiltrados.length} chamados (todos)` 
+                ? chartsYear === 'all'
+                  ? `Mostrando ${chamadosFiltrados.length} chamados (todos os anos)` 
+                  : `Mostrando ${chamadosFiltrados.length} chamados de ${chartsYear}`
                 : `Mostrando ${chamadosFiltrados.length} chamados dos últimos ${chartsPeriod} dias`}
             </span>
           </div>

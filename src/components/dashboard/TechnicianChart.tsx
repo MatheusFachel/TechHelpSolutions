@@ -1,6 +1,7 @@
 import { memo, useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ChartCard } from './ChartCard';
+import { AlertCircle } from 'lucide-react';
 
 interface TechnicianData {
   name: string;
@@ -18,12 +19,35 @@ export const TechnicianChart = memo(({ data }: TechnicianChartProps) => {
   );
   
   const insight = useMemo(() => {
+    if (sortedData.length === 0) return "Nenhum chamado registrado no período selecionado.";
+    
     const topTechnician = sortedData[0];
-    if (!topTechnician) return "Nenhum dado disponível";
+    
+    // Verificar se todos têm o mesmo valor (gráfico uniforme)
+    const allEqual = sortedData.every(t => t.tickets === topTechnician.tickets);
+    
+    if (allEqual && sortedData.length > 1) {
+      return `Todos os ${sortedData.length} técnicos atenderam ${topTechnician.tickets} chamado(s) cada no período. Distribuição equilibrada da carga de trabalho.`;
+    }
     
     const runners = sortedData.slice(1, 3).map(t => t.name).join(' e ');
-    return `${topTechnician.name} é o técnico mais produtivo com ${topTechnician.tickets} chamados atendidos. ${runners} também se destacam com alta produtividade.`;
+    const runnersText = runners ? ` ${runners} também se destacam com alta produtividade.` : '';
+    
+    return `${topTechnician.name} é o técnico mais produtivo com ${topTechnician.tickets} chamados atendidos.${runnersText}`;
   }, [sortedData]);
+
+  // Estado vazio
+  if (sortedData.length === 0) {
+    return (
+      <ChartCard title="Chamados por Técnico" insight={insight}>
+        <div className="h-[300px] flex flex-col items-center justify-center text-muted-foreground">
+          <AlertCircle className="w-12 h-12 mb-4 opacity-50" />
+          <p className="text-sm">Nenhum dado disponível para o período selecionado</p>
+          <p className="text-xs mt-2">Tente selecionar um período maior</p>
+        </div>
+      </ChartCard>
+    );
+  }
 
   return (
     <ChartCard title="Chamados por Técnico" insight={insight}>

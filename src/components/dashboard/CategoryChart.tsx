@@ -1,6 +1,7 @@
 import { memo, useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { ChartCard } from './ChartCard';
+import { AlertCircle } from 'lucide-react';
 
 interface CategoryData {
   name: string;
@@ -27,13 +28,34 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
   );
   
   const insight = useMemo(() => {
+    if (sortedData.length === 0) return "Nenhum chamado registrado no período selecionado.";
+    
     const total = sortedData.reduce((sum, item) => sum + item.value, 0);
     const topCategory = sortedData[0];
-    if (!topCategory) return "Nenhum dado disponível";
+    
+    // Verificar se todos têm o mesmo valor (distribuição uniforme)
+    const allEqual = sortedData.every(c => c.value === topCategory.value);
+    
+    if (allEqual && sortedData.length > 1) {
+      return `Distribuição uniforme entre ${sortedData.length} categorias com ${topCategory.value} chamado(s) cada. Não há categoria predominante no período.`;
+    }
     
     const percentage = ((topCategory.value / total) * 100).toFixed(1);
     return `${topCategory.name} é a categoria mais recorrente com ${topCategory.value} incidentes (${percentage}%). Atenção necessária para reduzir reincidências.`;
   }, [sortedData]);
+
+  // Estado vazio
+  if (sortedData.length === 0) {
+    return (
+      <ChartCard title="Chamados por Categoria" insight={insight}>
+        <div className="h-[300px] flex flex-col items-center justify-center text-muted-foreground">
+          <AlertCircle className="w-12 h-12 mb-4 opacity-50" />
+          <p className="text-sm">Nenhum dado disponível para o período selecionado</p>
+          <p className="text-xs mt-2">Tente selecionar um período maior</p>
+        </div>
+      </ChartCard>
+    );
+  }
 
   return (
     <ChartCard title="Chamados por Categoria" insight={insight}>
