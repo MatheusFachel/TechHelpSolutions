@@ -171,10 +171,21 @@ const Index = () => {
 
   // Taxa de resolução (MEMOIZADO)
   const taxaResolucao = useMemo(() => {
-    if (totalChamados === 0) return { percentual: 0, resolvidos: 0 };
+    if (totalChamados === 0) return { percentual: 0, resolvidos: 0, status: 'critical' as const };
     const resolvidos = totalChamados - chamadosAbertos;
     const percentual = ((resolvidos / totalChamados) * 100);
-    return { percentual, resolvidos };
+    
+    // Definir status baseado na taxa
+    let status: 'critical' | 'warning' | 'success';
+    if (percentual < 60) {
+      status = 'critical';
+    } else if (percentual < 80) {
+      status = 'warning';
+    } else {
+      status = 'success';
+    }
+    
+    return { percentual, resolvidos, status };
   }, [totalChamados, chamadosAbertos]);
 
   // Categoria crítica (mais recorrente) (MEMOIZADO)
@@ -488,14 +499,30 @@ const Index = () => {
           </Card>
 
           {/* Taxa de Resolução */}
-          <Card className="p-6 border-border/50 bg-gradient-to-br from-success/10 to-success/5">
+          <Card className={`p-6 border-border/50 bg-gradient-to-br ${
+            taxaResolucao.status === 'critical' ? 'from-destructive/10 to-destructive/5' :
+            taxaResolucao.status === 'warning' ? 'from-warning/10 to-warning/5' :
+            'from-success/10 to-success/5'
+          }`}>
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-xl bg-success/20">
-                <CheckCircle2 className="w-6 h-6 text-success" />
+              <div className={`p-3 rounded-xl ${
+                taxaResolucao.status === 'critical' ? 'bg-destructive/20' :
+                taxaResolucao.status === 'warning' ? 'bg-warning/20' :
+                'bg-success/20'
+              }`}>
+                <CheckCircle2 className={`w-6 h-6 ${
+                  taxaResolucao.status === 'critical' ? 'text-destructive' :
+                  taxaResolucao.status === 'warning' ? 'text-warning' :
+                  'text-success'
+                }`} />
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold mb-1 text-sm">Taxa de Resolução</h3>
-                <p className="text-2xl font-bold text-success">
+                <p className={`text-2xl font-bold ${
+                  taxaResolucao.status === 'critical' ? 'text-destructive' :
+                  taxaResolucao.status === 'warning' ? 'text-warning' :
+                  'text-success'
+                }`}>
                   {taxaResolucao.percentual.toFixed(1)}%
                 </p>
                 <p className="text-sm text-muted-foreground mt-1">
