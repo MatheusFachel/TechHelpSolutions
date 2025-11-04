@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { SettingsModal } from "@/components/dashboard/SettingsModal";
+import { SLAAlert } from "@/components/dashboard/SLAAlert";
 import { KPICard } from "@/components/dashboard/KPICard";
 import { TechnicianChart } from "@/components/dashboard/TechnicianChart";
 import { CategoryChart } from "@/components/dashboard/CategoryChart";
@@ -568,6 +569,9 @@ const Index = () => {
             </div>
           </Card>
         </div>
+
+        {/* SLA Alert - Tickets em Risco */}
+        <SLAAlert chamados={chamados} metaSLA={settings.metaSLA} />
 
         {/* Tabela */}
         <TicketsTable data={chamados} />
