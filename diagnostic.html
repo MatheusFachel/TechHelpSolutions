@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico TechHelp Solutions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+            background: #e8f5e9;
+        }
+        .error {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+        .warning {
+            border-left-color: #ff9800;
+            background: #fff3e0;
+        }
+        .info {
+            border-left-color: #2196F3;
+            background: #e3f2fd;
+        }
+        pre {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Diagnóstico Completo - TechHelp Solutions</h1>
+        
+        <div id="config" class="status info">
+            <strong>Configuração:</strong> Verificando credenciais do Supabase...
+        </div>
+
+        <button onclick="runFullDiagnostic()">▶️ Executar Diagnóstico Completo</button>
+        <button onclick="clearResults()">🗑️ Limpar Resultados</button>
+
+        <div id="results"></div>
+    </div>
+
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+        const SUPABASE_URL = 'https://bttgotjfushzmcrfkpxl.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0dGdvdGpmdXNoem1jcmZrcHhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDU2MzgsImV4cCI6MjA3NzY4MTYzOH0.I8aiwrY_oZpsq-kuGvAThpxgixx7fcoj-MqrTc_ywmI';
+
+        window.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById('config').innerHTML = `
+            <strong>✅ Configuração OK</strong><br>
+            URL: ${SUPABASE_URL}<br>
+            Chave: ${SUPABASE_ANON_KEY.substring(0, 30)}...
+        `;
+
+        window.runFullDiagnostic = async function() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="loading"></div> Executando diagnóstico...';
+            
+            let html = '';
+
+            // TESTE 1: Conexão com Supabase
+            html += '<h2>1️⃣ Teste de Conexão</h2>';
+            try {
+                const { data, error } = await supabase.from('chamados').select('count', { count: 'exact', head: true });
+                
+                if (error) throw error;
+                
+                html += `<div class="status">✅ Conexão com Supabase: OK</div>`;
+            } catch (err) {
+                html += `<div class="status error">❌ Erro na conexão: ${err.message}</div>`;
+            }
+
+            // TESTE 2: Contagem de registros
+            html += '<h2>2️⃣ Contagem de Registros</h2>';
+            try {
+                const { count, error } = await supabase
+                    .from('chamados')
+                    .select('*', { count: 'exact', head: true });
+                
+                if (error) throw error;
+                
+                html += `<div class="status">
+                    <strong>Total de registros no banco:</strong> ${count}<br>
+                    <strong>Esperado:</strong> 550 registros
+                    ${count === 550 ? '✅' : count > 0 ? '⚠️ Quantidade diferente!' : '❌ Nenhum registro encontrado!'}
+                </div>`;
+            } catch (err) {
+                html += `<div class="status error">❌ Erro ao contar: ${err.message}</div>`;
+            }
+
+            // TESTE 3: Buscar todos os dados
+            html += '<h2>3️⃣ Análise dos Dados</h2>';
+            try {
+                const { data: chamados, error } = await supabase
+                    .from('chamados')
+                    .select('*');
+                
+                if (error) throw error;
+                
+                html += `<div class="status">✅ Dados recuperados: ${chamados.length} registros</div>`;
+
+                // Analisar STATUS
+                const statusCount = {};
+                chamados.forEach(c => {
+                    const status = c['Status'];
+                    statusCount[status] = (statusCount[status] || 0) + 1;
+                });
+
+                html += '<h3>📊 Distribuição por Status</h3><table>';
+                html += '<tr><th>Status</th><th>Quantidade</th><th>Percentual</th></tr>';
+                for (const [status, count] of Object.entries(statusCount)) {
+                    const perc = ((count / chamados.length) * 100).toFixed(1);
+                    html += `<tr><td>${status}</td><td>${count}</td><td>${perc}%</td></tr>`;
+                }
+                html += '</table>';
+
+                // Contar abertos vs resolvidos
+                const abertos = chamados.filter(c => 
+                    c['Status'] === 'Aberto' || 
+                    c['Status'] === 'Pendente' || 
+                    c['Status'] === 'Em Andamento'
+                ).length;
+                const resolvidos = chamados.filter(c => 
+                    c['Status'] === 'Resolvido' || 
+                    c['Status'] === 'Fechado'
+                ).length;
+
+                html += `<div class="status info">
+                    <strong>Chamados Abertos:</strong> ${abertos} (${((abertos/chamados.length)*100).toFixed(1)}%)<br>
+                    <strong>Chamados Resolvidos:</strong> ${resolvidos} (${((resolvidos/chamados.length)*100).toFixed(1)}%)
+                </div>`;
+
+                // Analisar TÉCNICOS
+                const tecnicoCount = {};
+                chamados.forEach(c => {
+                    const tecnico = c['Agente Responsável'];
+                    tecnicoCount[tecnico] = (tecnicoCount[tecnico] || 0) + 1;
+                });
+
+                html += '<h3>👨‍💼 Chamados por Técnico</h3><table>';
+                html += '<tr><th>Técnico</th><th>Total de Chamados</th><th>Percentual</th></tr>';
+                const tecnicosSorted = Object.entries(tecnicoCount).sort((a, b) => b[1] - a[1]);
+                tecnicosSorted.forEach(([nome, count]) => {
+                    const perc = ((count / chamados.length) * 100).toFixed(1);
+                    html += `<tr><td>${nome}</td><td>${count}</td><td>${perc}%</td></tr>`;
+                });
+                html += '</table>';
+
+                // Verificar TMA
+                const tmas = chamados.map(c => c['TMA (minutos)']).filter(t => t > 0);
+                const tmaMedia = tmas.reduce((a, b) => a + b, 0) / tmas.length;
+
+                html += `<div class="status">
+                    <strong>TMA Médio:</strong> ${tmaMedia.toFixed(1)} minutos<br>
+                    <strong>TMA Mínimo:</strong> ${Math.min(...tmas)} minutos<br>
+                    <strong>TMA Máximo:</strong> ${Math.max(...tmas)} minutos
+                </div>`;
+
+                // Verificar Satisfação
+                const satisfacaoMap = {
+                    'Excelente': 5,
+                    'Bom': 4,
+                    'Médio': 3,
+                    'Regular': 2,
+                    'Ruim': 1
+                };
+                const satisfacoes = chamados.map(c => satisfacaoMap[c['Satisfação do Cliente']] || 0);
+                const satisfacaoMedia = satisfacoes.reduce((a, b) => a + b, 0) / satisfacoes.length;
+
+                html += `<div class="status">
+                    <strong>Satisfação Média:</strong> ${satisfacaoMedia.toFixed(2)} / 5.0
+                </div>`;
+
+                // Amostra de dados
+                html += '<h3>📄 Amostra dos Primeiros 5 Registros</h3>';
+                html += '<pre>' + JSON.stringify(chamados.slice(0, 5), null, 2) + '</pre>';
+
+            } catch (err) {
+                html += `<div class="status error">❌ Erro ao analisar dados: ${err.message}</div>`;
+                html += '<pre>' + err.stack + '</pre>';
+            }
+
+            // TESTE 4: Verificar conversão de dados
+            html += '<h2>4️⃣ Teste de Conversão de Dados</h2>';
+            try {
+                const { data, error } = await supabase
+                    .from('chamados')
+                    .select('*')
+                    .limit(1);
+                
+                if (error) throw error;
+
+                const dbChamado = data[0];
+                
+                // Simular conversão
+                const convertido = {
+                    id: dbChamado['ID do Chamado'],
+                    dataAbertura: dbChamado['Data de Abertura'],
+                    dataFechamento: dbChamado['Data de Fechamento'],
+                    status: dbChamado['Status'],
+                    prioridade: dbChamado['Prioridade'],
+                    motivo: dbChamado['Motivo'],
+                    solucao: dbChamado['Solução'],
+                    solicitante: dbChamado['Solicitante'],
+                    tecnico: dbChamado['Agente Responsável'],
+                    departamento: dbChamado['Departamento'],
+                    tma: dbChamado['TMA (minutos)'],
+                    frt: dbChamado['FRT (minutos)'],
+                    satisfacao: dbChamado['Satisfação do Cliente'],
+                };
+
+                html += `<div class="status">✅ Conversão funcionando corretamente</div>`;
+                html += '<h4>Dados Originais (DB):</h4>';
+                html += '<pre>' + JSON.stringify(dbChamado, null, 2) + '</pre>';
+                html += '<h4>Dados Convertidos (Frontend):</h4>';
+                html += '<pre>' + JSON.stringify(convertido, null, 2) + '</pre>';
+
+            } catch (err) {
+                html += `<div class="status error">❌ Erro na conversão: ${err.message}</div>`;
+            }
+
+            resultsDiv.innerHTML = html;
+        };
+
+        window.clearResults = function() {
+            document.getElementById('results').innerHTML = '';
+        };
+
+        // Auto-executar ao carregar
+        setTimeout(() => window.runFullDiagnostic(), 500);
+    </script>
+</body>
+</html>

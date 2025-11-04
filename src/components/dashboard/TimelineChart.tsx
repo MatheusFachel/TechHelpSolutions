@@ -1,5 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Area, AreaChart } from 'recharts';
 import { ChartCard } from './ChartCard';
+import { Button } from '@/components/ui/button';
 
 interface TimelineData {
   date: string;
@@ -9,20 +10,62 @@ interface TimelineData {
 
 interface TimelineChartProps {
   data: TimelineData[];
+  period: '7' | '30' | '90' | 'all';
+  onPeriodChange: (period: '7' | '30' | '90' | 'all') => void;
 }
 
-export const TimelineChart = ({ data }: TimelineChartProps) => {
+export const TimelineChart = ({ data, period, onPeriodChange }: TimelineChartProps) => {
   const lastWeekOpen = data[data.length - 1]?.abertos || 0;
   const firstWeekOpen = data[0]?.abertos || 1;
   const growthNum = (((lastWeekOpen - firstWeekOpen) / firstWeekOpen) * 100);
   const growth = growthNum.toFixed(0);
   
+  const periodLabels = {
+    '7': 'Últimos 7 Dias',
+    '30': 'Últimos 30 Dias',
+    '90': 'Últimos 90 Dias',
+    'all': 'Período Total'
+  };
+  
   const insight = growthNum > 0 
-    ? `Tendência de crescimento de ${growth}% em chamados abertos na última semana. Recomenda-se aumentar a equipe ou redistribuir demandas.`
+    ? `Tendência de crescimento de ${growth}% em chamados abertos. Recomenda-se aumentar a equipe ou redistribuir demandas.`
     : `Tendência de redução de ${Math.abs(Number(growth))}% em chamados abertos. Continue monitorando o desempenho da equipe.`;
 
   return (
-    <ChartCard title="Evolução Temporal - Últimos 7 Dias" insight={insight}>
+    <ChartCard 
+      title={`Evolução Temporal - ${periodLabels[period]}`} 
+      insight={insight}
+    >
+      <div className="mb-4 flex gap-2 flex-wrap">
+        <Button
+          size="sm"
+          variant={period === '7' ? 'default' : 'outline'}
+          onClick={() => onPeriodChange('7')}
+        >
+          7 dias
+        </Button>
+        <Button
+          size="sm"
+          variant={period === '30' ? 'default' : 'outline'}
+          onClick={() => onPeriodChange('30')}
+        >
+          30 dias
+        </Button>
+        <Button
+          size="sm"
+          variant={period === '90' ? 'default' : 'outline'}
+          onClick={() => onPeriodChange('90')}
+        >
+          90 dias
+        </Button>
+        <Button
+          size="sm"
+          variant={period === 'all' ? 'default' : 'outline'}
+          onClick={() => onPeriodChange('all')}
+        >
+          Tempo Total
+        </Button>
+      </div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data}>
           <defs>

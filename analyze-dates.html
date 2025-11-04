@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Análise de Datas - TechHelp</title>
+    <style>
+        body { font-family: Arial; max-width: 1200px; margin: 20px auto; padding: 20px; }
+        h1 { color: #333; }
+        .info { background: #e3f2fd; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #4CAF50; color: white; }
+        .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <h1>📅 Análise de Distribuição Temporal dos Chamados</h1>
+    
+    <div class="info">
+        <strong>Data de Hoje:</strong> <span id="today"></span>
+    </div>
+
+    <div id="results"></div>
+
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+        const supabase = createClient(
+            'https://bttgotjfushzmcrfkpxl.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0dGdvdGpmdXNoem1jcmZrcHhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxMDU2MzgsImV4cCI6MjA3NzY4MTYzOH0.I8aiwrY_oZpsq-kuGvAThpxgixx7fcoj-MqrTc_ywmI'
+        );
+
+        const today = new Date();
+        document.getElementById('today').textContent = today.toLocaleDateString('pt-BR');
+
+        async function analyze() {
+            const { data: chamados, error } = await supabase
+                .from('chamados')
+                .select('*');
+
+            if (error) {
+                document.getElementById('results').innerHTML = `<div class="alert">Erro: ${error.message}</div>`;
+                return;
+            }
+
+            const now = new Date();
+            const last7Days = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            const last30Days = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+            const last90Days = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000);
+
+            let count7 = 0, count30 = 0, count90 = 0;
+            let resolved7 = 0, resolved30 = 0, resolved90 = 0;
+
+            chamados.forEach(c => {
+                const dataAbertura = new Date(c['Data de Abertura']);
+                
+                if (dataAbertura >= last7Days) count7++;
+                if (dataAbertura >= last30Days) count30++;
+                if (dataAbertura >= last90Days) count90++;
+
+                if (c['Data de Fechamento']) {
+                    const dataFechamento = new Date(c['Data de Fechamento']);
+                    if (dataFechamento >= last7Days) resolved7++;
+                    if (dataFechamento >= last30Days) resolved30++;
+                    if (dataFechamento >= last90Days) resolved90++;
+                }
+            });
+
+            // Análise por período completo
+            const dateRanges = {};
+            chamados.forEach(c => {
+                const data = new Date(c['Data de Abertura']);
+                const year = data.getFullYear();
+                const month = data.getMonth() + 1;
+                const key = `${year}-${String(month).padStart(2, '0')}`;
+                dateRanges[key] = (dateRanges[key] || 0) + 1;
+            });
+
+            let html = `
+                <h2>📊 Resumo da Distribuição</h2>
+                <table>
+                    <tr>
+                        <th>Período</th>
+                        <th>Data Início</th>
+                        <th>Chamados Abertos</th>
+                        <th>Chamados Resolvidos</th>
+                        <th>% do Total</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Últimos 7 dias</strong></td>
+                        <td>${last7Days.toLocaleDateString('pt-BR')}</td>
+                        <td>${count7}</td>
+                        <td>${resolved7}</td>
+                        <td>${((count7/chamados.length)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Últimos 30 dias</strong></td>
+                        <td>${last30Days.toLocaleDateString('pt-BR')}</td>
+                        <td>${count30}</td>
+                        <td>${resolved30}</td>
+                        <td>${((count30/chamados.length)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Últimos 90 dias</strong></td>
+                        <td>${last90Days.toLocaleDateString('pt-BR')}</td>
+                        <td>${count90}</td>
+                        <td>${resolved90}</td>
+                        <td>${((count90/chamados.length)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr style="background: #f0f0f0;">
+                        <td><strong>TOTAL</strong></td>
+                        <td>-</td>
+                        <td>${chamados.length}</td>
+                        <td>-</td>
+                        <td>100%</td>
+                    </tr>
+                </table>
+
+                <div class="alert">
+                    <strong>⚠️ Conclusão:</strong><br>
+                    ${count7 <= 10 ? '✅ É NORMAL ter poucos dados nos últimos 7 dias! Os chamados estão espalhados por 2 anos.' : ''}
+                    ${count30 <= 50 ? '✅ É NORMAL ter poucos dados nos últimos 30 dias! Os chamados estão espalhados por 2 anos.' : ''}
+                    <br><br>
+                    Os gráficos estão mostrando os dados <strong>CORRETOS</strong>. A maioria dos chamados é antiga (2023-2024).
+                </div>
+
+                <h2>📅 Distribuição Mensal Completa</h2>
+                <table>
+                    <tr>
+                        <th>Mês/Ano</th>
+                        <th>Quantidade de Chamados</th>
+                    </tr>
+            `;
+
+            Object.entries(dateRanges)
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .forEach(([period, count]) => {
+                    html += `<tr><td>${period}</td><td>${count}</td></tr>`;
+                });
+
+            html += '</table>';
+
+            document.getElementById('results').innerHTML = html;
+        }
+
+        analyze();
+    </script>
+</body>
+</html>

@@ -15,6 +15,7 @@ const Index = () => {
   const [chamados, setChamados] = useState<Chamado[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [timelinePeriod, setTimelinePeriod] = useState<'7' | '30' | '90' | 'all'>('7');
 
   const loadData = async () => {
     try {
@@ -97,18 +98,108 @@ const Index = () => {
     }, {} as Record<string, number>)
   ).map(([name, value]) => ({ name, value }));
 
-  // Dados temporais (últimos 7 dias)
-  const last7Days = Array.from({ length: 7 }, (_, i) => {
-    const date = new Date();
-    date.setDate(date.getDate() - (6 - i));
-    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-  });
+  // Função para gerar dados do timeline baseado no período selecionado
+  const generateTimelineData = () => {
+    let days: number;
+    let dateFormat: 'short' | 'medium' | 'long';
+    
+    switch (timelinePeriod) {
+      case '7':
+        days = 7;
+        dateFormat = 'short';
+        break;
+      case '30':
+        days = 30;
+        dateFormat = 'short';
+        break;
+      case '90':
+        days = 90;
+        dateFormat = 'medium';
+        break;
+      case 'all':
+        // Para "all", vamos agrupar por mês
+        return generateMonthlyData();
+      default:
+        days = 7;
+        dateFormat = 'short';
+    }
 
-  const timelineData = last7Days.map(date => ({
-    date,
-    abertos: Math.floor(Math.random() * 30) + 40,
-    resolvidos: Math.floor(Math.random() * 25) + 35,
-  }));
+    const periodDates = Array.from({ length: days }, (_, i) => {
+      const date = new Date();
+      date.setDate(date.getDate() - (days - 1 - i));
+      return date;
+    });
+
+    return periodDates.map(targetDate => {
+      const dateStr = targetDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+      
+      // Contar chamados abertos neste dia
+      const abertosNoDia = chamados.filter(c => {
+        const dataAbertura = new Date(c.dataAbertura);
+        return dataAbertura.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) === dateStr;
+      }).length;
+      
+      // Contar chamados resolvidos/fechados neste dia
+      const resolvidosNoDia = chamados.filter(c => {
+        if (!c.dataFechamento) return false;
+        const dataFechamento = new Date(c.dataFechamento);
+        return dataFechamento.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) === dateStr;
+      }).length;
+      
+      return {
+        date: dateStr,
+        abertos: abertosNoDia,
+        resolvidos: resolvidosNoDia,
+      };
+    });
+  };
+
+  // Função para gerar dados agrupados por mês (para período "all")
+  const generateMonthlyData = () => {
+    // Agrupar todos os chamados por mês/ano
+    const monthlyData: Record<string, { abertos: number; resolvidos: number }> = {};
+
+    chamados.forEach(c => {
+      // Processar data de abertura
+      const dataAbertura = new Date(c.dataAbertura);
+      const monthKeyAbertura = `${dataAbertura.getMonth() + 1}/${dataAbertura.getFullYear()}`;
+      
+      if (!monthlyData[monthKeyAbertura]) {
+        monthlyData[monthKeyAbertura] = { abertos: 0, resolvidos: 0 };
+      }
+      monthlyData[monthKeyAbertura].abertos++;
+
+      // Processar data de fechamento
+      if (c.dataFechamento) {
+        const dataFechamento = new Date(c.dataFechamento);
+        const monthKeyFechamento = `${dataFechamento.getMonth() + 1}/${dataFechamento.getFullYear()}`;
+        
+        if (!monthlyData[monthKeyFechamento]) {
+          monthlyData[monthKeyFechamento] = { abertos: 0, resolvidos: 0 };
+        }
+        monthlyData[monthKeyFechamento].resolvidos++;
+      }
+    });
+
+    // Converter para array e ordenar por data
+    return Object.entries(monthlyData)
+      .sort((a, b) => {
+        const [monthA, yearA] = a[0].split('/').map(Number);
+        const [monthB, yearB] = b[0].split('/').map(Number);
+        return yearA === yearB ? monthA - monthB : yearA - yearB;
+      })
+      .map(([monthYear, data]) => {
+        const [month, year] = monthYear.split('/');
+        const monthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+        return {
+          date: `${monthNames[parseInt(month) - 1]}/${year}`,
+          abertos: data.abertos,
+          resolvidos: data.resolvidos,
+        };
+      });
+  };
+
+  const timelineData = generateTimelineData();
 
   const topTechnician = chamadosPorTecnico.sort((a, b) => b.tickets - a.tickets)[0];
 
@@ -159,7 +250,11 @@ const Index = () => {
         </div>
 
         {/* Timeline */}
-        <TimelineChart data={timelineData} />
+        <TimelineChart 
+          data={timelineData} 
+          period={timelinePeriod}
+          onPeriodChange={setTimelinePeriod}
+        />
 
         {/* Cards de insights adicionais */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
