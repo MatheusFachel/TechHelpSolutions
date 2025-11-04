@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { ChartCard } from './ChartCard';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Info } from 'lucide-react';
 
 interface CategoryData {
   name: string;
@@ -33,6 +33,11 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
     const total = sortedData.reduce((sum, item) => sum + item.value, 0);
     const topCategory = sortedData[0];
     
+    // Detectar poucos dados (menos de 3 chamados no total)
+    if (total < 3) {
+      return `Apenas ${total} chamado(s) registrado(s) no período. Dados insuficientes para análise estatística. Considere expandir o período.`;
+    }
+    
     // Verificar se todos têm o mesmo valor (distribuição uniforme)
     const allEqual = sortedData.every(c => c.value === topCategory.value);
     
@@ -57,6 +62,50 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
     );
   }
 
+  // Estado de poucos dados (menos de 3 chamados total)
+  const total = sortedData.reduce((sum, item) => sum + item.value, 0);
+  if (total < 3) {
+    return (
+      <ChartCard title="Chamados por Categoria" insight={insight}>
+        <div className="h-[300px] flex flex-col items-center justify-center text-muted-foreground">
+          <Info className="w-12 h-12 mb-4 opacity-50 text-warning" />
+          <p className="text-sm font-medium">Dados insuficientes para análise</p>
+          <p className="text-xs mt-2">Apenas {total} chamado(s) no período</p>
+          <div className="mt-4 px-6 py-3 bg-muted/30 rounded-lg">
+            <p className="text-xs text-center">
+              {sortedData.map(d => `${d.name} (${d.value})`).join(', ')}
+            </p>
+          </div>
+          <p className="text-xs mt-3 text-center">Selecione um período maior para visualização gráfica</p>
+        </div>
+      </ChartCard>
+    );
+  }
+
+  // Função para renderizar label customizado (evita sobreposição)
+  const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: any) => {
+    // Só mostra label se a porcentagem for >= 5% (evita labels muito pequenos)
+    if (percent < 0.05) return null;
+
+    const RADIAN = Math.PI / 180;
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text 
+        x={x} 
+        y={y} 
+        fill="white" 
+        textAnchor={x > cx ? 'start' : 'end'} 
+        dominantBaseline="central"
+        className="text-xs font-semibold"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
   return (
     <ChartCard title="Chamados por Categoria" insight={insight}>
       <ResponsiveContainer width="100%" height={300}>
@@ -66,8 +115,8 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
             cx="50%"
             cy="50%"
             labelLine={false}
-            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-            outerRadius={100}
+            label={renderCustomLabel}
+            outerRadius={80}
             fill="#8884d8"
             dataKey="value"
             animationDuration={1000}
@@ -81,6 +130,15 @@ export const CategoryChart = memo(({ data }: CategoryChartProps) => {
               backgroundColor: 'hsl(var(--card))',
               border: '1px solid hsl(var(--border))',
               borderRadius: '8px',
+            }}
+          />
+          <Legend 
+            verticalAlign="bottom" 
+            height={36}
+            iconType="circle"
+            wrapperStyle={{
+              fontSize: '12px',
+              paddingTop: '10px'
             }}
           />
         </PieChart>
