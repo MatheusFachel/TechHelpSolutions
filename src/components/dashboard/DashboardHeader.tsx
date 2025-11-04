@@ -1,7 +1,8 @@
 import { RefreshCw, Moon, Sun, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import logo from "@/assets/techhelp-logo.png";
+import logoPreta from "@/assets/techhelp-logo.png";
+import logoBranca from "@/assets/techhelp-logo-branca.png";
 
 interface DashboardHeaderProps {
   onRefresh: () => void;
@@ -31,7 +32,11 @@ export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings }: Das
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img src={logo} alt="TechHelp Solutions" className="h-10 w-auto" />
+            <img 
+              src={isDark ? logoBranca : logoPreta} 
+              alt="TechHelp Solutions" 
+              className="h-10 w-auto transition-opacity duration-300" 
+            />
             <div>
               <h1 className="text-2xl font-bold text-foreground">
                 Dashboard de Suporte Técnico
