@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Area, AreaChart } from 'recharts';
 import { ChartCard } from './ChartCard';
 import { Button } from '@/components/ui/button';
@@ -24,11 +25,17 @@ interface TimelineChartProps {
   onYearChange: (year: number | 'all') => void;
 }
 
-export const TimelineChart = ({ data, period, onPeriodChange, availableYears, selectedYear, onYearChange }: TimelineChartProps) => {
-  const lastWeekOpen = data[data.length - 1]?.abertos || 0;
-  const firstWeekOpen = data[0]?.abertos || 1;
-  const growthNum = (((lastWeekOpen - firstWeekOpen) / firstWeekOpen) * 100);
-  const growth = growthNum.toFixed(0);
+export const TimelineChart = memo(({ data, period, onPeriodChange, availableYears, selectedYear, onYearChange }: TimelineChartProps) => {
+  const insight = useMemo(() => {
+    const lastWeekOpen = data[data.length - 1]?.abertos || 0;
+    const firstWeekOpen = data[0]?.abertos || 1;
+    const growthNum = (((lastWeekOpen - firstWeekOpen) / firstWeekOpen) * 100);
+    const growth = growthNum.toFixed(0);
+    
+    return growthNum > 0 
+      ? `Tendência de crescimento de ${growth}% em chamados abertos. Recomenda-se aumentar a equipe ou redistribuir demandas.`
+      : `Tendência de redução de ${Math.abs(Number(growth))}% em chamados abertos. Continue monitorando o desempenho da equipe.`;
+  }, [data]);
   
   const periodLabels = {
     '7': 'Últimos 7 Dias',
@@ -40,10 +47,6 @@ export const TimelineChart = ({ data, period, onPeriodChange, availableYears, se
   const titleSuffix = period === 'all' && selectedYear !== 'all' 
     ? ` (${selectedYear})`
     : '';
-  
-  const insight = growthNum > 0 
-    ? `Tendência de crescimento de ${growth}% em chamados abertos. Recomenda-se aumentar a equipe ou redistribuir demandas.`
-    : `Tendência de redução de ${Math.abs(Number(growth))}% em chamados abertos. Continue monitorando o desempenho da equipe.`;
 
   return (
     <ChartCard 
@@ -152,4 +155,4 @@ export const TimelineChart = ({ data, period, onPeriodChange, availableYears, se
       </ResponsiveContainer>
     </ChartCard>
   );
-};
+});
