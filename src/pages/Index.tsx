@@ -9,6 +9,7 @@ import { Chamado, convertFromDB, getSatisfacaoNumero } from "@/utils/dataParser"
 import { supabase, ChamadoDB } from "@/lib/supabase";
 import { TicketCheck, Clock, AlertCircle, Star, TrendingUp, Award } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [timelinePeriod, setTimelinePeriod] = useState<'7' | '30' | '90' | 'all'>('7');
   const [selectedYear, setSelectedYear] = useState<number | 'all'>(new Date().getFullYear());
+  const [chartsPeriod, setChartsPeriod] = useState<'7' | '30' | '90' | 'all'>('all');
 
   const loadData = async () => {
     try {
@@ -78,22 +80,41 @@ const Index = () => {
     );
   }
 
+  // Função para filtrar chamados baseado no período selecionado para os gráficos
+  const filterChamadosByPeriod = (period: '7' | '30' | '90' | 'all') => {
+    if (period === 'all') {
+      return chamados;
+    }
+
+    const days = period === '7' ? 7 : period === '30' ? 30 : 90;
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - days);
+
+    return chamados.filter(c => {
+      const dataAbertura = new Date(c.dataAbertura);
+      return dataAbertura >= cutoffDate;
+    });
+  };
+
+  // Chamados filtrados para os gráficos de Técnico e Categoria
+  const chamadosFiltrados = filterChamadosByPeriod(chartsPeriod);
+
   // Cálculos dos KPIs
   const totalChamados = chamados.length;
   const chamadosAbertos = chamados.filter(c => c.status === "Aberto" || c.status === "Pendente" || c.status === "Em Andamento").length;
   const tmaMedia = Math.round(chamados.reduce((sum, c) => sum + c.tma, 0) / totalChamados);
   const satisfacaoMedia = (chamados.reduce((sum, c) => sum + getSatisfacaoNumero(c.satisfacao), 0) / totalChamados).toFixed(1);
 
-  // Dados para gráficos
+  // Dados para gráficos (usando chamados filtrados)
   const chamadosPorTecnico = Object.entries(
-    chamados.reduce((acc, c) => {
+    chamadosFiltrados.reduce((acc, c) => {
       acc[c.tecnico] = (acc[c.tecnico] || 0) + 1;
       return acc;
     }, {} as Record<string, number>)
   ).map(([name, tickets]) => ({ name, tickets }));
 
   const chamadosPorCategoria = Object.entries(
-    chamados.reduce((acc, c) => {
+    chamadosFiltrados.reduce((acc, c) => {
       acc[c.motivo] = (acc[c.motivo] || 0) + 1;
       return acc;
     }, {} as Record<string, number>)
@@ -258,6 +279,50 @@ const Index = () => {
             delay={300}
           />
         </div>
+
+        {/* Filtro Global para Gráficos de Técnicos e Categorias */}
+        <Card className="p-4 border-border/50 bg-card/50 backdrop-blur-sm">
+          <div className="flex items-center gap-4 flex-wrap">
+            <span className="text-sm font-semibold text-muted-foreground">
+              Período dos Gráficos:
+            </span>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={chartsPeriod === '7' ? 'default' : 'outline'}
+                onClick={() => setChartsPeriod('7')}
+              >
+                7 dias
+              </Button>
+              <Button
+                size="sm"
+                variant={chartsPeriod === '30' ? 'default' : 'outline'}
+                onClick={() => setChartsPeriod('30')}
+              >
+                30 dias
+              </Button>
+              <Button
+                size="sm"
+                variant={chartsPeriod === '90' ? 'default' : 'outline'}
+                onClick={() => setChartsPeriod('90')}
+              >
+                90 dias
+              </Button>
+              <Button
+                size="sm"
+                variant={chartsPeriod === 'all' ? 'default' : 'outline'}
+                onClick={() => setChartsPeriod('all')}
+              >
+                Todos
+              </Button>
+            </div>
+            <span className="text-xs text-muted-foreground ml-auto">
+              {chartsPeriod === 'all' 
+                ? `Mostrando ${chamadosFiltrados.length} chamados (todos)` 
+                : `Mostrando ${chamadosFiltrados.length} chamados dos últimos ${chartsPeriod} dias`}
+            </span>
+          </div>
+        </Card>
 
         {/* Gráficos */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
