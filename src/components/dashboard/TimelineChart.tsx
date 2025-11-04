@@ -1,6 +1,13 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Area, AreaChart } from 'recharts';
 import { ChartCard } from './ChartCard';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface TimelineData {
   date: string;
@@ -12,9 +19,12 @@ interface TimelineChartProps {
   data: TimelineData[];
   period: '7' | '30' | '90' | 'all';
   onPeriodChange: (period: '7' | '30' | '90' | 'all') => void;
+  availableYears: number[];
+  selectedYear: number | 'all';
+  onYearChange: (year: number | 'all') => void;
 }
 
-export const TimelineChart = ({ data, period, onPeriodChange }: TimelineChartProps) => {
+export const TimelineChart = ({ data, period, onPeriodChange, availableYears, selectedYear, onYearChange }: TimelineChartProps) => {
   const lastWeekOpen = data[data.length - 1]?.abertos || 0;
   const firstWeekOpen = data[0]?.abertos || 1;
   const growthNum = (((lastWeekOpen - firstWeekOpen) / firstWeekOpen) * 100);
@@ -26,6 +36,10 @@ export const TimelineChart = ({ data, period, onPeriodChange }: TimelineChartPro
     '90': 'Últimos 90 Dias',
     'all': 'Período Total'
   };
+
+  const titleSuffix = period === 'all' && selectedYear !== 'all' 
+    ? ` (${selectedYear})`
+    : '';
   
   const insight = growthNum > 0 
     ? `Tendência de crescimento de ${growth}% em chamados abertos. Recomenda-se aumentar a equipe ou redistribuir demandas.`
@@ -33,10 +47,10 @@ export const TimelineChart = ({ data, period, onPeriodChange }: TimelineChartPro
 
   return (
     <ChartCard 
-      title={`Evolução Temporal - ${periodLabels[period]}`} 
+      title={`Evolução Temporal - ${periodLabels[period]}${titleSuffix}`} 
       insight={insight}
     >
-      <div className="mb-4 flex gap-2 flex-wrap">
+      <div className="mb-4 flex gap-2 flex-wrap items-center">
         <Button
           size="sm"
           variant={period === '7' ? 'default' : 'outline'}
@@ -65,6 +79,29 @@ export const TimelineChart = ({ data, period, onPeriodChange }: TimelineChartPro
         >
           Tempo Total
         </Button>
+
+        {/* Seletor de ano - aparece apenas quando Tempo Total está ativo */}
+        {period === 'all' && availableYears.length > 0 && (
+          <>
+            <div className="h-6 w-px bg-border mx-2" /> {/* Divisor vertical */}
+            <Select 
+              value={selectedYear.toString()} 
+              onValueChange={(value) => onYearChange(value === 'all' ? 'all' : parseInt(value))}
+            >
+              <SelectTrigger className="w-[140px] h-8">
+                <SelectValue placeholder="Selecione o ano" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Todos os anos</SelectItem>
+                {availableYears.map(year => (
+                  <SelectItem key={year} value={year.toString()}>
+                    {year}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </>
+        )}
       </div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data}>

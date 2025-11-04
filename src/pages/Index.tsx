@@ -16,6 +16,7 @@ const Index = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [timelinePeriod, setTimelinePeriod] = useState<'7' | '30' | '90' | 'all'>('7');
+  const [selectedYear, setSelectedYear] = useState<number | 'all'>(new Date().getFullYear());
 
   const loadData = async () => {
     try {
@@ -159,7 +160,15 @@ const Index = () => {
     // Agrupar todos os chamados por mês/ano
     const monthlyData: Record<string, { abertos: number; resolvidos: number }> = {};
 
-    chamados.forEach(c => {
+    // Filtrar chamados por ano se um ano específico foi selecionado
+    const chamadosFiltrados = selectedYear === 'all' 
+      ? chamados 
+      : chamados.filter(c => {
+          const anoAbertura = new Date(c.dataAbertura).getFullYear();
+          return anoAbertura === selectedYear;
+        });
+
+    chamadosFiltrados.forEach(c => {
       // Processar data de abertura
       const dataAbertura = new Date(c.dataAbertura);
       const monthKeyAbertura = `${dataAbertura.getMonth() + 1}/${dataAbertura.getFullYear()}`;
@@ -198,6 +207,13 @@ const Index = () => {
         };
       });
   };
+
+  // Extrair anos disponíveis nos dados
+  const availableYears = Array.from(
+    new Set(
+      chamados.map(c => new Date(c.dataAbertura).getFullYear())
+    )
+  ).sort((a, b) => b - a); // Ordenar do mais recente para o mais antigo
 
   const timelineData = generateTimelineData();
 
@@ -254,6 +270,9 @@ const Index = () => {
           data={timelineData} 
           period={timelinePeriod}
           onPeriodChange={setTimelinePeriod}
+          availableYears={availableYears}
+          selectedYear={selectedYear}
+          onYearChange={setSelectedYear}
         />
 
         {/* Cards de insights adicionais */}
