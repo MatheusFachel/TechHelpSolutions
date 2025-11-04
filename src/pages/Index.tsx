@@ -20,6 +20,11 @@ const Index = () => {
   const [selectedYear, setSelectedYear] = useState<number | 'all'>(new Date().getFullYear());
   const [chartsPeriod, setChartsPeriod] = useState<'7' | '30' | '90' | 'all'>('all');
 
+  // ============================================================================
+  // FUNÇÕES E CÁLCULOS MEMOIZADOS (ANTES DO EARLY RETURN!)
+  // Regra do React: Hooks devem ser chamados na mesma ordem em TODOS os renders
+  // ============================================================================
+
   const loadData = useCallback(async () => {
     try {
       setIsRefreshing(true);
@@ -78,53 +83,34 @@ const Index = () => {
     };
   }, [loadData]);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="text-muted-foreground">Carregando dashboard...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Função para filtrar chamados baseado no período selecionado para os gráficos (MEMOIZADO)
+  // Filtrar chamados baseado no período selecionado (MEMOIZADO)
   const chamadosFiltrados = useMemo(() => {
-    if (chartsPeriod === 'all') {
-      return chamados;
-    }
+    if (chartsPeriod === 'all') return chamados;
 
     const days = chartsPeriod === '7' ? 7 : chartsPeriod === '30' ? 30 : 90;
     const cutoffDate = new Date();
     cutoffDate.setDate(cutoffDate.getDate() - days);
     const cutoffTime = cutoffDate.getTime();
 
-    return chamados.filter(c => {
-      const dataAbertura = new Date(c.dataAbertura);
-      return dataAbertura.getTime() >= cutoffTime;
-    });
+    return chamados.filter(c => new Date(c.dataAbertura).getTime() >= cutoffTime);
   }, [chamados, chartsPeriod]);
 
   // Cálculos dos KPIs (MEMOIZADOS)
   const totalChamados = chamados.length;
-  
   const chamadosAbertos = useMemo(() => 
     chamados.filter(c => c.status === "Aberto" || c.status === "Pendente" || c.status === "Em Andamento").length,
     [chamados]
   );
-  
   const tmaMedia = useMemo(() => 
-    Math.round(chamados.reduce((sum, c) => sum + c.tma, 0) / totalChamados),
+    totalChamados > 0 ? Math.round(chamados.reduce((sum, c) => sum + c.tma, 0) / totalChamados) : 0,
     [chamados, totalChamados]
   );
-  
   const satisfacaoMedia = useMemo(() => 
-    (chamados.reduce((sum, c) => sum + getSatisfacaoNumero(c.satisfacao), 0) / totalChamados).toFixed(1),
+    totalChamados > 0 ? (chamados.reduce((sum, c) => sum + getSatisfacaoNumero(c.satisfacao), 0) / totalChamados).toFixed(1) : '0.0',
     [chamados, totalChamados]
   );
 
-  // Dados para gráficos (MEMOIZADOS - usando chamados filtrados)
+  // Dados para gráficos (MEMOIZADOS)
   const chamadosPorTecnico = useMemo(() => 
     Object.entries(
       chamadosFiltrados.reduce((acc, c) => {
@@ -145,56 +131,83 @@ const Index = () => {
     [chamadosFiltrados]
   );
 
-  // Função OTIMIZADA para gerar dados do timeline baseado no período selecionado
-  const generateTimelineData = useCallback(() => {
+  // Extrair anos disponíveis (MEMOIZADO)
+  const availableYears = useMemo(() => 
+    Array.from(
+      new Set(
+        chamados.map(c => new Date(c.dataAbertura).getFullYear())
+      )
+    ).sort((a, b) => b - a),
+    [chamados]
+  );
+
+  // Top technician (MEMOIZADO)
+  const topTechnician = useMemo(() => 
+    chamadosPorTecnico.length > 0 ? chamadosPorTecnico.sort((a, b) => b.tickets - a.tickets)[0] : null,
+    [chamadosPorTecnico]
+  );
+
+  // ============================================================================
+  // EARLY RETURN PARA LOADING (DEPOIS DE TODOS OS HOOKS!)
+  // ============================================================================
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="text-muted-foreground">Carregando dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Função para gerar dados do timeline baseado no período selecionado
+  const generateTimelineData = () => {
     let days: number;
+    let dateFormat: 'short' | 'medium' | 'long';
     
     switch (timelinePeriod) {
       case '7':
         days = 7;
+        dateFormat = 'short';
         break;
       case '30':
         days = 30;
+        dateFormat = 'short';
         break;
       case '90':
         days = 90;
+        dateFormat = 'medium';
         break;
       case 'all':
         // Para "all", vamos agrupar por mês
         return generateMonthlyData();
       default:
         days = 7;
+        dateFormat = 'short';
     }
-
-    // Pré-processar datas dos chamados para evitar criar Date() repetidamente
-    const chamadosComDatas = chamados.map(c => ({
-      abertura: new Date(c.dataAbertura),
-      fechamento: c.dataFechamento ? new Date(c.dataFechamento) : null
-    }));
 
     const periodDates = Array.from({ length: days }, (_, i) => {
       const date = new Date();
       date.setDate(date.getDate() - (days - 1 - i));
-      date.setHours(0, 0, 0, 0); // Normalizar para meia-noite
       return date;
     });
 
     return periodDates.map(targetDate => {
-      const targetTime = targetDate.getTime();
-      const nextDayTime = targetTime + 86400000; // +1 dia em ms
-      
       const dateStr = targetDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
       
-      // Contar usando comparação de timestamp (muito mais rápido que string)
-      const abertosNoDia = chamadosComDatas.filter(c => {
-        const aberturaTime = c.abertura.setHours(0, 0, 0, 0);
-        return aberturaTime >= targetTime && aberturaTime < nextDayTime;
+      // Contar chamados abertos neste dia
+      const abertosNoDia = chamados.filter(c => {
+        const dataAbertura = new Date(c.dataAbertura);
+        return dataAbertura.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) === dateStr;
       }).length;
       
-      const resolvidosNoDia = chamadosComDatas.filter(c => {
-        if (!c.fechamento) return false;
-        const fechamentoTime = c.fechamento.setHours(0, 0, 0, 0);
-        return fechamentoTime >= targetTime && fechamentoTime < nextDayTime;
+      // Contar chamados resolvidos/fechados neste dia
+      const resolvidosNoDia = chamados.filter(c => {
+        if (!c.dataFechamento) return false;
+        const dataFechamento = new Date(c.dataFechamento);
+        return dataFechamento.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) === dateStr;
       }).length;
       
       return {
@@ -203,10 +216,10 @@ const Index = () => {
         resolvidos: resolvidosNoDia,
       };
     });
-  }, [chamados, timelinePeriod]);
+  };
 
-  // Função OTIMIZADA para gerar dados agrupados por mês (para período "all")
-  const generateMonthlyData = useCallback(() => {
+  // Função para gerar dados agrupados por mês (para período "all")
+  const generateMonthlyData = () => {
     // Agrupar todos os chamados por mês/ano
     const monthlyData: Record<string, { abertos: number; resolvidos: number }> = {};
 
@@ -241,8 +254,6 @@ const Index = () => {
     });
 
     // Converter para array e ordenar por data
-    const monthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-    
     return Object.entries(monthlyData)
       .sort((a, b) => {
         const [monthA, yearA] = a[0].split('/').map(Number);
@@ -251,32 +262,17 @@ const Index = () => {
       })
       .map(([monthYear, data]) => {
         const [month, year] = monthYear.split('/');
+        const monthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
         return {
           date: `${monthNames[parseInt(month) - 1]}/${year}`,
           abertos: data.abertos,
           resolvidos: data.resolvidos,
         };
       });
-  }, [chamados, selectedYear]);
+  };
 
-  // Extrair anos disponíveis nos dados (MEMOIZADO)
-  const availableYears = useMemo(() => 
-    Array.from(
-      new Set(
-        chamados.map(c => new Date(c.dataAbertura).getFullYear())
-      )
-    ).sort((a, b) => b - a), // Ordenar do mais recente para o mais antigo
-    [chamados]
-  );
-
-  // Timeline data (MEMOIZADO)
-  const timelineData = useMemo(() => generateTimelineData(), [generateTimelineData]);
-
-  // Top technician (MEMOIZADO)
-  const topTechnician = useMemo(() => 
-    chamadosPorTecnico.sort((a, b) => b.tickets - a.tickets)[0],
-    [chamadosPorTecnico]
-  );
+  // Timeline data (calculado mas não pode ser memoizado antes do if porque depende de função local)
+  const timelineData = generateTimelineData();
 
   return (
     <div className="min-h-screen bg-background">
