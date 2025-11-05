@@ -11,12 +11,21 @@ Este guia explica como configurar a sincronização automática dos dados do CSV
 
 ## 🎯 Opção 1: Supabase pg_cron (RECOMENDADO - 100% Gratuito e Integrado)
 
+### ⚠️ Importante: pg_cron requer plano PRO
+
+Infelizmente, a extensão `pg_cron` **não está disponível no plano Free** do Supabase. Ela requer o plano Pro ($25/mês).
+
+**Para sincronização gratuita, use a Opção 2 (cron-job.org) abaixo. ⬇️**
+
+<details>
+<summary>📖 Instruções para pg_cron (apenas plano Pro)</summary>
+
 ### Vantagens:
-✅ **Totalmente gratuito** (incluído no plano Free do Supabase)  
-✅ **Sem serviços externos** (tudo no Supabase)  
-✅ **Configuração única** (não precisa de contas externas)  
-✅ **Qualquer frequência** (minutos, horas, dias)  
-✅ **Integrado nativamente** com PostgreSQL  
+✅ **Integrado ao Supabase**  
+✅ **Sem serviços externos**  
+✅ **Qualquer frequência**  
+✅ **100% confiável**  
+❌ **Requer plano Pro** ($25/mês)
 
 ### Passo a Passo:
 
@@ -155,35 +164,60 @@ SELECT cron.unschedule('sync-chamados-hourly');
 SELECT sync_chamados();
 ```
 
+</details>
+
 ---
 
-## 🔧 Opção 2: Cron-job.org (Alternativa com Interface Visual)
+## 🎯 Opção 2: Cron-job.org (RECOMENDADO PARA PLANO FREE - 100% Gratuito)
 
 ### Vantagens:
-✅ Gratuito  
-✅ Interface simples  
-✅ Notificações de falha por email  
-✅ Histórico de execuções  
+✅ **100% Gratuito** (sem limite de tempo)  
+✅ **Interface visual simples**  
+✅ **Notificações de falha por email**  
+✅ **Histórico de execuções**  
+✅ **Funciona com plano Free do Supabase**  
+✅ **Configuração em 5 minutos**
 
 ### Passo a Passo:
 
-1. **Acesse:** https://cron-job.org/en/
+#### 1. Acesse e crie uma conta:
+- Vá para: **https://cron-job.org/en/**
+- Clique em **Sign up for free**
+- Confirme seu email
 
-2. **Crie uma conta gratuita**
+#### 2. Crie um novo Cron Job:
+- No dashboard, clique em **Create cronjob**
+- Preencha os campos:
 
-3. **Crie um novo Cron Job:**
-   - Nome: `TechHelp CSV Sync`
-   - URL: `https://SEU_PROJETO.supabase.co/functions/v1/sync-csv-to-supabase`
-   - Schedule: `*/15 * * * *` (a cada 15 minutos)
-   - Método: `POST`
+**Configurações Básicas:**
+- **Title:** `TechHelp CSV Sync`
+- **Address (URL):** `https://bttgotjfushzmcrfkpxl.supabase.co/functions/v1/sync-csv-to-supabase`
+- **Schedule:**
+  - Escolha: **Every 15 minutes** (ou personalize)
+  - Ou use cron: `*/15 * * * *`
 
-4. **Configure Headers:**
-   ```
-   Authorization: Bearer SUA_ANON_KEY_AQUI
-   Content-Type: application/json
-   ```
+**Configurações Avançadas (aba "Advanced"):**
+- **Request method:** `POST`
+- **Request headers:** Clique em "+ ADD" para adicionar 2 headers:
 
-5. **Salve e Ative**
+  **Header 1:**
+  - **Key:** `Authorization`
+  - **Value:** `    `
+  
+  **Header 2:**
+  - **Key:** `Content-Type`
+  - **Value:** `application/json`
+
+> 💡 **Dica:** Copie o valor completo do "Bearer" até o final do token. O "Bearer" + espaço + token vão juntos no campo Value!
+
+#### 3. Salve e Ative:
+- Clique em **Create cronjob**
+- O job começará a executar automaticamente!
+
+#### 4. Verificar execuções:
+- No dashboard, você verá o histórico de execuções
+- Status 200 = sucesso ✅
+- Qualquer outro código = erro ❌
 
 ---
 
@@ -286,19 +320,22 @@ curl -X POST \
 
 ## 🎯 Recomendação Final
 
-Para este projeto:
+Para este projeto no **plano Free do Supabase**:
 
-**Use: Supabase pg_cron (Opção 1) - TOTALMENTE GRATUITO! ✨**
+**Use: cron-job.org (Opção 2) - TOTALMENTE GRATUITO! ✨**
 
-✅ **Zero custo** (incluído no plano Free)  
-✅ **Configuração em 5 minutos** (apenas SQL)  
-✅ **Sem dependências externas** (tudo no Supabase)  
-✅ **100% confiável** (nativo PostgreSQL)  
-✅ **Qualquer frequência** (sem limites de 15 min)  
+✅ **Zero custo** (gratuito para sempre)  
+✅ **Configuração em 5 minutos** (interface visual)  
+✅ **Funciona com Supabase Free** (sem necessidade de upgrade)  
+✅ **Confiável** (serviço estabelecido há anos)  
+✅ **Frequência flexível** (até a cada 1 minuto no plano gratuito!)  
+✅ **Notificações** (receba email se algo der errado)
+
+**Se você tiver plano Pro do Supabase:**
+- **pg_cron (Opção 1)**: Melhor integração nativa
 
 **Alternativas:**
-- **cron-job.org**: Se preferir interface visual
-- **GitHub Actions**: Se quiser versionamento
+- **GitHub Actions (Opção 3)**: Se quiser versionamento no código
 
 ---
 
