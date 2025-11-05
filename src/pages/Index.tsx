@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { SettingsModal } from "@/components/dashboard/SettingsModal";
 import { SLAAlert } from "@/components/dashboard/SLAAlert";
@@ -37,6 +37,8 @@ const Index = ({ onLogout }: IndexProps) => {
   const [chartsYear, setChartsYear] = useState<number | 'all'>('all'); // Ano para filtrar os gráficos no modo "Todos"
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settings, setSettings] = useState<DashboardSettings>(loadSettings());
+  const [previousChamadosCount, setPreviousChamadosCount] = useState<number>(0);
+  const tableRef = useRef<HTMLDivElement>(null);
 
   // ============================================================================
   // FUNÇÕES E CÁLCULOS MEMOIZADOS (ANTES DO EARLY RETURN!)
@@ -59,9 +61,45 @@ const Index = ({ onLogout }: IndexProps) => {
 
       // Converter dados do formato DB para formato do frontend
       const chamadosConvertidos = (data as ChamadoDB[]).map(convertFromDB);
-      setChamados(chamadosConvertidos);
       
-      toast.success("Dados atualizados com sucesso!");
+      // Detectar novos chamados (apenas após carregamento inicial)
+      if (!isLoading && previousChamadosCount > 0 && chamadosConvertidos.length > previousChamadosCount) {
+        const novosCount = chamadosConvertidos.length - previousChamadosCount;
+        const novosChamados = chamadosConvertidos.slice(0, novosCount);
+        
+        // Mostrar notificação para cada novo chamado (máximo 3 para não poluir)
+        const chamadosParaNotificar = novosChamados.slice(0, 3);
+        chamadosParaNotificar.forEach((chamado, index) => {
+          setTimeout(() => {
+            toast.success(
+              `🎫 Novo chamado: ${chamado.id}`,
+              {
+                description: `${chamado.motivo.substring(0, 60)}...`,
+                action: {
+                  label: "Ver agora",
+                  onClick: () => {
+                    tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  },
+                },
+                duration: 5000,
+              }
+            );
+          }, index * 300); // Delay entre notificações
+        });
+
+        if (novosCount > 3) {
+          setTimeout(() => {
+            toast.info(`E mais ${novosCount - 3} novo(s) chamado(s)`, { duration: 3000 });
+          }, 900);
+        }
+      }
+      
+      setChamados(chamadosConvertidos);
+      setPreviousChamadosCount(chamadosConvertidos.length);
+      
+      if (!isLoading) {
+        toast.success("Dados atualizados com sucesso!", { duration: 2000 });
+      }
     } catch (error) {
       console.error("Erro ao carregar dados:", error);
       toast.error("Erro ao carregar os dados do Supabase");
@@ -69,7 +107,7 @@ const Index = ({ onLogout }: IndexProps) => {
       setIsRefreshing(false);
       setIsLoading(false);
     }
-  }, []);
+  }, [isLoading, previousChamadosCount]);
 
   useEffect(() => {
     loadData();
@@ -600,7 +638,9 @@ const Index = ({ onLogout }: IndexProps) => {
         <SLAAlert chamados={chamados} metaSLA={settings.metaSLA} />
 
         {/* Tabela */}
-        <TicketsTable data={chamados} />
+        <div ref={tableRef}>
+          <TicketsTable data={chamados} />
+        </div>
       </main>
     </div>
   );
