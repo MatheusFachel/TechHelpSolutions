@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search, ChevronLeft, ChevronRight, Star, Download, X, Calendar } from "lucide-react";
 import { Chamado, getStatusColor, getSatisfacaoNumero } from "@/utils/dataParser";
+import { TicketCard } from "./TicketCard";
 import {
   Select,
   SelectContent,
@@ -398,7 +399,8 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
           )}
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Versão Desktop - Tabela */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-border">
@@ -441,6 +443,13 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Versão Mobile - Cards */}
+        <div className="md:hidden space-y-3">
+          {currentData.map((ticket, index) => (
+            <TicketCard key={ticket.id} ticket={ticket} index={index} />
+          ))}
         </div>
 
         <div className="flex items-center justify-between pt-4">

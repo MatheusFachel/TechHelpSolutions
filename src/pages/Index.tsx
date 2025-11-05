@@ -7,6 +7,7 @@ import { TechnicianChart } from "@/components/dashboard/TechnicianChart";
 import { CategoryChart } from "@/components/dashboard/CategoryChart";
 import { TimelineChart } from "@/components/dashboard/TimelineChart";
 import { TicketsTable } from "@/components/dashboard/TicketsTable";
+import { ChartsCarousel } from "@/components/dashboard/ChartsCarousel";
 import { KPISkeleton, ChartSkeleton, TableSkeleton, InsightCardSkeleton } from "@/components/dashboard/DashboardSkeletons";
 import { Chamado, convertFromDB, getSatisfacaoNumero } from "@/utils/dataParser";
 import { supabase, ChamadoDB } from "@/lib/supabase";
@@ -550,10 +551,10 @@ const Index = ({ onLogout }: IndexProps) => {
         </Card>
 
         {/* Gráficos */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ChartsCarousel>
           <TechnicianChart data={chamadosPorTecnico} />
           <CategoryChart data={chamadosPorCategoria} />
-        </div>
+        </ChartsCarousel>
 
         {/* Timeline */}
         <TimelineChart 
