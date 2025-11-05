@@ -68,7 +68,15 @@ const Index = ({ onLogout }: IndexProps) => {
         const novosCount = chamadosConvertidos.length - previousChamadosCount;
         const novosChamados = chamadosConvertidos.slice(0, novosCount);
         
-        // Mostrar notificação para cada novo chamado (máximo 3 para não poluir)
+        // Adicionar TODOS os novos chamados ao Centro de Notificações
+        novosChamados.forEach((chamado) => {
+          // Usar função global exposta pelo NotificationCenter
+          if ((window as any).addTechHelpNotification) {
+            (window as any).addTechHelpNotification(chamado.id, chamado.motivo);
+          }
+        });
+        
+        // Mostrar toast apenas para os primeiros 3 (UX não invasivo)
         const chamadosParaNotificar = novosChamados.slice(0, 3);
         chamadosParaNotificar.forEach((chamado, index) => {
           setTimeout(() => {
@@ -414,6 +422,10 @@ const Index = ({ onLogout }: IndexProps) => {
         isRefreshing={isRefreshing}
         onOpenSettings={() => setSettingsOpen(true)}
         onLogout={onLogout}
+        onViewTicket={(chamadoId) => {
+          // Scroll para a tabela quando clicar em uma notificação
+          tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}
       />
       
       <SettingsModal

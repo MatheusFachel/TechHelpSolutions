@@ -1,6 +1,7 @@
 import { RefreshCw, Moon, Sun, Settings, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { NotificationCenter } from "./NotificationCenter";
 import logoPreta from "@/assets/techhelp-logo.png";
 import logoBranca from "@/assets/techhelp-logo-branca.png";
 import { logout, getCurrentUser } from "@/lib/auth";
@@ -10,9 +11,10 @@ interface DashboardHeaderProps {
   isRefreshing: boolean;
   onOpenSettings: () => void;
   onLogout: () => void;
+  onViewTicket?: (chamadoId: string) => void;
 }
 
-export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings, onLogout }: DashboardHeaderProps) => {
+export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings, onLogout, onViewTicket }: DashboardHeaderProps) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isDark, setIsDark] = useState(false);
   const currentUser = getCurrentUser();
@@ -72,6 +74,9 @@ export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings, onLog
                 <span className="font-medium">{currentUser.name}</span>
               </div>
             )}
+
+            {/* Centro de Notificações */}
+            <NotificationCenter onViewTicket={onViewTicket} />
 
             {/* Configurações - sempre visível */}
             <Button
