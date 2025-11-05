@@ -42,13 +42,9 @@ export const LoginPage = ({ onLogin }: LoginPageProps) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-8 space-y-6 border-border/50 shadow-2xl">
-        {/* Logo e Título */}
-        <div className="text-center space-y-2">
-          <img src={logo} alt="TechHelp Solutions" className="h-16 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold">Tech Help Dashboard</h1>
-          <p className="text-sm text-muted-foreground">
-            Sistema de Gestão de Chamados
-          </p>
+        {/* Logo */}
+        <div className="text-center">
+          <img src={logo} alt="TechHelp Solutions" className="h-16 mx-auto" />
         </div>
 
         {/* Formulário de Login */}

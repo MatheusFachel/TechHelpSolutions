@@ -17,7 +17,7 @@ interface TicketRisco {
 }
 
 export const SLAAlert = memo(({ chamados, metaSLA }: SLAAlertProps) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // Calcular tickets em risco
   const ticketsEmRisco: TicketRisco[] = chamados
