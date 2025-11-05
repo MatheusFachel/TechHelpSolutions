@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
+import { Sidebar } from "@/components/dashboard/Sidebar";
 import { SettingsModal } from "@/components/dashboard/SettingsModal";
 import { SLAAlert } from "@/components/dashboard/SLAAlert";
 import { KPICard } from "@/components/dashboard/KPICard";
@@ -409,20 +410,25 @@ const Index = ({ onLogout }: IndexProps) => {
 
   return (
     <div className="min-h-screen bg-background">
-      <DashboardHeader 
-        onRefresh={loadData} 
-        isRefreshing={isRefreshing}
-        onOpenSettings={() => setSettingsOpen(true)}
-        onLogout={onLogout}
-      />
+      {/* Sidebar */}
+      <Sidebar onOpenSettings={() => setSettingsOpen(true)} onLogout={onLogout} />
       
-      <SettingsModal
-        open={settingsOpen}
-        onOpenChange={setSettingsOpen}
-        onSettingsChange={setSettings}
-      />
-      
-      <main className="container mx-auto px-4 py-8 space-y-8">
+      {/* Main Content - com margem esquerda no desktop para a sidebar */}
+      <div className="lg:ml-64">
+        <DashboardHeader 
+          onRefresh={loadData} 
+          isRefreshing={isRefreshing}
+          onOpenSettings={() => setSettingsOpen(true)}
+          onLogout={onLogout}
+        />
+        
+        <SettingsModal
+          open={settingsOpen}
+          onOpenChange={setSettingsOpen}
+          onSettingsChange={setSettings}
+        />
+        
+        <main className="container mx-auto px-4 py-8 space-y-8">
         {/* Botão de Teste de Notificações (TEMPORÁRIO - REMOVER DEPOIS) */}
         <div className="flex justify-end">
           <Button
@@ -665,6 +671,7 @@ const Index = ({ onLogout }: IndexProps) => {
           <TicketsTable data={chamados} />
         </div>
       </main>
+      </div>
     </div>
   );
 };
