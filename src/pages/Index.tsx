@@ -1,6 +1,5 @@
 import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
-import { Sidebar } from "@/components/dashboard/Sidebar";
 import { SettingsModal } from "@/components/dashboard/SettingsModal";
 import { SLAAlert } from "@/components/dashboard/SLAAlert";
 import { KPICard } from "@/components/dashboard/KPICard";
@@ -410,47 +409,20 @@ const Index = ({ onLogout }: IndexProps) => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Sidebar */}
-      <Sidebar onOpenSettings={() => setSettingsOpen(true)} onLogout={onLogout} />
+      <DashboardHeader 
+        onRefresh={loadData} 
+        isRefreshing={isRefreshing}
+        onOpenSettings={() => setSettingsOpen(true)}
+        onLogout={onLogout}
+      />
       
-      {/* Main Content - com margem esquerda no desktop para a sidebar */}
-      <div className="lg:ml-64">
-        <DashboardHeader 
-          onRefresh={loadData} 
-          isRefreshing={isRefreshing}
-          onOpenSettings={() => setSettingsOpen(true)}
-          onLogout={onLogout}
-        />
-        
-        <SettingsModal
-          open={settingsOpen}
-          onOpenChange={setSettingsOpen}
-          onSettingsChange={setSettings}
-        />
-        
-        <main className="container mx-auto px-4 py-8 space-y-8">
-        {/* Botão de Teste de Notificações (TEMPORÁRIO - REMOVER DEPOIS) */}
-        <div className="flex justify-end">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              toast.success("🎫 Novo chamado: INC-2024-TEST", {
-                description: "Problema com impressora HP LaserJet. Não conecta à rede...",
-                action: {
-                  label: "Ver agora",
-                  onClick: () => {
-                    tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  },
-                },
-                duration: 5000,
-              });
-            }}
-          >
-            🧪 Testar Notificação
-          </Button>
-        </div>
-
+      <SettingsModal
+        open={settingsOpen}
+        onOpenChange={setSettingsOpen}
+        onSettingsChange={setSettings}
+      />
+      
+      <main className="container mx-auto px-3 md:px-4 py-4 md:py-8 space-y-4 md:space-y-8">
         {/* KPIs */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <KPICard
@@ -671,7 +643,6 @@ const Index = ({ onLogout }: IndexProps) => {
           <TicketsTable data={chamados} />
         </div>
       </main>
-      </div>
     </div>
   );
 };
