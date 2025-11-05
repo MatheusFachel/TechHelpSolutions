@@ -422,6 +422,28 @@ const Index = ({ onLogout }: IndexProps) => {
       />
       
       <main className="container mx-auto px-4 py-8 space-y-8">
+        {/* Botão de Teste de Notificações (TEMPORÁRIO - REMOVER DEPOIS) */}
+        <div className="flex justify-end">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              toast.success("🎫 Novo chamado: INC-2024-TEST", {
+                description: "Problema com impressora HP LaserJet. Não conecta à rede...",
+                action: {
+                  label: "Ver agora",
+                  onClick: () => {
+                    tableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  },
+                },
+                duration: 5000,
+              });
+            }}
+          >
+            🧪 Testar Notificação
+          </Button>
+        </div>
+
         {/* KPIs */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <KPICard
