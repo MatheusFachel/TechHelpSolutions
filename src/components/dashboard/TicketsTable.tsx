@@ -28,7 +28,7 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("todos");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const filteredData = data.filter((ticket) => {
     const matchesSearch = 
@@ -255,9 +255,32 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
         </div>
 
         <div className="flex items-center justify-between pt-4">
-          <p className="text-sm text-muted-foreground">
-            Mostrando {startIndex + 1} a {Math.min(endIndex, filteredData.length)} de {filteredData.length} chamados
-          </p>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">Registros por página:</span>
+              <Select
+                value={itemsPerPage.toString()}
+                onValueChange={(value) => {
+                  setItemsPerPage(Number(value));
+                  setCurrentPage(1); // Reset para primeira página ao mudar quantidade
+                }}
+              >
+                <SelectTrigger className="w-[80px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="10">10</SelectItem>
+                  <SelectItem value="20">20</SelectItem>
+                  <SelectItem value="50">50</SelectItem>
+                  <SelectItem value="100">100</SelectItem>
+                  <SelectItem value="200">200</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Mostrando {startIndex + 1} a {Math.min(endIndex, filteredData.length)} de {filteredData.length} registros
+            </p>
+          </div>
           <div className="flex gap-2">
             <Button
               variant="outline"
@@ -267,6 +290,9 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
+            <span className="flex items-center px-3 text-sm">
+              Página {currentPage} de {totalPages || 1}
+            </span>
             <Button
               variant="outline"
               size="sm"
