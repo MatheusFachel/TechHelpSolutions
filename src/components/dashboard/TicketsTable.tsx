@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Search, ChevronLeft, ChevronRight, Star, Download } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, Star, Download, X, Calendar } from "lucide-react";
 import { Chamado, getStatusColor, getSatisfacaoNumero } from "@/utils/dataParser";
 import {
   Select,
@@ -17,7 +17,14 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
+  DropdownMenuSeparator,
+  DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar as CalendarComponent } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import * as XLSX from 'xlsx';
 
 interface TicketsTableProps {
@@ -26,9 +33,28 @@ interface TicketsTableProps {
 
 export const TicketsTable = ({ data }: TicketsTableProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("todos");
+  const [statusFilter, setStatusFilter] = useState<string[]>([]);
+  const [tecnicoFilter, setTecnicoFilter] = useState<string[]>([]);
+  const [departamentoFilter, setDepartamentoFilter] = useState<string[]>([]);
+  const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
+  const [dateTo, setDateTo] = useState<Date | undefined>(undefined);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  // Extrair técnicos únicos
+  const tecnicos = useMemo(() => {
+    const unique = [...new Set(data.map(d => d.tecnico))].sort();
+    return unique;
+  }, [data]);
+
+  // Extrair departamentos únicos
+  const departamentos = useMemo(() => {
+    const unique = [...new Set(data.map(d => d.departamento))].sort();
+    return unique;
+  }, [data]);
+
+  // Status disponíveis
+  const statusOptions = ["Aberto", "Pendente", "Em Andamento", "Resolvido", "Fechado"];
 
   const filteredData = data.filter((ticket) => {
     const matchesSearch = 
@@ -36,9 +62,27 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
       ticket.tecnico.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ticket.motivo.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesStatus = statusFilter === "todos" || ticket.status === statusFilter;
+    const matchesStatus = statusFilter.length === 0 || statusFilter.includes(ticket.status);
+    const matchesTecnico = tecnicoFilter.length === 0 || tecnicoFilter.includes(ticket.tecnico);
+    const matchesDepartamento = departamentoFilter.length === 0 || departamentoFilter.includes(ticket.departamento);
     
-    return matchesSearch && matchesStatus;
+    // Parse data no formato DD/MM/YYYY
+    const parseDate = (dateStr: string) => {
+      if (!dateStr) return null;
+      const [day, month, year] = dateStr.split('/').map(Number);
+      return new Date(year, month - 1, day);
+    };
+
+    let matchesDateRange = true;
+    if (dateFrom || dateTo) {
+      const ticketDate = parseDate(ticket.dataAbertura);
+      if (ticketDate) {
+        if (dateFrom && ticketDate < dateFrom) matchesDateRange = false;
+        if (dateTo && ticketDate > dateTo) matchesDateRange = false;
+      }
+    }
+    
+    return matchesSearch && matchesStatus && matchesTecnico && matchesDepartamento && matchesDateRange;
   });
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
@@ -158,9 +202,26 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
     XLSX.writeFile(workbook, `chamados_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
+  // Função para limpar todos os filtros
+  const clearAllFilters = () => {
+    setSearchTerm("");
+    setStatusFilter([]);
+    setTecnicoFilter([]);
+    setDepartamentoFilter([]);
+    setDateFrom(undefined);
+    setDateTo(undefined);
+    setCurrentPage(1);
+  };
+
+  // Verificar se há filtros ativos
+  const hasActiveFilters = searchTerm !== "" || statusFilter.length > 0 || 
+    tecnicoFilter.length > 0 || departamentoFilter.length > 0 || 
+    dateFrom !== undefined || dateTo !== undefined;
+
   return (
     <Card className="p-6 border-border/50 bg-card/50 backdrop-blur-sm">
       <div className="space-y-4">
+        {/* Linha de busca e exportar */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
@@ -174,22 +235,6 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
               className="pl-10"
             />
           </div>
-          <Select value={statusFilter} onValueChange={(value) => {
-            setStatusFilter(value);
-            setCurrentPage(1);
-          }}>
-            <SelectTrigger className="w-full sm:w-[200px]">
-              <SelectValue placeholder="Filtrar por status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todos os Status</SelectItem>
-              <SelectItem value="Aberto">Aberto</SelectItem>
-              <SelectItem value="Pendente">Pendente</SelectItem>
-              <SelectItem value="Em Andamento">Em Andamento</SelectItem>
-              <SelectItem value="Resolvido">Resolvido</SelectItem>
-              <SelectItem value="Fechado">Fechado</SelectItem>
-            </SelectContent>
-          </Select>
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -207,6 +252,150 @@ export const TicketsTable = ({ data }: TicketsTableProps) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+        </div>
+
+        {/* Linha de filtros avançados */}
+        <div className="flex flex-wrap gap-2">
+          {/* Filtro de Status */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm">
+                Status {statusFilter.length > 0 && `(${statusFilter.length})`}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56">
+              <DropdownMenuLabel>Filtrar por Status</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {statusOptions.map((status) => (
+                <DropdownMenuCheckboxItem
+                  key={status}
+                  checked={statusFilter.includes(status)}
+                  onCheckedChange={(checked) => {
+                    setStatusFilter(prev => 
+                      checked 
+                        ? [...prev, status]
+                        : prev.filter(s => s !== status)
+                    );
+                    setCurrentPage(1);
+                  }}
+                >
+                  {status}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Filtro de Técnico */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm">
+                Técnico {tecnicoFilter.length > 0 && `(${tecnicoFilter.length})`}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56 max-h-[300px] overflow-y-auto">
+              <DropdownMenuLabel>Filtrar por Técnico</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {tecnicos.map((tecnico) => (
+                <DropdownMenuCheckboxItem
+                  key={tecnico}
+                  checked={tecnicoFilter.includes(tecnico)}
+                  onCheckedChange={(checked) => {
+                    setTecnicoFilter(prev => 
+                      checked 
+                        ? [...prev, tecnico]
+                        : prev.filter(t => t !== tecnico)
+                    );
+                    setCurrentPage(1);
+                  }}
+                >
+                  {tecnico}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Filtro de Departamento */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm">
+                Departamento {departamentoFilter.length > 0 && `(${departamentoFilter.length})`}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56 max-h-[300px] overflow-y-auto">
+              <DropdownMenuLabel>Filtrar por Departamento</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              {departamentos.map((depto) => (
+                <DropdownMenuCheckboxItem
+                  key={depto}
+                  checked={departamentoFilter.includes(depto)}
+                  onCheckedChange={(checked) => {
+                    setDepartamentoFilter(prev => 
+                      checked 
+                        ? [...prev, depto]
+                        : prev.filter(d => d !== depto)
+                    );
+                    setCurrentPage(1);
+                  }}
+                >
+                  {depto}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Filtro de Data */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" size="sm">
+                <Calendar className="w-4 h-4 mr-2" />
+                {dateFrom || dateTo ? (
+                  dateFrom && dateTo 
+                    ? `${format(dateFrom, "dd/MM", { locale: ptBR })} - ${format(dateTo, "dd/MM", { locale: ptBR })}`
+                    : dateFrom 
+                      ? `A partir de ${format(dateFrom, "dd/MM/yyyy", { locale: ptBR })}`
+                      : `Até ${format(dateTo!, "dd/MM/yyyy", { locale: ptBR })}`
+                ) : "Período"}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-4" align="start">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Data Inicial</label>
+                  <CalendarComponent
+                    mode="single"
+                    selected={dateFrom}
+                    onSelect={setDateFrom}
+                    locale={ptBR}
+                    className="rounded-md border"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Data Final</label>
+                  <CalendarComponent
+                    mode="single"
+                    selected={dateTo}
+                    onSelect={setDateTo}
+                    locale={ptBR}
+                    disabled={(date) => dateFrom ? date < dateFrom : false}
+                    className="rounded-md border"
+                  />
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+
+          {/* Botão limpar filtros */}
+          {hasActiveFilters && (
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={clearAllFilters}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              <X className="w-4 h-4 mr-2" />
+              Limpar filtros
+            </Button>
+          )}
         </div>
 
         <div className="overflow-x-auto">
