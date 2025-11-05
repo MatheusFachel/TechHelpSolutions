@@ -1,18 +1,26 @@
-import { RefreshCw, Moon, Sun, Settings } from "lucide-react";
+import { RefreshCw, Moon, Sun, Settings, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import logoPreta from "@/assets/techhelp-logo.png";
 import logoBranca from "@/assets/techhelp-logo-branca.png";
+import { logout, getCurrentUser } from "@/lib/auth";
 
 interface DashboardHeaderProps {
   onRefresh: () => void;
   isRefreshing: boolean;
   onOpenSettings: () => void;
+  onLogout: () => void;
 }
 
-export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings }: DashboardHeaderProps) => {
+export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings, onLogout }: DashboardHeaderProps) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isDark, setIsDark] = useState(false);
+  const currentUser = getCurrentUser();
+
+  const handleLogout = () => {
+    logout();
+    onLogout();
+  };
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -54,6 +62,14 @@ export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings }: Das
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {/* Exibir nome do usuário */}
+            {currentUser && (
+              <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 text-sm">
+                <span className="text-muted-foreground">Olá,</span>
+                <span className="font-medium">{currentUser.name}</span>
+              </div>
+            )}
+
             <Button
               variant="outline"
               size="icon"
@@ -80,6 +96,15 @@ export const DashboardHeader = ({ onRefresh, isRefreshing, onOpenSettings }: Das
             >
               <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
               Atualizar
+            </Button>
+            <Button
+              variant="outline"
+              onClick={handleLogout}
+              className="gap-2"
+              title="Sair do sistema"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden md:inline">Sair</span>
             </Button>
           </div>
         </div>

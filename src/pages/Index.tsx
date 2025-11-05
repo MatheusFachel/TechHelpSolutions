@@ -22,7 +22,11 @@ import {
 import { toast } from "sonner";
 import { DashboardSettings, loadSettings } from "@/lib/settings";
 
-const Index = () => {
+interface IndexProps {
+  onLogout: () => void;
+}
+
+const Index = ({ onLogout }: IndexProps) => {
   const [chamados, setChamados] = useState<Chamado[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -349,6 +353,7 @@ const Index = () => {
         onRefresh={loadData} 
         isRefreshing={isRefreshing}
         onOpenSettings={() => setSettingsOpen(true)}
+        onLogout={onLogout}
       />
       
       <SettingsModal
