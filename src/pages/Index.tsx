@@ -7,6 +7,7 @@ import { TechnicianChart } from "@/components/dashboard/TechnicianChart";
 import { CategoryChart } from "@/components/dashboard/CategoryChart";
 import { TimelineChart } from "@/components/dashboard/TimelineChart";
 import { TicketsTable } from "@/components/dashboard/TicketsTable";
+import { KPISkeleton, ChartSkeleton, TableSkeleton, InsightCardSkeleton } from "@/components/dashboard/DashboardSkeletons";
 import { Chamado, convertFromDB, getSatisfacaoNumero } from "@/utils/dataParser";
 import { supabase, ChamadoDB } from "@/lib/supabase";
 import { TicketCheck, Clock, AlertCircle, Star, TrendingUp, Award, CheckCircle2, Zap } from "lucide-react";
@@ -226,10 +227,30 @@ const Index = ({ onLogout }: IndexProps) => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="text-muted-foreground">Carregando dashboard...</p>
+      <div className="min-h-screen bg-background">
+        <div className="space-y-6 p-6">
+          {/* Header Skeleton */}
+          <div className="flex flex-col gap-2">
+            <div className="h-8 w-64 bg-muted animate-pulse rounded"></div>
+            <div className="h-4 w-96 bg-muted animate-pulse rounded"></div>
+          </div>
+
+          {/* KPIs Skeleton */}
+          <KPISkeleton />
+
+          {/* Charts Skeleton */}
+          <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+            <ChartSkeleton />
+            <ChartSkeleton />
+          </div>
+
+          <ChartSkeleton />
+
+          {/* Strategic Insights Skeleton */}
+          <InsightCardSkeleton />
+
+          {/* Table Skeleton */}
+          <TableSkeleton />
         </div>
       </div>
     );
