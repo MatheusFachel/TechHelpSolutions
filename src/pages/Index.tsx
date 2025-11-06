@@ -46,9 +46,31 @@ const Index = ({ onLogout }: IndexProps) => {
   // Regra do React: Hooks devem ser chamados na mesma ordem em TODOS os renders
   // ============================================================================
 
-  const loadData = useCallback(async () => {
+  const loadData = useCallback(async (manualSync = false) => {
     try {
       setIsRefreshing(true);
+      
+      // Se for sincronização manual, chamar Edge Function primeiro
+      if (manualSync) {
+        toast.info("Sincronizando com Google Sheets...", { duration: 2000 });
+        
+        try {
+          const { data: syncData, error: syncError } = await supabase.functions.invoke('sync-google-sheets');
+          
+          if (syncError) {
+            console.error('Erro ao sincronizar Google Sheets:', syncError);
+            toast.error("Erro ao sincronizar com Google Sheets");
+          } else {
+            console.log('Sincronização Google Sheets:', syncData);
+            toast.success(`${syncData?.message || 'Sincronização concluída!'}`, { duration: 3000 });
+            
+            // Aguardar 1 segundo para o banco processar
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          }
+        } catch (error) {
+          console.error('Erro na sincronização:', error);
+        }
+      }
       
       // Buscar dados do Supabase
       const { data, error } = await supabase
@@ -106,7 +128,7 @@ const Index = ({ onLogout }: IndexProps) => {
       setChamados(chamadosConvertidos);
       setPreviousChamadosCount(chamadosConvertidos.length);
       
-      if (!isLoading) {
+      if (!isLoading && !manualSync) {
         toast.success("Dados atualizados com sucesso!", { duration: 2000 });
       }
     } catch (error) {
@@ -142,9 +164,18 @@ const Index = ({ onLogout }: IndexProps) => {
       )
       .subscribe();
 
+    // POLLING AUTOMÁTICO: Sincronizar com Google Sheets a cada 5 minutos
+    console.log('📡 Polling automático habilitado (5 minutos)');
+    const pollingInterval = setInterval(() => {
+      console.log('🔄 Executando sincronização automática com Google Sheets...');
+      loadData(true); // TRUE = chamar sync-google-sheets
+    }, 5 * 60 * 1000); // 5 minutos
+
     return () => {
       clearTimeout(debounceTimer);
+      clearInterval(pollingInterval);
       supabase.removeChannel(channel);
+      console.log('📡 Polling automático desabilitado');
     };
   }, [loadData]);
 
@@ -418,7 +449,7 @@ const Index = ({ onLogout }: IndexProps) => {
   return (
     <div className="min-h-screen bg-background">
       <DashboardHeader 
-        onRefresh={loadData} 
+        onRefresh={() => loadData(true)} // TRUE = sincronização manual com Google Sheets
         isRefreshing={isRefreshing}
         onOpenSettings={() => setSettingsOpen(true)}
         onLogout={onLogout}

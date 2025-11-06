@@ -1,5 +1,6 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { parse } from 'https://deno.land/std@0.168.0/encoding/csv.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -28,31 +29,44 @@ serve(async (req) => {
     const csvText = await response.text()
     console.log('CSV baixado com sucesso')
     
-    // Parse CSV
-    const lines = csvText.split('\n').filter(line => line.trim())
-    console.log('Total de linhas:', lines.length)
+    // Parse CSV usando biblioteca Deno (respeita aspas e vírgulas dentro de campos)
+    const records = await parse(csvText, {
+      skipFirstRow: true,
+      columns: [
+        'ID do Chamado',
+        'Data de Abertura',
+        'Data de Fechamento',
+        'Status',
+        'Prioridade',
+        'Motivo',
+        'Solução',
+        'Solicitante',
+        'Agente Responsável',
+        'Departamento',
+        'TMA (minutos)',
+        'FRT (minutos)',
+        'Satisfação do Cliente'
+      ]
+    })
     
-    // Pegar os headers do CSV (primeira linha) e limpar caracteres invisíveis
-    const headers = lines[0].split(',').map(h => h.trim().replace(/\r/g, ''))
-    console.log('Headers do CSV:', headers)
+    console.log('Total de registros parseados:', records.length)
     
-    const chamados = lines.slice(1).map(line => {
-      const values = line.split(',').map(v => v.trim().replace(/\r/g, ''))
-      const obj: any = {}
-      
-      headers.forEach((header, index) => {
-        const value = values[index] || null
-        
-        // Converter tipos baseado no nome da coluna
-        if (header === 'TMA (minutos)' || header === 'FRT (minutos)') {
-          // Usar 0 se vazio (NOT NULL no banco)
-          obj[header] = value && value !== '' ? parseInt(value) : 0
-        } else {
-          obj[header] = value && value !== '' ? value : null
-        }
-      })
-      
-      return obj
+    const chamados = records.map((record: any) => {
+      return {
+        'ID do Chamado': record['ID do Chamado'] || null,
+        'Data de Abertura': record['Data de Abertura'] || null,
+        'Data de Fechamento': record['Data de Fechamento'] || null,
+        'Status': record['Status'] || null,
+        'Prioridade': record['Prioridade'] || null,
+        'Motivo': record['Motivo'] || null,
+        'Solução': record['Solução'] || null,
+        'Solicitante': record['Solicitante'] || null,
+        'Agente Responsável': record['Agente Responsável'] || null,
+        'Departamento': record['Departamento'] || null,
+        'TMA (minutos)': record['TMA (minutos)'] && record['TMA (minutos)'] !== '' ? parseInt(record['TMA (minutos)']) : 0,
+        'FRT (minutos)': record['FRT (minutos)'] && record['FRT (minutos)'] !== '' ? parseInt(record['FRT (minutos)']) : 0,
+        'Satisfação do Cliente': record['Satisfação do Cliente'] || null
+      }
     })
 
     console.log('Chamados parseados:', chamados.length)

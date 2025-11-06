@@ -24,7 +24,7 @@ interface NotificationCenterProps {
 }
 
 // Email do usuário (em produção, viria do sistema de autenticação)
-const CURRENT_USER = "admin@techelp.com";
+const CURRENT_USER = "default_user";
 
 export const NotificationCenter = ({ onViewTicket }: NotificationCenterProps) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
