@@ -9,6 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { supabase } from "@/lib/supabase";
 
 export interface Notification {
   id: string;
@@ -22,53 +23,83 @@ interface NotificationCenterProps {
   onViewTicket?: (chamadoId: string) => void;
 }
 
-const STORAGE_KEY = 'techhelp_notifications';
-const MAX_NOTIFICATIONS = 50; // Manter últimas 50
+// Email do usuário (em produção, viria do sistema de autenticação)
+const CURRENT_USER = "admin@techelp.com";
 
 export const NotificationCenter = ({ onViewTicket }: NotificationCenterProps) => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Carregar notificações do localStorage
+  // Carregar notificações do Supabase
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        // Converter timestamps string de volta para Date
-        const withDates = parsed.map((n: any) => ({
-          ...n,
-          timestamp: new Date(n.timestamp)
-        }));
-        setNotifications(withDates);
-      } catch (error) {
-        console.error('Erro ao carregar notificações:', error);
-      }
-    }
+    loadNotifications();
+
+    // Subscription para novas notificações em tempo real
+    const channel = supabase
+      .channel('notifications-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'notifications',
+          filter: `user_id=eq.${CURRENT_USER}`
+        },
+        () => {
+          loadNotifications();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
-  // Salvar notificações no localStorage sempre que mudar
-  useEffect(() => {
-    if (notifications.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(notifications));
+  const loadNotifications = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('notifications')
+        .select('*')
+        .eq('user_id', CURRENT_USER)
+        .order('created_at', { ascending: false })
+        .limit(50);
+
+      if (error) throw error;
+
+      if (data) {
+        const formatted = data.map(n => ({
+          id: n.id,
+          chamadoId: n.chamado_id,
+          motivo: n.motivo,
+          timestamp: new Date(n.created_at),
+          read: n.read
+        }));
+        setNotifications(formatted);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar notificações:', error);
     }
-  }, [notifications]);
+  };
 
   // Função pública para adicionar notificação (será chamada pelo Index.tsx)
-  const addNotification = (chamadoId: string, motivo: string) => {
-    const newNotification: Notification = {
-      id: `${chamadoId}-${Date.now()}`,
-      chamadoId,
-      motivo,
-      timestamp: new Date(),
-      read: false,
-    };
+  const addNotification = async (chamadoId: string, motivo: string) => {
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .insert({
+          chamado_id: chamadoId,
+          motivo: motivo,
+          user_id: CURRENT_USER,
+          read: false
+        });
 
-    setNotifications(prev => {
-      const updated = [newNotification, ...prev];
-      // Manter apenas as últimas MAX_NOTIFICATIONS
-      return updated.slice(0, MAX_NOTIFICATIONS);
-    });
+      if (error) throw error;
+
+      // A subscription já vai recarregar automaticamente
+    } catch (error) {
+      console.error('Erro ao adicionar notificação:', error);
+    }
   };
 
   // Expor função globalmente para ser usada pelo componente pai
@@ -81,19 +112,50 @@ export const NotificationCenter = ({ onViewTicket }: NotificationCenterProps) =>
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
-  const markAsRead = (id: string) => {
-    setNotifications(prev =>
-      prev.map(n => n.id === id ? { ...n, read: true } : n)
-    );
+  const markAsRead = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .update({ read: true })
+        .eq('id', id);
+
+      if (error) throw error;
+
+      // A subscription já vai recarregar automaticamente
+    } catch (error) {
+      console.error('Erro ao marcar como lida:', error);
+    }
   };
 
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+  const markAllAsRead = async () => {
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .update({ read: true })
+        .eq('user_id', CURRENT_USER)
+        .eq('read', false);
+
+      if (error) throw error;
+
+      // A subscription já vai recarregar automaticamente
+    } catch (error) {
+      console.error('Erro ao marcar todas como lidas:', error);
+    }
   };
 
-  const clearAll = () => {
-    setNotifications([]);
-    localStorage.removeItem(STORAGE_KEY);
+  const clearAll = async () => {
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .delete()
+        .eq('user_id', CURRENT_USER);
+
+      if (error) throw error;
+
+      // A subscription já vai recarregar automaticamente
+    } catch (error) {
+      console.error('Erro ao limpar notificações:', error);
+    }
   };
 
   const handleViewTicket = (notification: Notification) => {
