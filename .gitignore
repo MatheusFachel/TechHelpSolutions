@@ -22,3 +22,26 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Supabase temp files
+supabase/.temp/
+*.temp
+
+# HTML diagnostic files
+analyze-dates.html
+diagnostic.html
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Lock files (keep only package-lock.json)
+bun.lockb
+yarn.lock
+pnpm-lock.yaml
