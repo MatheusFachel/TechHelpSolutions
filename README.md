@@ -1,15 +1,127 @@
-# 📊 TechHelp Solutions - Dashboard de Suporte Técnico
+# 📊 TechHelp Solutions - Dashboard de Análise de Suporte Técnico
 
-Dashboard interativo em tempo real para análise de chamados de suporte técnico, integrado com Google Sheets e Supabase.
+<div align="center">
 
-## ✨ Funcionalidades
+![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6.0.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-- 📈 **KPIs em Tempo Real**: Total de chamados, tempo médio de resolução, chamados abertos e nível de satisfação
-- 📊 **Visualizações Interativas**: Gráficos de técnicos, categorias e timeline
-- 🔄 **Sincronização Automática**: Dados sincronizados automaticamente do Google Sheets
-- ⚡ **Real-Time Updates**: Dashboard atualiza automaticamente quando dados mudam
-- 🎨 **Interface Moderna**: Construído com React, TypeScript, Shadcn/UI e Tailwind CSS
-- 🔍 **Filtros e Busca**: Tabela com busca por ID, técnico ou categoria
+**Dashboard interativo em tempo real para análise e gestão de chamados de suporte técnico**
+
+[🚀 Demo](#-demonstração) • [📖 Documentação](#-índice) • [🛠️ Instalação](#-guia-de-instalação-passo-a-passo) • [🤝 Contribuir](#-contribuindo)
+
+</div>
+
+---
+
+## 📑 Índice
+
+- [Visão Geral](#-visão-geral)
+- [Funcionalidades](#-funcionalidades-principais)
+- [Arquitetura do Sistema](#-arquitetura-do-sistema)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Pré-requisitos](#-pré-requisitos)
+- [Guia de Instalação](#-guia-de-instalação-passo-a-passo)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Como Funciona](#-como-funciona)
+- [Personalização](#-personalização-e-configuração)
+- [Deploy](#-deploy-em-produção)
+- [Troubleshooting](#-troubleshooting)
+- [Contribuindo](#-contribuindo)
+- [Licença](#-licença)
+
+---
+
+## 🎯 Visão Geral
+
+TechHelp Solutions é um **dashboard moderno e educacional** desenvolvido para demonstrar boas práticas de desenvolvimento web com React, TypeScript e Supabase. O projeto simula um sistema real de gestão de chamados de suporte técnico, oferecendo:
+
+- ✅ **Análise em tempo real** com gráficos interativos
+- ✅ **Notificações instantâneas** quando novos chamados são criados
+- ✅ **Sincronização automática** com Google Sheets
+- ✅ **Interface responsiva** para desktop e mobile
+- ✅ **100% código aberto** com documentação completa para aprendizado
+
+### 🎓 Por que este projeto é educacional?
+
+Este dashboard foi construído com **foco didático**, documentando cada decisão técnica para que você possa:
+
+1. **Aprender arquitetura moderna** de aplicações web
+2. **Entender Real-Time subscriptions** com Supabase
+3. **Dominar TypeScript** com tipos seguros end-to-end
+4. **Implementar UI/UX profissional** com Shadcn/UI
+5. **Configurar CI/CD** e deploy automatizado
+
+> 💡 **Filosofia do Projeto**: "Conhecimento que não pode ser passado adiante é inútil. Por isso, cada linha de código está documentada para facilitar o aprendizado."
+
+---
+
+## ✨ Funcionalidades Principais
+
+### � Dashboard Analítico
+
+- **KPIs Dinâmicos**: 4 indicadores principais com animações suaves
+  - Total de Chamados
+  - Tempo Médio de Resolução (TMA)
+  - Chamados Abertos
+  - Nível de Satisfação
+  
+- **Gráficos Interativos** (Recharts):
+  - Chamados por Técnico (Top 10)
+  - Chamados por Categoria (Donut Chart)
+  - Timeline de Evolução Temporal
+  - Insights inteligentes em cada gráfico
+
+- **Filtros Avançados**:
+  - Período (7, 30, 90 dias ou todos)
+  - Status, Técnico, Departamento
+  - Busca por ID ou motivo
+  - Filtros múltiplos simultâneos
+
+### 🔔 Sistema de Notificações
+
+- **Real-Time Notifications**: Alertas instantâneos de novos chamados
+- **Centro de Notificações**: Histórico persistente no banco de dados
+- **Badge de Não Lidas**: Contador visual de notificações pendentes
+- **Proteção contra Spam**: Máximo 3 notificações simultâneas
+- **Timestamps Relativos**: "5min atrás", "2h atrás", etc.
+
+### 📱 Responsividade Total
+
+- **Mobile-First Design**:
+  - Cards otimizados para telas pequenas
+  - Carrossel touch para gráficos
+  - Tabela adaptativa (cards em mobile)
+  - Header compacto com ícones responsivos
+
+- **Desktop Enhancements**:
+  - Layout em grid otimizado
+  - Gráficos lado a lado
+  - Tabela completa com scroll horizontal
+  - Tooltips e hover states
+
+### ⚡ Sincronização Automática
+
+- **Google Sheets Integration**:
+  - Edge Function para sincronização
+  - Cron job configurável (a cada X minutos)
+  - Upsert inteligente (atualiza ou cria)
+  - Validação de dados na importação
+
+- **Real-Time Updates**:
+  - PostgreSQL Change Data Capture (CDC)
+  - WebSocket connection via Supabase Realtime
+  - Debounce de 500ms para evitar múltiplos reloads
+  - Notificações apenas para novos dados
+
+### 🎨 Temas e Personalização
+
+- **Dark/Light Mode**: Toggle no header
+- **Cores Customizáveis**: Sistema de design tokens
+- **Metas Configuráveis**: TMA, Satisfação, SLA
+- **Exportação de Dados**: CSV com dados filtrados
 
 ## 🛠️ Tecnologias
 
